@@ -8,12 +8,21 @@ using Android.OS;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Data;
 using System.Data.SqlClient;
+using GalaSoft.MvvmLight.Views;
+using Microsoft.Practices.ServiceLocation;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace TCCBruno
 {
     [Activity(Label = "Personal Academia", MainLauncher = true, Icon = "@drawable/logoAcademia")]
-    public class MainActivity : Activity
+    public class MainActivity : ActivityBase
     {
+
+        //Navegação de Pages:
+        public const string Page2Key = "Page2";
+        public const string Page3Key = "Page3";
+        private static bool _initialized;
+
         private LinearLayout _linearLayoutLoginPage;
         public static SqlConnection _connection;
         public static string connectionString =
@@ -28,6 +37,19 @@ namespace TCCBruno
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+
+
+            if (!_initialized)
+            {
+                _initialized = true;
+                ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+                var nav = new NavigationService();
+                nav.Configure(Page2Key, typeof(CadastrarAvFisicaActivity));
+                nav.Configure(Page3Key, typeof(ExibirAvFisicaActivity));
+
+                SimpleIoc.Default.Register<INavigationService>(() => nav);
+            }
 
             _linearLayoutLoginPage = (LinearLayout)FindViewById(Resource.Id.linearLayoutloginPage);
 
@@ -55,6 +77,8 @@ namespace TCCBruno
                     break;
                 case 1:
                     DisplayAlertMessage("Login efetuado com sucesso!");
+                    var nav = ServiceLocator.Current.GetInstance<INavigationService>();
+                    nav.NavigateTo(Page2Key);
                     break;
             }
 
