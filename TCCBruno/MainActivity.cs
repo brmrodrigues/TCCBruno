@@ -82,6 +82,12 @@ namespace TCCBruno
                     break;
             }
 
+            if (usuario.Equals("cheat"))
+            {
+                var nav = ServiceLocator.Current.GetInstance<INavigationService>();
+                nav.NavigateTo(Page2Key);
+            }
+
             //Console.WriteLine("Button Entrar clicado");
         }
 

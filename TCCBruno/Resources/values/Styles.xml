@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <style name="EditTextDecimalNumber" parent="@android:style/Widget.Button">
+    <item name="android:gravity">right</item>
+    <item name="android:padding">3dip</item>
+    <!--<item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_width">100dp</item>-->
+    <item name="android:maxLines">1</item>
+    <item name="android:inputType">numberDecimal</item>
+  </style>
+</resources>

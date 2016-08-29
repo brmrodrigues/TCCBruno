@@ -63,17 +63,35 @@ namespace TCCBruno
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050003
-			public const int button_Entrar = 2131034115;
+			// aapt resource value: 0x7f060003
+			public const int button_Entrar = 2131099651;
 			
-			// aapt resource value: 0x7f050002
-			public const int ediText_Senha = 2131034114;
+			// aapt resource value: 0x7f060002
+			public const int ediText_Senha = 2131099650;
 			
-			// aapt resource value: 0x7f050001
-			public const int editText_Email = 2131034113;
+			// aapt resource value: 0x7f060001
+			public const int editText_Email = 2131099649;
 			
-			// aapt resource value: 0x7f050000
-			public const int linearLayoutloginPage = 2131034112;
+			// aapt resource value: 0x7f060009
+			public const int editText_Excesso = 2131099657;
+			
+			// aapt resource value: 0x7f060006
+			public const int editText_PesoGordo = 2131099654;
+			
+			// aapt resource value: 0x7f060008
+			public const int editText_PesoIdeal = 2131099656;
+			
+			// aapt resource value: 0x7f060007
+			public const int editText_PesoMagro = 2131099655;
+			
+			// aapt resource value: 0x7f060005
+			public const int editText_PesoMuscular = 2131099653;
+			
+			// aapt resource value: 0x7f060000
+			public const int linearLayoutloginPage = 2131099648;
+			
+			// aapt resource value: 0x7f060004
+			public const int tableLayout1 = 2131099652;
 			
 			static Id()
 			{
@@ -116,6 +134,22 @@ namespace TCCBruno
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int EditTextDecimalNumber = 2131034112;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Style()
 			{
 			}
 		}
