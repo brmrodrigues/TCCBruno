@@ -20,8 +20,8 @@ namespace TCCBruno
 
         //Navegação de Pages:
         public const string Page2Key = "Page2";
-        public const string Page3Key = "Page3";
-        private static bool _initialized;
+        public const string _cadastroAlunoPageKey = "CadastroAlunoPage";
+        private static bool _initialized; //flag utilizada na inicialização do ServiceLocator
 
         private LinearLayout _linearLayoutLoginPage;
         public static SqlConnection _connection;
@@ -38,19 +38,22 @@ namespace TCCBruno
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-
+            //Inicialização do ServiceLocator para registrar as Views que serão utilizadas neste Projeto
             if (!_initialized)
             {
                 _initialized = true;
                 ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
                 var nav = new NavigationService();
+                //Registro das Views com suas respectivas ViewModels
                 nav.Configure(Page2Key, typeof(CadastrarAvFisicaActivity));
-                nav.Configure(Page3Key, typeof(ExibirAvFisicaActivity));
+                nav.Configure(_cadastroAlunoPageKey, typeof(CadastroAlunoActivity));
 
                 SimpleIoc.Default.Register<INavigationService>(() => nav);
             }
 
+            //A página de Login é um LinearLayoutPage, adquirimos sua instância para realizar
+            //a validação dos campos 'usuário' e 'senha' no evento 'ButtonClick_Entrar()'
             _linearLayoutLoginPage = (LinearLayout)FindViewById(Resource.Id.linearLayoutloginPage);
 
             //LoadAlunos();
@@ -82,10 +85,15 @@ namespace TCCBruno
                     break;
             }
 
-            if (usuario.Equals("cheat"))
+            if (usuario.Equals("page2"))
             {
                 var nav = ServiceLocator.Current.GetInstance<INavigationService>();
                 nav.NavigateTo(Page2Key);
+            }
+            else if (usuario.Equals("aluno"))
+            {
+                var nav = ServiceLocator.Current.GetInstance<INavigationService>();
+                nav.NavigateTo(_cadastroAlunoPageKey);
             }
 
             //Console.WriteLine("Button Entrar clicado");
@@ -147,6 +155,10 @@ namespace TCCBruno
             }
         }
 
+        /// <summary>
+        /// Pop up de um alerta ao usuário
+        /// </summary>
+        /// <param name="message"></param>
         private void DisplayAlertMessage(string message)
         {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -184,8 +196,6 @@ namespace TCCBruno
                     //        Console.WriteLine(item);
                     //    }
                     //}
-
-
                     _connection.Close();
                 }
                 catch (Exception ex)
