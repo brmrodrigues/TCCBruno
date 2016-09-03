@@ -9,22 +9,34 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using TCCBruno.Model;
 using TCCBruno.DAO;
+using GalaSoft.MvvmLight.Views;
+using Microsoft.Practices.ServiceLocation;
 
 namespace TCCBruno
 {
     [Activity(Label = "Cadastro de Alunos")]
-    public class CadastroAlunoActivity : Activity
+    public class CadastroAlunoActivity : ActivityBase
     {
         private GridLayout _gridLayout;
+        private int _instrutorId;
+
+        public NavigationService Nav
+        {
+            get
+            {
+                return (NavigationService)ServiceLocator.Current
+                    .GetInstance<INavigationService>();
+            }
+        }
 
         private string _nomeAluno;
         public string NomeAluno
         {
             get
             {
-                return _nomeAluno
-                    ?? (_nomeAluno = FindViewById<EditText>(Resource.Id.EDT_FirstName).Text);
+                return FindViewById<EditText>(Resource.Id.EDT_FirstName).Text;
             }
         }
 
@@ -33,8 +45,7 @@ namespace TCCBruno
         {
             get
             {
-                return _sobrenomeAluno
-                    ?? (_sobrenomeAluno = FindViewById<EditText>(Resource.Id.EDT_LastName).Text);
+                return FindViewById<EditText>(Resource.Id.EDT_LastName).Text;
             }
         }
 
@@ -43,11 +54,9 @@ namespace TCCBruno
         {
             get
             {
-                return _email
-                    ?? (_email = FindViewById<EditText>(Resource.Id.EDT_Email).Text);
+                return FindViewById<EditText>(Resource.Id.EDT_Email).Text;
             }
         }
-
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -55,8 +64,11 @@ namespace TCCBruno
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.CadastroAlunoPage);
 
-            // Create your application here
             _gridLayout = FindViewById<GridLayout>(Resource.Id.GRL_CadastroAluno);
+
+            //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
+            _instrutorId = Nav.GetAndRemoveParameter<int>(Intent);
+
         }
 
         [Java.Interop.Export("BTN_CadastrarAluno_Click")]
@@ -69,22 +81,25 @@ namespace TCCBruno
             }
 
             //Campos preenchidos com sucesso:
-            Aluno newAluno = new Aluno
+            Pessoa newPessoa = new Pessoa
             {
-                nome_aluno = NomeAluno.ToString() + " " + SobrenomeAluno.ToString(),
+                nome_pessoa = NomeAluno.ToString() + " " + SobrenomeAluno.ToString(),
                 usuario = Email.ToString(),
                 senha = "personal2016", //Senha inicial padrão
-                status = true //Novo aluno cadastrado => Status = Ativo
+                status = true //Nova pessoa cadastrado => Status = Ativo
             };
-            try
+
+            AlunoDAO alunoDAO = new AlunoDAO();
+            if (alunoDAO.InsertAluno(_instrutorId, newPessoa))
             {
-                newAluno.InsertAluno(newAluno);
                 Validation.DisplayAlertMessage("Aluno cadastrado com sucesso!", this);
             }
-            catch
+            else
             {
-                Validation.DisplayAlertMessage("Erro ao cadastrar Aluno", this);
+                Validation.DisplayAlertMessage("Não foi possível cadastrar o Aluno", this);
             }
+
+
         }
 
     }

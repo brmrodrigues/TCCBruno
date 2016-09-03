@@ -17,7 +17,7 @@ namespace TCCBruno
     [Activity(Label = "Personal Academia", MainLauncher = true, Icon = "@drawable/logoAcademia")]
     public class MainActivity : ActivityBase
     {
-
+        private int _usuarioId; //Id do usuário logado no sistema
         //Navegação de Pages:
         public const string Page2Key = "Page2";
         public const string _cadastroAlunoPageKey = "CadastroAlunoPage";
@@ -78,10 +78,14 @@ namespace TCCBruno
                 case -2:
                     DisplayAlertMessage("Senha incorreta");
                     break;
-                case 1:
+                default:
                     DisplayAlertMessage("Login efetuado com sucesso!");
+                    _usuarioId = resultLogin;
                     var nav = ServiceLocator.Current.GetInstance<INavigationService>();
-                    nav.NavigateTo(Page2Key);
+                    //TODO: Fazer verificação se usuário logado é Aluno ou Instrutor: 
+                    //direcioná -lo para sua tela correspondente.
+                    //...
+                    nav.NavigateTo(_cadastroAlunoPageKey, _usuarioId); //Instrutor
                     break;
             }
 

@@ -9,11 +9,16 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using System.Data.SqlClient;
+using System.Data;
 
-namespace TCCBruno.DAO.Interfaces
+namespace TCCBruno.Model
 {
-    public interface IAluno
+    public class Aluno
     {
-        bool InsertAluno(Aluno newAluno);
+        public int aluno_id { get; set; }
+        public int pessoa_id { get; set; }
+        public int instrutor_id { get; set; }
     }
+
 }
