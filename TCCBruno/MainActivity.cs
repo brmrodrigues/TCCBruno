@@ -21,6 +21,7 @@ namespace TCCBruno
         //Navegação de Pages:
         public const string Page2Key = "Page2";
         public const string _cadastroAlunoPageKey = "CadastroAlunoPage";
+        public const string _meusAlunosPageKey = "MeusAlunosPage";
         private static bool _initialized; //flag utilizada na inicialização do ServiceLocator
 
         private LinearLayout _linearLayoutLoginPage;
@@ -48,6 +49,7 @@ namespace TCCBruno
                 //Registro das Views com suas respectivas ViewModels
                 nav.Configure(Page2Key, typeof(CadastrarAvFisicaActivity));
                 nav.Configure(_cadastroAlunoPageKey, typeof(CadastroAlunoActivity));
+                nav.Configure(_meusAlunosPageKey, typeof(MeusAlunosActivity));
 
                 SimpleIoc.Default.Register<INavigationService>(() => nav);
             }
@@ -85,7 +87,8 @@ namespace TCCBruno
                     //TODO: Fazer verificação se usuário logado é Aluno ou Instrutor: 
                     //direcioná -lo para sua tela correspondente.
                     //...
-                    nav.NavigateTo(_cadastroAlunoPageKey, _usuarioId); //Instrutor
+                    //nav.NavigateTo(_cadastroAlunoPageKey, _usuarioId); //Instrutor
+                    nav.NavigateTo(_meusAlunosPageKey, _usuarioId); //Instrutor
                     break;
             }
 

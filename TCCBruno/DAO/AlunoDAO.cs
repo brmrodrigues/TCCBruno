@@ -86,5 +86,49 @@ namespace TCCBruno.DAO
             }
             return true;
         }
+
+        public Pessoa[] LoadAlunos(int instrutorId)
+        {
+            SqlConnection connection;
+            using (connection = new SqlConnection(DBConnection.ConnectionString))
+            {
+                string queryString = "SELECT A.[aluno_id], P.[nome_pessoa], P.[usuario], P.[status]" +
+                                        " FROM Aluno AS A" +
+                                        " INNER JOIN Pessoa AS P ON (P.[pessoa_id] = A.[pessoa_id])" +
+                                        " WHERE A.[instrutor_id] = " + instrutorId.ToString();
+                SqlCommand sqlCommand = new SqlCommand(queryString, connection);
+                //sqlCommand.Parameters.AddWithValue("@parameter", paramValue);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+                    List<Pessoa> pessoasList = new List<Pessoa>();
+                    while (reader.Read())
+                    {
+                        Pessoa pessoa = new Pessoa
+                        {
+                            aluno_id = (int)reader["aluno_id"],
+                            nome_pessoa = reader["nome_pessoa"].ToString(),
+                            usuario = reader["usuario"].ToString(),
+                            status = (bool)reader["status"]
+                        };
+                        pessoasList.Add(pessoa);
+                        //Console.WriteLine("\t{0}\t{1}\t{2}",
+                        //sqlDataReader[0], sqlDataReader[1], sqlDataReader[2]);
+                    }
+                    reader.Close();
+                    connection.Close();
+                    //ListView aceita apenas Arrays
+                    //Pessoa[] pessoasArray = new Pessoa[pessoasList.Count];
+
+                    return pessoasList.ToArray();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
     }
 }

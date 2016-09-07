@@ -90,9 +90,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\MeusAlunosPageAdapter.cs" />
     <Compile Include="CadastrarAvFisicaActivity.cs" />
     <Compile Include="CadastroAlunoActivity.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />
+    <Compile Include="MeusAlunosActivity.cs" />
     <Compile Include="Model\Aluno.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="ExibirAvFisicaActivity.cs" />
@@ -114,6 +116,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\CadastroAlunoPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\MeusAlunosPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
