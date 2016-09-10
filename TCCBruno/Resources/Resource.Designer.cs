@@ -45,10 +45,19 @@ namespace TCCBruno
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int color_selected = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int logoAcademia = 2130837505;
+			public const int color_selected2 = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int CustomSelector = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int Icon = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int logoAcademia = 2130837508;
 			
 			static Drawable()
 			{
@@ -63,8 +72,17 @@ namespace TCCBruno
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f06000e
+			public const int BTN_AvFisicas = 2131099662;
+			
 			// aapt resource value: 0x7f060004
 			public const int BTN_CadastrarAluno = 2131099652;
+			
+			// aapt resource value: 0x7f060008
+			public const int BTN_Entrar = 2131099656;
+			
+			// aapt resource value: 0x7f06000d
+			public const int BTN_Treinos = 2131099661;
 			
 			// aapt resource value: 0x7f060003
 			public const int EDT_Email = 2131099651;
@@ -78,11 +96,17 @@ namespace TCCBruno
 			// aapt resource value: 0x7f060000
 			public const int GRL_CadastroAluno = 2131099648;
 			
-			// aapt resource value: 0x7f060009
-			public const int LV_MeusAlunos = 2131099657;
+			// aapt resource value: 0x7f06000c
+			public const int LV_MeusAlunos = 2131099660;
 			
-			// aapt resource value: 0x7f060008
-			public const int button_Entrar = 2131099656;
+			// aapt resource value: 0x7f060009
+			public const int LV_Text = 2131099657;
+			
+			// aapt resource value: 0x7f06000a
+			public const int LV_Text1 = 2131099658;
+			
+			// aapt resource value: 0x7f06000b
+			public const int LV_Text2 = 2131099659;
 			
 			// aapt resource value: 0x7f060007
 			public const int ediText_Senha = 2131099655;
@@ -90,26 +114,26 @@ namespace TCCBruno
 			// aapt resource value: 0x7f060006
 			public const int editText_Email = 2131099654;
 			
-			// aapt resource value: 0x7f06000f
-			public const int editText_Excesso = 2131099663;
+			// aapt resource value: 0x7f060014
+			public const int editText_Excesso = 2131099668;
 			
-			// aapt resource value: 0x7f06000c
-			public const int editText_PesoGordo = 2131099660;
+			// aapt resource value: 0x7f060011
+			public const int editText_PesoGordo = 2131099665;
 			
-			// aapt resource value: 0x7f06000e
-			public const int editText_PesoIdeal = 2131099662;
+			// aapt resource value: 0x7f060013
+			public const int editText_PesoIdeal = 2131099667;
 			
-			// aapt resource value: 0x7f06000d
-			public const int editText_PesoMagro = 2131099661;
+			// aapt resource value: 0x7f060012
+			public const int editText_PesoMagro = 2131099666;
 			
-			// aapt resource value: 0x7f06000b
-			public const int editText_PesoMuscular = 2131099659;
+			// aapt resource value: 0x7f060010
+			public const int editText_PesoMuscular = 2131099664;
 			
 			// aapt resource value: 0x7f060005
 			public const int linearLayoutloginPage = 2131099653;
 			
-			// aapt resource value: 0x7f06000a
-			public const int tableLayout1 = 2131099658;
+			// aapt resource value: 0x7f06000f
+			public const int tableLayout1 = 2131099663;
 			
 			static Id()
 			{
@@ -131,10 +155,16 @@ namespace TCCBruno
 			public const int Main = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int MeusAlunosPage = 2130903042;
+			public const int MeusAlunosCustomLV = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int Page2 = 2130903043;
+			public const int MeusAlunosPage = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int Page2 = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int TreinosPage = 2130903045;
 			
 			static Layout()
 			{

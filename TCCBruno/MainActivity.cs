@@ -22,6 +22,7 @@ namespace TCCBruno
         public const string Page2Key = "Page2";
         public const string _cadastroAlunoPageKey = "CadastroAlunoPage";
         public const string _meusAlunosPageKey = "MeusAlunosPage";
+        public const string _treinosPageKey = "TreinosPage";
         private static bool _initialized; //flag utilizada na inicialização do ServiceLocator
 
         private LinearLayout _linearLayoutLoginPage;
@@ -38,6 +39,7 @@ namespace TCCBruno
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+            FindViewById<Button>(Resource.Id.BTN_Entrar).Click += ButtonClick_Entrar;
 
             //Inicialização do ServiceLocator para registrar as Views que serão utilizadas neste Projeto
             if (!_initialized)
@@ -50,6 +52,7 @@ namespace TCCBruno
                 nav.Configure(Page2Key, typeof(CadastrarAvFisicaActivity));
                 nav.Configure(_cadastroAlunoPageKey, typeof(CadastroAlunoActivity));
                 nav.Configure(_meusAlunosPageKey, typeof(MeusAlunosActivity));
+                nav.Configure(_treinosPageKey, typeof(TreinoActivity));
 
                 SimpleIoc.Default.Register<INavigationService>(() => nav);
             }
@@ -61,8 +64,7 @@ namespace TCCBruno
             //LoadAlunos();
         }
 
-        [Java.Interop.Export("ButtonClick_Entrar")]
-        public void ButtonClick_Entrar(View v)
+        private void ButtonClick_Entrar(object sender, EventArgs e)
         {
 
             ValidateFields();

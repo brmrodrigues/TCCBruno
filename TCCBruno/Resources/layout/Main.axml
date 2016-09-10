@@ -42,10 +42,9 @@
         android:text="Entrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button_Entrar"
+        android:id="@+id/BTN_Entrar"
         android:layout_gravity="center"
         android:layout_marginTop="40.0dp"
         android:paddingRight="30.0dp"
-        android:paddingLeft="30.0dp"
-        android:onClick="ButtonClick_Entrar" />
+        android:paddingLeft="30.0dp" />
 </LinearLayout>

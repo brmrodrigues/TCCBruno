@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
 
 namespace TCCBruno.Model
 {
@@ -23,5 +24,7 @@ namespace TCCBruno.Model
         public string usuario { get; set; }
         public string senha { get; set; }
         public bool status { get; set; }
+
+
     }
 }

@@ -92,6 +92,7 @@
   <ItemGroup>
     <Compile Include="Adapters\MeusAlunosPageAdapter.cs" />
     <Compile Include="CadastrarAvFisicaActivity.cs" />
+    <Compile Include="TreinoActivity.cs" />
     <Compile Include="CadastroAlunoActivity.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />
     <Compile Include="MeusAlunosActivity.cs" />
@@ -121,6 +122,9 @@
     <AndroidResource Include="Resources\layout\MeusAlunosPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\TreinosPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -145,6 +149,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\MeusAlunosCustomLV.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\CustomSelector.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\color_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\color_selected2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

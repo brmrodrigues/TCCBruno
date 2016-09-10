@@ -87,7 +87,7 @@ namespace TCCBruno.DAO
             return true;
         }
 
-        public Pessoa[] LoadAlunos(int instrutorId)
+        public List<Pessoa> LoadAlunos(int instrutorId)
         {
             SqlConnection connection;
             using (connection = new SqlConnection(DBConnection.ConnectionString))
@@ -121,7 +121,7 @@ namespace TCCBruno.DAO
                     //ListView aceita apenas Arrays
                     //Pessoa[] pessoasArray = new Pessoa[pessoasList.Count];
 
-                    return pessoasList.ToArray();
+                    return pessoasList;
                 }
                 catch (Exception ex)
                 {
