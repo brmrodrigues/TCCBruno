@@ -13,19 +13,20 @@ using TCCBruno.Model;
 
 namespace TCCBruno.Adapters
 {
-    public class MeusAlunosPageAdapter : BaseAdapter<Aluno>
+    public class TreinosAdapter : BaseAdapter<Treino>
     {
 
-        List<Aluno> _items;
+        List<Treino> _items;
         Activity _context;
+        int treinoCount = 1;
 
-        public MeusAlunosPageAdapter(Activity context, List<Aluno> items) : base()
+        public TreinosAdapter(Activity context, List<Treino> items) : base()
         {
             this._context = context;
             this._items = items;
         }
 
-        public override Aluno this[int position]
+        public override Treino this[int position]
         {
             get { return _items[position]; }
         }
@@ -37,7 +38,7 @@ namespace TCCBruno.Adapters
 
         public override long GetItemId(int position)
         {
-            return _items[position].aluno_id;
+            return _items[position].treino_id;
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -45,8 +46,10 @@ namespace TCCBruno.Adapters
             View view = convertView; // re-use an existing view, if one is available
             if (view == null) // otherwise create a new one
                 view = _context.LayoutInflater.Inflate(Resource.Layout.MeusAlunosCustomLV, null);
-            view.FindViewById<TextView>(Resource.Id.LV_Text1).Text = _items[position].Pessoa.nome_pessoa;
-            view.FindViewById<TextView>(Resource.Id.LV_Text2).Text = _items[position].Pessoa.status ? "Ativo" : "Inativo";
+            view.FindViewById<TextView>(Resource.Id.LV_Text1).Text = "Treino " + treinoCount++;
+            view.FindViewById<TextView>(Resource.Id.LV_Text2).Text = "De: " +
+                                            _items[position].data_inicio.ToString("dd/MM/yyyy") +
+                                            "   Até: " + _items[position].data_fim.ToString("dd/MM/yyyy");
 
 
             return view;

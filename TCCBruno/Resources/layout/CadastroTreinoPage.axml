@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="206.3dp"
+        android:id="@+id/CV_From" />
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="206.3dp"
+        android:id="@+id/CV_To"
+        android:layout_marginTop="40.0dp" />
+    <Button
+        android:text="Cadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/BTN_CadastrarTreino"
+        android:layout_marginTop="20.0dp" />
+</LinearLayout>

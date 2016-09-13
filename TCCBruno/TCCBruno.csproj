@@ -90,9 +90,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\GenericListAdapter.cs" />
+    <Compile Include="Adapters\TreinosAdapter.cs" />
     <Compile Include="Adapters\MeusAlunosPageAdapter.cs" />
     <Compile Include="CadastrarAvFisicaActivity.cs" />
-    <Compile Include="TreinoActivity.cs" />
+    <Compile Include="CadastroTreinoActivity.cs" />
+    <Compile Include="DAO\TreinoDAO.cs" />
+    <Compile Include="Model\Treino.cs" />
+    <Compile Include="TreinosActivity.cs" />
     <Compile Include="CadastroAlunoActivity.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />
     <Compile Include="MeusAlunosActivity.cs" />
@@ -123,6 +128,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\TreinosPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CadastroTreinoPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

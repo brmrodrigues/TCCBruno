@@ -18,7 +18,7 @@ namespace TCCBruno.DAO
     public class AlunoDAO
     {
 
-        public bool InsertAluno(int instrutorId, Pessoa newPessoa)
+        public bool InsertTreino(int instrutorId, Pessoa newPessoa)
         {
             SqlConnection connection;
             using (connection = new SqlConnection(DBConnection.ConnectionString))
@@ -87,12 +87,12 @@ namespace TCCBruno.DAO
             return true;
         }
 
-        public List<Pessoa> LoadAlunos(int instrutorId)
+        public List<Aluno> LoadAlunos(int instrutorId)
         {
             SqlConnection connection;
             using (connection = new SqlConnection(DBConnection.ConnectionString))
             {
-                string queryString = "SELECT A.[aluno_id], P.[nome_pessoa], P.[usuario], P.[status]" +
+                string queryString = "SELECT A.[aluno_id], A.[instrutor_id], P.[nome_pessoa], P.[usuario], P.[status]" +
                                         " FROM Aluno AS A" +
                                         " INNER JOIN Pessoa AS P ON (P.[pessoa_id] = A.[pessoa_id])" +
                                         " WHERE A.[instrutor_id] = " + instrutorId.ToString();
@@ -102,17 +102,21 @@ namespace TCCBruno.DAO
                 {
                     connection.Open();
                     SqlDataReader reader = sqlCommand.ExecuteReader();
-                    List<Pessoa> pessoasList = new List<Pessoa>();
+                    List<Aluno> pessoasList = new List<Aluno>();
                     while (reader.Read())
                     {
-                        Pessoa pessoa = new Pessoa
+                        Aluno aluno = new Aluno
                         {
                             aluno_id = (int)reader["aluno_id"],
-                            nome_pessoa = reader["nome_pessoa"].ToString(),
-                            usuario = reader["usuario"].ToString(),
-                            status = (bool)reader["status"]
+                            instrutor_id = (int)reader["instrutor_id"],
+                            Pessoa = new Pessoa
+                            {
+                                nome_pessoa = reader["nome_pessoa"].ToString(),
+                                usuario = reader["usuario"].ToString(),
+                                status = (bool)reader["status"]
+                            }
                         };
-                        pessoasList.Add(pessoa);
+                        pessoasList.Add(aluno);
                         //Console.WriteLine("\t{0}\t{1}\t{2}",
                         //sqlDataReader[0], sqlDataReader[1], sqlDataReader[2]);
                     }

@@ -5,5 +5,5 @@
   <!-- focused -->
   <item android:drawable="@drawable/color_selected2" android:state_focused="true"/>
   <!-- default -->
-  <item android:drawable="@drawable/button_1_normal"/>
+  <item android:drawable="@drawable/color_selected2"/>
 </selector>

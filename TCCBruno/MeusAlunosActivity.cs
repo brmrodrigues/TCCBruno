@@ -53,14 +53,14 @@ namespace TCCBruno
         private void LoadAlunos()
         {
             AlunoDAO alunoDAO = new AlunoDAO();
-            var pessoasArray = alunoDAO.LoadAlunos(_instrutorId);
-            if (pessoasArray == null)
+            var pessoasList = alunoDAO.LoadAlunos(_instrutorId);
+            if (pessoasList == null)
             {
                 Validation.DisplayAlertMessage("Falha ao carregar Alunos", this);
                 return;
             }
             //Preence ListView com os Alunos do Instrutor logado
-            var listAdapter = new MeusAlunosPageAdapter(this, pessoasArray);
+            var listAdapter = new MeusAlunosPageAdapter(this, pessoasList);
             _listViewAlunos.Adapter = listAdapter;
         }
 
@@ -70,7 +70,7 @@ namespace TCCBruno
             Dictionary<string, int> instrutorAlunoDict = new Dictionary<string, int>();
             instrutorAlunoDict.Add("instrutor_id", _instrutorId);
             instrutorAlunoDict.Add("aluno_id", aluno_Id);
-            //Nav.NavigateTo("TreinosPage", instrutorAlunoDict);
+            Nav.NavigateTo("TreinosPage", instrutorAlunoDict);
         }
 
 

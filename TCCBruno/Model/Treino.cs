@@ -9,19 +9,18 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace TCCBruno.Model
 {
-    public class Aluno
+    public class Treino
     {
+        public int treino_id { get; set; }
         public int aluno_id { get; set; }
-        public int pessoa_id { get; set; }
-        public int instrutor_id { get; set; }
+        public string nome_treino { get; set; }
+        public DateTime data_inicio { get; set; }
+        public DateTime data_fim { get; set; }
 
-        public virtual Pessoa Pessoa { get; set; }
+        public virtual Aluno Aluno { get; set; }
 
     }
-
 }
