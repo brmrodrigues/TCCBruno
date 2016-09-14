@@ -22,8 +22,8 @@ namespace TCCBruno.Adapters
 
         public TreinosAdapter(Activity context, List<Treino> items) : base()
         {
-            this._context = context;
-            this._items = items;
+            _context = context;
+            _items = items;
         }
 
         public override Treino this[int position]

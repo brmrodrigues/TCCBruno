@@ -21,6 +21,6 @@ namespace TCCBruno.Model
         public DateTime data_fim { get; set; }
 
         public virtual Aluno Aluno { get; set; }
-
+        public virtual List<Treino_Tipo> Treino_Tipo { get; set; }
     }
 }

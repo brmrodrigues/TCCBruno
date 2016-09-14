@@ -16,7 +16,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -93,10 +93,13 @@
     <Compile Include="Adapters\GenericListAdapter.cs" />
     <Compile Include="Adapters\TreinosAdapter.cs" />
     <Compile Include="Adapters\MeusAlunosPageAdapter.cs" />
+    <Compile Include="Adapters\TreinosExpandableListAdapter.cs" />
     <Compile Include="CadastrarAvFisicaActivity.cs" />
     <Compile Include="CadastroTreinoActivity.cs" />
     <Compile Include="DAO\TreinoDAO.cs" />
+    <Compile Include="DAO\Treino_TipoDAO.cs" />
     <Compile Include="Model\Treino.cs" />
+    <Compile Include="Model\Treino_Tipo.cs" />
     <Compile Include="TreinosActivity.cs" />
     <Compile Include="CadastroAlunoActivity.cs" />
     <Compile Include="DAO\AlunoDAO.cs" />
@@ -169,6 +172,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\color_selected2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\HeaderExpandableLV.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ContentExpandableLV.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

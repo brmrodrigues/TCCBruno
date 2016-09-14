@@ -62,13 +62,14 @@ namespace TCCBruno
             };
             if (treinoDAO.InsertTreino(newTreino))
             {
-                Validation.DisplayAlertMessage("Treino cadastrado com sucesso!", this);
-                Nav.NavigateTo("TreinosPage");
+                //Validation.DisplayAlertMessage("Treino cadastrado com sucesso!", this);
+                //Nav.GoBack();
             }
             else
             {
                 Validation.DisplayAlertMessage("Não foi possível cadastrar o Treino", this);
             }
+            base.OnBackPressed();
         }
 
         private void CV_From_OnDateChange(object sender, CalendarView.DateChangeEventArgs e)

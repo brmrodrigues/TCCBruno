@@ -31,7 +31,6 @@ namespace TCCBruno
             }
         }
 
-        private string _nomeAluno;
         public string NomeAluno
         {
             get
@@ -40,7 +39,6 @@ namespace TCCBruno
             }
         }
 
-        private string _sobrenomeAluno;
         public string SobrenomeAluno
         {
             get
@@ -49,7 +47,6 @@ namespace TCCBruno
             }
         }
 
-        private string _email;
         public string Email
         {
             get

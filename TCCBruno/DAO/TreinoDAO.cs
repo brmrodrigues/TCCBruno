@@ -37,9 +37,9 @@ namespace TCCBruno.DAO
                     List<Treino> treinosList = new List<Treino>();
                     while (reader.Read())
                     {
-                        Console.WriteLine("\t{0}\t{1}\t{2}",
-                        reader["treino_id"], reader["data_inicio"], reader["data_fim"]);
-                        int treinoId = (int)reader["treino_id"];
+                        //Console.WriteLine("\t{0}\t{1}\t{2}",
+                        //reader["treino_id"], reader["data_inicio"], reader["data_fim"]);
+                        //int treinoId = (int)reader["treino_id"];
 
                         Treino treino = new Treino
                         {
