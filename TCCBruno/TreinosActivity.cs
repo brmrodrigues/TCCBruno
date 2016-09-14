@@ -23,6 +23,8 @@ namespace TCCBruno
         //private GridLayout _gridLayout;
         //private int _instrutorId;
         private ExpandableListView _treinosListView;
+        private Button _dataInicioButton;
+        private Button _dataFinalButton;
         //private ListView _treinosListView;
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
 
@@ -44,7 +46,8 @@ namespace TCCBruno
             //_treinosListView = FindViewById<ListView>(Resource.Id.LV_Treinos);
 
             _treinosListView.ItemClick += LV_Treinos_ItemClick;
-            FindViewById<Button>(Resource.Id.BTN_NovoTreino).Click += BTN_NovoTreino_Click; ;
+            _dataInicioButton = FindViewById<Button>(Resource.Id.BTN_NovoTreino);
+            _dataInicioButton.Click += BTN_NovoTreino_Click;
 
             //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
             _instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
@@ -77,13 +80,17 @@ namespace TCCBruno
 
         private void LV_Treinos_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-
+            //TODO...
         }
 
         private void BTN_NovoTreino_Click(object sender, EventArgs e)
         {
             Nav.NavigateTo("CadastroTreinoPage", _instrutorAlunoDict);
+            //OpenCalendar("Data de Início");
+            //OpenCalendar("Data Final");
         }
+
+
 
         /// <summary>
         /// Ao voltar a esta tela, carrega os treinos novamente do BD

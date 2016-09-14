@@ -72,29 +72,23 @@ namespace TCCBruno
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060015
-			public const int BTN_AvFisicas = 2131099669;
-			
 			// aapt resource value: 0x7f060004
 			public const int BTN_CadastrarAluno = 2131099652;
 			
 			// aapt resource value: 0x7f060007
 			public const int BTN_CadastrarTreino = 2131099655;
 			
+			// aapt resource value: 0x7f060006
+			public const int BTN_DataFinal = 2131099654;
+			
+			// aapt resource value: 0x7f060005
+			public const int BTN_DataInicio = 2131099653;
+			
 			// aapt resource value: 0x7f06000f
 			public const int BTN_Entrar = 2131099663;
 			
-			// aapt resource value: 0x7f06001d
-			public const int BTN_NovoTreino = 2131099677;
-			
-			// aapt resource value: 0x7f060014
-			public const int BTN_Treinos = 2131099668;
-			
-			// aapt resource value: 0x7f060005
-			public const int CV_From = 2131099653;
-			
-			// aapt resource value: 0x7f060006
-			public const int CV_To = 2131099654;
+			// aapt resource value: 0x7f06001b
+			public const int BTN_NovoTreino = 2131099675;
 			
 			// aapt resource value: 0x7f060009
 			public const int DataId = 2131099657;
@@ -132,8 +126,8 @@ namespace TCCBruno
 			// aapt resource value: 0x7f060012
 			public const int LV_Text2 = 2131099666;
 			
-			// aapt resource value: 0x7f06001c
-			public const int LV_Treinos = 2131099676;
+			// aapt resource value: 0x7f06001a
+			public const int LV_Treinos = 2131099674;
 			
 			// aapt resource value: 0x7f06000e
 			public const int ediText_Senha = 2131099662;
@@ -141,26 +135,26 @@ namespace TCCBruno
 			// aapt resource value: 0x7f06000d
 			public const int editText_Email = 2131099661;
 			
-			// aapt resource value: 0x7f06001b
-			public const int editText_Excesso = 2131099675;
+			// aapt resource value: 0x7f060019
+			public const int editText_Excesso = 2131099673;
+			
+			// aapt resource value: 0x7f060016
+			public const int editText_PesoGordo = 2131099670;
 			
 			// aapt resource value: 0x7f060018
-			public const int editText_PesoGordo = 2131099672;
-			
-			// aapt resource value: 0x7f06001a
-			public const int editText_PesoIdeal = 2131099674;
-			
-			// aapt resource value: 0x7f060019
-			public const int editText_PesoMagro = 2131099673;
+			public const int editText_PesoIdeal = 2131099672;
 			
 			// aapt resource value: 0x7f060017
-			public const int editText_PesoMuscular = 2131099671;
+			public const int editText_PesoMagro = 2131099671;
+			
+			// aapt resource value: 0x7f060015
+			public const int editText_PesoMuscular = 2131099669;
 			
 			// aapt resource value: 0x7f06000c
 			public const int linearLayoutloginPage = 2131099660;
 			
-			// aapt resource value: 0x7f060016
-			public const int tableLayout1 = 2131099670;
+			// aapt resource value: 0x7f060014
+			public const int tableLayout1 = 2131099668;
 			
 			static Id()
 			{

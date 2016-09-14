@@ -38,7 +38,6 @@ namespace TCCBruno
             SetContentView(Resource.Layout.MeusAlunosPage);
 
             _listViewAlunos = FindViewById<ListView>(Resource.Id.LV_MeusAlunos);
-            FindViewById<Button>(Resource.Id.BTN_Treinos).Click += BTN_Treinos_Click;
             //Instancia evento de Click da List View
             _listViewAlunos.ItemClick += LV_MeusAlunos_ItemClick;
             //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
@@ -46,9 +45,6 @@ namespace TCCBruno
             LoadAlunos();
         }
 
-        private void BTN_Treinos_Click(object sender, EventArgs e)
-        {
-        }
 
         private void LoadAlunos()
         {

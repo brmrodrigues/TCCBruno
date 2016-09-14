@@ -9,18 +9,7 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="400.0dp"
+        android:layout_height="match_parent"
         android:id="@+id/LV_MeusAlunos"
         android:layout_marginTop="0.0dp" />
-    <Button
-        android:text="Treinos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/BTN_Treinos"
-        android:layout_marginRight="0.0dp" />
-    <Button
-        android:text="Avaliações Físicas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/BTN_AvFisicas" />
 </LinearLayout>

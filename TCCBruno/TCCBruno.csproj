@@ -98,6 +98,7 @@
     <Compile Include="CadastroTreinoActivity.cs" />
     <Compile Include="DAO\TreinoDAO.cs" />
     <Compile Include="DAO\Treino_TipoDAO.cs" />
+    <Compile Include="DatePickerFragment.cs" />
     <Compile Include="Model\Treino.cs" />
     <Compile Include="Model\Treino_Tipo.cs" />
     <Compile Include="TreinosActivity.cs" />
