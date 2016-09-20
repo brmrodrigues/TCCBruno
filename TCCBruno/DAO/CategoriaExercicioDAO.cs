@@ -15,36 +15,31 @@ using System.Data;
 
 namespace TCCBruno.DAO
 {
-    public class Treino_TipoDAO
+    public class CategoriaExercicioDAO
     {
-
-        public List<Treino_Tipo> LoadTreino_Tipos(int treinoId)
+        public List<Categoria_Exercicio> LoadCategoriasExercicio()
         {
             SqlConnection connection;
             using (connection = new SqlConnection(DBConnection.ConnectionString))
             {
-                string queryString = "SELECT [treino_tipo_id], [treino_tipo_nome], [duracao]" +
-                                        " FROM Treino_Tipo" +
-                                        " WHERE [treino_id] = @ptreino_id";
+                string queryString = "SELECT [categoria_exercicio_id], [nome_categoria_exercicio]" +
+                                      " FROM Categoria_Exercicio";
                 SqlCommand sqlCommand = new SqlCommand(queryString, connection);
-                sqlCommand.Parameters.Add("@ptreino_id", SqlDbType.Int).Value = treinoId;
-                //sqlCommand.Parameters.AddWithValue("@parameter", paramValue);
                 try
                 {
                     connection.Open();
                     sqlCommand.CommandType = CommandType.Text;
                     SqlDataReader reader = sqlCommand.ExecuteReader();
-                    List<Treino_Tipo> treinoTiposList = new List<Treino_Tipo>();
+                    List<Categoria_Exercicio> categoriasExercicioList = new List<Categoria_Exercicio>();
                     while (reader.Read())
                     {
 
-                        Treino_Tipo treinoTipo = new Treino_Tipo
+                        Categoria_Exercicio categoriaExercicio = new Categoria_Exercicio
                         {
-                            treino_tipo_id = (int)reader["treino_tipo_id"],
-                            treino_tipo_nome = reader["treino_tipo_nome"].ToString(),
-                            duracao = Convert.ToDouble(reader["duracao"])
+                            categoria_exercicio_id = Convert.ToInt32(reader["categoria_exercicio_id"]),
+                            nome_categoria_exercicio = reader["nome_categoria_exercicio"].ToString()
                         };
-                        treinoTiposList.Add(treinoTipo);
+                        categoriasExercicioList.Add(categoriaExercicio);
 
                     }
                     reader.Close();
@@ -52,7 +47,7 @@ namespace TCCBruno.DAO
                     //ListView aceita apenas Arrays
                     //Pessoa[] pessoasArray = new Pessoa[pessoasList.Count];
 
-                    return treinoTiposList;
+                    return categoriasExercicioList;
                 }
                 catch (Exception ex)
                 {
@@ -62,5 +57,6 @@ namespace TCCBruno.DAO
             }
 
         }
+
     }
 }

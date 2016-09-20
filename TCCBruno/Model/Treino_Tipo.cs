@@ -17,7 +17,7 @@ namespace TCCBruno.Model
         public int treino_tipo_id { get; set; }
         public int treino_id { get; set; }
         public string treino_tipo_nome { get; set; }
-        public byte? duracao { get; set; }
+        public double duracao { get; set; }
         public string descricao { get; set; }
     }
 }

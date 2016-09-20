@@ -76,7 +76,7 @@ namespace TCCBruno
                 _btnDataFim.Text = "Data Final: " + DateTime.Parse(_dataFim).ToString("dd/MM/yyyy");
             });
             DatePickerFragment.TITLE = "Data Final:";
-            DatePickerFragment.CURRENT = DateTime.Now.AddMonths(3);
+            DatePickerFragment.CURRENT = DateTime.Parse(_dataInicio).AddMonths(3);
             frag.Show(FragmentManager, DatePickerFragment.TAG);
 
             //_btnDataFim.Text = "Data Final: " + _dataFim;

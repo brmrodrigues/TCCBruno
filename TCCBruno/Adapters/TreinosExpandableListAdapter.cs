@@ -102,7 +102,7 @@ namespace TCCBruno.Adapters
 
         public override bool IsChildSelectable(int groupPosition, int childPosition)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

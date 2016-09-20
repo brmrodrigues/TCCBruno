@@ -23,8 +23,6 @@ namespace TCCBruno
         //private GridLayout _gridLayout;
         //private int _instrutorId;
         private ExpandableListView _treinosListView;
-        private Button _dataInicioButton;
-        private Button _dataFinalButton;
         //private ListView _treinosListView;
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
 
@@ -46,11 +44,23 @@ namespace TCCBruno
             //_treinosListView = FindViewById<ListView>(Resource.Id.LV_Treinos);
 
             _treinosListView.ItemClick += LV_Treinos_ItemClick;
-            _dataInicioButton = FindViewById<Button>(Resource.Id.BTN_NovoTreino);
-            _dataInicioButton.Click += BTN_NovoTreino_Click;
+            _treinosListView.ItemLongClick += LV_Treinos_ItemLongClick;
+            FindViewById<Button>(Resource.Id.BTN_NovoTreino).Click += BTN_NovoTreino_Click;
 
             //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
             _instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
+        }
+
+        private void LV_Treinos_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            int treinoId = (int)_treinosListView.Adapter.GetItemId(e.Position);
+            //Nav.NavigateTo(MainActivity._treinosPageKey, treinoId);
+        }
+
+        private void LV_Treinos_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+            int treinoId = (int)_treinosListView.Adapter.GetItemId(e.Position);
+            Nav.NavigateTo(MainActivity._cadastroExerciciosPageKey, treinoId);
         }
 
         private void LoadTreinos()
@@ -78,14 +88,9 @@ namespace TCCBruno
             //_treinosListView.Adapter = listAdapter;
         }
 
-        private void LV_Treinos_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-        {
-            //TODO...
-        }
-
         private void BTN_NovoTreino_Click(object sender, EventArgs e)
         {
-            Nav.NavigateTo("CadastroTreinoPage", _instrutorAlunoDict);
+            Nav.NavigateTo(MainActivity._cadastroTreinoPageKey, _instrutorAlunoDict);
             //OpenCalendar("Data de Início");
             //OpenCalendar("Data Final");
         }
