@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\ExerciciosListAdapter.cs" />
     <Compile Include="Adapters\CategoriaExercicioListAdapter.cs" />
     <Compile Include="Adapters\GenericListAdapter.cs" />
     <Compile Include="Adapters\TreinosAdapter.cs" />
@@ -99,10 +100,12 @@
     <Compile Include="CadastroExercicioActivity.cs" />
     <Compile Include="CadastroTreinoActivity.cs" />
     <Compile Include="DAO\CategoriaExercicioDAO.cs" />
+    <Compile Include="DAO\ExercicioDAO.cs" />
     <Compile Include="DAO\TreinoDAO.cs" />
     <Compile Include="DAO\Treino_TipoDAO.cs" />
     <Compile Include="DatePickerFragment.cs" />
     <Compile Include="ExerciciosActivity.cs" />
+    <Compile Include="JavaObjectConverter.cs" />
     <Compile Include="Model\Execucao_Exercicio.cs" />
     <Compile Include="Model\Treino.cs" />
     <Compile Include="Model\Treino_Tipo.cs" />

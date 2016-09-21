@@ -18,7 +18,7 @@ namespace TCCBruno.DAO
     public class AlunoDAO
     {
 
-        public bool InsertTreino(int instrutorId, Pessoa newPessoa)
+        public bool InsertPessoa(int instrutorId, Pessoa newPessoa)
         {
             SqlConnection connection;
             using (connection = new SqlConnection(DBConnection.ConnectionString))

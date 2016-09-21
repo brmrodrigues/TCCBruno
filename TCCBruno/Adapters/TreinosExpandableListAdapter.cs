@@ -53,7 +53,6 @@ namespace TCCBruno.Adapters
             child.FindViewById<TextView>(Resource.Id.LV_Text1).Text = _items[groupPosition].Treino_Tipo[childPosition].treino_tipo_nome;
             child.FindViewById<TextView>(Resource.Id.LV_Text2).Text = "Duração: " +
                                                                     _items[groupPosition].Treino_Tipo[childPosition].duracao.ToString() + " Horas";
-
             return child;
         }
 

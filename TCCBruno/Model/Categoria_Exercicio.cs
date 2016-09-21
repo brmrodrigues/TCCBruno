@@ -24,7 +24,6 @@ namespace TCCBruno.Model
         public int categoria_exercicio_id { get; set; }
         public string nome_categoria_exercicio { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ObservableCollection<Exercicio> Exercicio { get; set; }
+        public virtual List<Exercicio> Exercicios { get; set; }
     }
 }

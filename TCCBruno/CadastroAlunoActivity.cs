@@ -87,7 +87,7 @@ namespace TCCBruno
             };
 
             AlunoDAO alunoDAO = new AlunoDAO();
-            if (alunoDAO.InsertTreino(_instrutorId, newPessoa))
+            if (alunoDAO.InsertPessoa(_instrutorId, newPessoa))
             {
                 Validation.DisplayAlertMessage("Aluno cadastrado com sucesso!", this);
             }

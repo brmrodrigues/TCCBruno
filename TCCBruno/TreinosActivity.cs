@@ -43,24 +43,43 @@ namespace TCCBruno
             _treinosListView = FindViewById<ExpandableListView>(Resource.Id.LV_Treinos);
             //_treinosListView = FindViewById<ListView>(Resource.Id.LV_Treinos);
 
-            _treinosListView.ItemClick += LV_Treinos_ItemClick;
             _treinosListView.ItemLongClick += LV_Treinos_ItemLongClick;
+            _treinosListView.ChildClick += LV_Treinos_ChildClick;
+
             FindViewById<Button>(Resource.Id.BTN_NovoTreino).Click += BTN_NovoTreino_Click;
 
             //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
             _instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
         }
 
-        private void LV_Treinos_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void LV_Treinos_ChildClick(object sender, ExpandableListView.ChildClickEventArgs e)
         {
-            int treinoId = (int)_treinosListView.Adapter.GetItemId(e.Position);
-            //Nav.NavigateTo(MainActivity._treinosPageKey, treinoId);
+            Console.WriteLine();
         }
 
         private void LV_Treinos_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
-            int treinoId = (int)_treinosListView.Adapter.GetItemId(e.Position);
-            Nav.NavigateTo(MainActivity._cadastroExerciciosPageKey, treinoId);
+            ExpandableListView listView = (ExpandableListView)e.Parent;
+            long pos = listView.GetExpandableListPosition(e.Position);
+            var itemType = ExpandableListView.GetPackedPositionType(pos);
+
+            if (itemType == PackedPositionType.Child)
+            {
+                //TODO: Se for Child (TreinoTIpo), exibir Fragment que perguntará se o Instrutor deseja:
+                //1 - Exibir Exercícios do Subtreino
+                //2 - Alterar o Subtreino (por enquanto apenas a duração)
+                //3 - Remover o Subtreino
+
+                //var treinoTipoId = (int)(_treinosListView.Adapter.GetItemId(e.Position));
+                //Nav.NavigateTo(MainActivity._cadastroExerciciosPageKey, treinoTipoId);
+            }
+            else if (itemType == PackedPositionType.Group)
+            {
+                //TODO: Se for do Group (Treino), exibir Fragment que perguntará se o Instrutor deseja:
+                //1 - Cadastrar Subtreino
+                //2 - Alterar Treino
+                //3 - Excluir Treino 
+            }
         }
 
         private void LoadTreinos()

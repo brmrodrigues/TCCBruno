@@ -5,23 +5,41 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+<!--Categorias de Exercício-->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="147.3dp"
+        android:layout_height="70.0dp"
         android:id="@+id/linearLayout1"
-        android:layout_marginBottom="52.0dp">
+        android:layout_marginBottom="0.0dp">
         <TextView
             android:text="Categoria:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_marginLeft="30.0dp" />
         <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="190.0dp"
             android:layout_height="match_parent"
             android:id="@+id/SPN_CategoriaExercicio"
+            android:layout_marginLeft="50.0dp" />
+    </LinearLayout>
+<!-- EXercícios da Categoria selecionada-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70.0dp"
+        android:layout_marginBottom="52.0dp">
+        <TextView
+            android:text="Categoria:"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginLeft="30.0dp" />
+        <Spinner
+            android:layout_width="190.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/SPN_Exercicios"
             android:layout_marginLeft="50.0dp" />
     </LinearLayout>
 <!--Dados do Exercício-->
@@ -29,13 +47,13 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="386.0dp"
+        android:layout_height="300.0dp"
         android:id="@+id/tableLayout1">
         <TableRow
             android:id="@+id/tableRow1">
             <TextView
                 android:layout_column="1"
-                android:text="Duração (Horas):"
+                android:text="Número de Séries:"
                 android:padding="3dip" />
             <EditText
                 android:layout_column="2"
@@ -45,13 +63,14 @@
                 android:layout_width="100dp"
                 android:maxLines="1"
                 android:inputType="numberDecimal"
-                android:id="@+id/EDT_Duracao" />
+                android:id="@+id/EDT_Series"
+                android:layout_marginLeft="100.0dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow2">
             <TextView
                 android:layout_column="1"
-                android:text="Duração (Horas):"
+                android:text="Número de Repetições:"
                 android:padding="3dip" />
             <EditText
                 android:layout_column="2"
@@ -61,7 +80,30 @@
                 android:layout_width="100dp"
                 android:maxLines="1"
                 android:inputType="numberDecimal"
-                android:id="@+id/EDT_Duracao" />
+                android:id="@+id/EDT_Repeticoes"
+                android:layout_marginLeft="100.0dp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow3">
+            <TextView
+                android:layout_column="1"
+                android:text="Carga (kg):"
+                android:padding="3dip" />
+            <EditText
+                android:layout_column="2"
+                android:gravity="right"
+                android:padding="3dip"
+                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:maxLines="1"
+                android:inputType="numberDecimal"
+                android:id="@+id/EDT_Carga"
+                android:layout_marginLeft="100.0dp" />
         </TableRow>
     </TableLayout>
+    <Button
+        android:text="Salvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/BTN_SalvarExercicio" />
 </LinearLayout>
