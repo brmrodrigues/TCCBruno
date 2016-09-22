@@ -11,18 +11,20 @@ using Android.Views;
 using Android.Widget;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
+using TCCBruno.DAO;
+using TCCBruno.Adapters;
 
 namespace TCCBruno
 {
     [Activity(Label = "Exercícios")]
-    public class ExerciciosActivity : ActivityBase
+    public class Execucao_ExerciciosActivity : ActivityBase
     {
         //private GridLayout _gridLayout;
         //private int _instrutorId;
-        private ExpandableListView _exerciciosList;
+        private ListView _execucaoExerciciosListView;
         //private ListView _treinosListView;
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
-        private int _treinoId;
+        private int _treinoTipoId;
 
         public NavigationService Nav
         {
@@ -36,9 +38,10 @@ namespace TCCBruno
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.ExerciciosPage);
+            SetContentView(Resource.Layout.Execucao_ExerciciosPage);
 
-            _exerciciosList = FindViewById<ExpandableListView>(Resource.Id.LV_Exercicios);
+            _execucaoExerciciosListView = FindViewById<ListView>(Resource.Id.LV_ExerciciosExecucao);
+            FindViewById<Button>(Resource.Id.BTN_NovoExercicio);
             //_treinosListView = FindViewById<ListView>(Resource.Id.LV_Treinos);
 
             //_exerciciosList.ItemClick += LV_Treinos_ItemClick;
@@ -46,39 +49,27 @@ namespace TCCBruno
 
             //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
             //_instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
-            _treinoId = Nav.GetAndRemoveParameter<int>(Intent);
+            _treinoTipoId = Nav.GetAndRemoveParameter<int>(Intent);
+            LoadExecucaoExercicios();
         }
 
-        private void LoadExercicios()
+        private void LoadExecucaoExercicios()
         {
-            //TreinoDAO treinoDAO = new TreinoDAO();
-            //var treinosList = treinoDAO.LoadTreinos(_instrutorAlunoDict["aluno_id"]);
-            //if (treinosList == null)
-            //{
-            //    Validation.DisplayAlertMessage("Falha ao carregar Treinos", this);
-            //    return;
-            //}
+            Execucao_ExercicioDAO execucaoExercicioDAO = new Execucao_ExercicioDAO();
+            var execucaoExerciciosList = execucaoExercicioDAO.LoadExecucaoExercicios(_treinoTipoId);
+            if (execucaoExerciciosList == null)
+            {
+                Validation.DisplayAlertMessage("Falha ao carregar Exercícios de Execução", this);
+                return;
+            }
 
-            ////Para cada Treino, carregar o seu treino Tipo:
-            //Treino_TipoDAO treinoTipoDAO = new Treino_TipoDAO();
-            //foreach (var treino in treinosList)
-            //{
-            //    treino.Treino_Tipo = treinoTipoDAO.LoadTreino_Tipos(treino.treino_id);
-            //}
+            //Preenche ListView
+            var listAdapter = new Execucao_ExerciciosListAdapter(this, execucaoExerciciosList);
+            _execucaoExerciciosListView.Adapter = listAdapter;
 
-            ////Preence ListView com os Treinos do Aluno
-            //var listAdapter = new TreinosExpandableListAdapter(this, treinosList);
-            //_exerciciosList.SetAdapter(listAdapter);
-
-            ////var listAdapter = new TreinosAdapter(this, treinosList);
-            ////_treinosListView.Adapter = listAdapter;
+            //var listAdapter = new TreinosAdapter(this, treinosList);
+            //_treinosListView.Adapter = listAdapter;
         }
-
-        private void BTN_NovoTreino_Click(object sender, EventArgs e)
-        {
-            //Nav.NavigateTo("CadastroExercicioPage", _instrutorAlunoDict);
-        }
-
 
 
         /// <summary>

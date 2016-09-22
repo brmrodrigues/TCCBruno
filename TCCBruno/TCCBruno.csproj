@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\Execucao_ExerciciosListAdapter.cs" />
     <Compile Include="Adapters\ExerciciosListAdapter.cs" />
     <Compile Include="Adapters\CategoriaExercicioListAdapter.cs" />
     <Compile Include="Adapters\GenericListAdapter.cs" />
@@ -97,14 +98,15 @@
     <Compile Include="Adapters\MeusAlunosPageAdapter.cs" />
     <Compile Include="Adapters\TreinosExpandableListAdapter.cs" />
     <Compile Include="CadastrarAvFisicaActivity.cs" />
-    <Compile Include="CadastroExercicioActivity.cs" />
+    <Compile Include="CadastroExecucao_ExercicioActivity.cs" />
     <Compile Include="CadastroTreinoActivity.cs" />
     <Compile Include="DAO\CategoriaExercicioDAO.cs" />
+    <Compile Include="DAO\Execucao_ExercicioDAO.cs" />
     <Compile Include="DAO\ExercicioDAO.cs" />
     <Compile Include="DAO\TreinoDAO.cs" />
     <Compile Include="DAO\Treino_TipoDAO.cs" />
     <Compile Include="DatePickerFragment.cs" />
-    <Compile Include="ExerciciosActivity.cs" />
+    <Compile Include="Execucao_ExerciciosActivity.cs" />
     <Compile Include="JavaObjectConverter.cs" />
     <Compile Include="Model\Execucao_Exercicio.cs" />
     <Compile Include="Model\Treino.cs" />
@@ -145,10 +147,13 @@
     <AndroidResource Include="Resources\layout\CadastroTreinoPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ExerciciosPage.axml">
+    <AndroidResource Include="Resources\layout\Execucao_ExerciciosPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\CadastroExerciciosPage.axml">
+    <AndroidResource Include="Resources\layout\CadastroExecucao_ExercicioPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\TreinoTipoDialog.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

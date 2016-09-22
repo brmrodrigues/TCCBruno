@@ -31,6 +31,9 @@ namespace TCCBruno
 		public partial class Array
 		{
 			
+			// aapt resource value: 0x7f050001
+			public const int subTreinoItemLongClickList = 2131034113;
+			
 			// aapt resource value: 0x7f050000
 			public const int subTreino_array = 2131034112;
 			
@@ -146,7 +149,7 @@ namespace TCCBruno
 			public const int Header_LV = 2131165208;
 			
 			// aapt resource value: 0x7f070016
-			public const int LV_Exercicios = 2131165206;
+			public const int LV_ExerciciosExecucao = 2131165206;
 			
 			// aapt resource value: 0x7f070020
 			public const int LV_MeusAlunos = 2131165216;
@@ -225,7 +228,7 @@ namespace TCCBruno
 			public const int CadastroAlunoPage = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int CadastroExerciciosPage = 2130903041;
+			public const int CadastroExecucao_ExercicioPage = 2130903041;
 			
 			// aapt resource value: 0x7f030002
 			public const int CadastroTreinoPage = 2130903042;
@@ -234,7 +237,7 @@ namespace TCCBruno
 			public const int ContentExpandableLV = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int ExerciciosPage = 2130903044;
+			public const int Execucao_ExerciciosPage = 2130903044;
 			
 			// aapt resource value: 0x7f030005
 			public const int HeaderExpandableLV = 2130903045;
@@ -253,6 +256,9 @@ namespace TCCBruno
 			
 			// aapt resource value: 0x7f03000a
 			public const int TreinosPage = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int TreinoTipoDialog = 2130903051;
 			
 			static Layout()
 			{

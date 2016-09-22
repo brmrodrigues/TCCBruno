@@ -42,5 +42,16 @@ namespace TCCBruno
             Dialog dialog = alert.Create();
             dialog.Show();
         }
+
+        //public static void TreinoTipoItemLongClick_DisplayDialog(string nomeTreinoTipo, Context context)
+        //{
+        //    var builder = new Dialog(context);
+        //    builder.SetContentView(Resource.Layout.)
+        //    //var builder = new AlertDialog.Builder(context);
+        //    //builder.SetIconAttribute(Android.Resource.Attribute.AlertDialogIcon);
+        //    //builder.SetTitle("Sub-Treino " + nomeTreinoTipo);
+        //    //builder.SetButt
+        //}
+
     }
 }

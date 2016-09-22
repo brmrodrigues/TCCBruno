@@ -21,5 +21,8 @@ namespace TCCBruno.Model
         public Nullable<short> repeticoes { get; set; }
         public Nullable<short> carga { get; set; }
         public Nullable<short> duracao_descanso { get; set; }
+
+        public virtual Exercicio Exercicio { get; set; }
+        public virtual Treino_Tipo Treino_Tipo { get; set; }
     }
 }

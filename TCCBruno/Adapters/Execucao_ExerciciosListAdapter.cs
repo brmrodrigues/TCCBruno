@@ -13,12 +13,12 @@ using TCCBruno.Model;
 
 namespace TCCBruno.Adapters
 {
-    public class ExerciciosListAdapter : BaseAdapter<Exercicio>
+    public class Execucao_ExerciciosListAdapter : BaseAdapter<Execucao_Exercicio>
     {
-        List<Exercicio> _items;
+        List<Execucao_Exercicio> _items;
         Activity _context;
 
-        public ExerciciosListAdapter(Activity context, List<Exercicio> items) : base()
+        public Execucao_ExerciciosListAdapter(Activity context, List<Execucao_Exercicio> items) : base()
         {
             _items = items;
             _context = context;
@@ -29,7 +29,7 @@ namespace TCCBruno.Adapters
             get { return _items.Count; }
         }
 
-        public override Exercicio this[int position]
+        public override Execucao_Exercicio this[int position]
         {
             get { return _items[position]; }
         }
@@ -44,7 +44,11 @@ namespace TCCBruno.Adapters
             View view = convertView;
             if (view == null)
                 view = _context.LayoutInflater.Inflate(Resource.Layout.MeusAlunosCustomLV, null);
-            view.FindViewById<TextView>(Resource.Id.LV_Text1).Text = _items[position].nome_exercicio;
+            view.FindViewById<TextView>(Resource.Id.LV_Text1).Text = _items[position].Exercicio.nome_exercicio;
+            view.FindViewById<TextView>(Resource.Id.LV_Text2).Text = "Séries: " + _items[position].series.ToString() +
+                                                                     "  Repetições: " + _items[position].repeticoes.ToString() +
+                                                                     "  Carga: " + _items[position].carga.ToString() +
+                                                                     "  Intervalo: " + _items[position].duracao_descanso.ToString() + "s";
 
             return view;
         }

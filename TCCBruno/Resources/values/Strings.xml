@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
-    <string-array name="subTreino_array">
+  <!--Subtreinos Disponíveis:-->  
+  <string-array name="subTreino_array">
       <item>A</item>
       <item>B</item>
       <item>C</item>
       <item>D</item>
       <item>E</item>
     </string-array>
+
+  <!--Lista de escolhas para Long Click de SubTreino-->
+  <string-array name="subTreinoItemLongClickList">
+    <item>Exibir Exercícios</item>
+    <item>Alterar a duração do SubTreino</item>
+    <item>Remover SubTreino</item>
+  </string-array>
 </resources>

@@ -74,7 +74,12 @@ namespace TCCBruno.Adapters
 
         public override Java.Lang.Object GetChild(int groupPosition, int childPosition)
         {
-            throw new NotImplementedException();
+            return null;
+        }
+
+        public string GetNomeTreinoTipo(int groupPosition, int childPosition)
+        {
+            return _items[groupPosition].Treino_Tipo[childPosition].treino_tipo_nome;
         }
 
         public override long GetChildId(int groupPosition, int childPosition)
@@ -90,7 +95,7 @@ namespace TCCBruno.Adapters
 
         public override Java.Lang.Object GetGroup(int groupPosition)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public override long GetGroupId(int groupPosition)

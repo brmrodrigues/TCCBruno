@@ -18,7 +18,7 @@ using TCCBruno.Model;
 namespace TCCBruno
 {
     [Activity(Label = "Cadastro de Exercícios")]
-    public class CadastroExercicioActivity : ActivityBase
+    public class CadastroExecucao_ExercicioActivity : ActivityBase
     {
         private int _treinoTipoId;
         private Spinner _spnCategorias;
@@ -40,7 +40,7 @@ namespace TCCBruno
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.CadastroExerciciosPage);
+            SetContentView(Resource.Layout.CadastroExecucao_ExercicioPage);
 
             _edtSeries = FindViewById<EditText>(Resource.Id.EDT_Series);
             _edtRepeticoes = FindViewById<EditText>(Resource.Id.EDT_Repeticoes);

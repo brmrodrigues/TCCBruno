@@ -25,6 +25,12 @@ namespace TCCBruno
         private ExpandableListView _treinosListView;
         //private ListView _treinosListView;
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
+        private const int DIALOG_TREINO_TIPO = 0;
+        private int _treinoTipo_SingleChoiceItemSelected = 0; //Primeira opção pré-selecionada
+
+        //private List<Treino> _treinosList = null;
+        TreinosExpandableListAdapter _treinosAdapter;
+        private int _treinoTipoSelectedId = -1;
 
         public NavigationService Nav
         {
@@ -62,6 +68,9 @@ namespace TCCBruno
             ExpandableListView listView = (ExpandableListView)e.Parent;
             long pos = listView.GetExpandableListPosition(e.Position);
             var itemType = ExpandableListView.GetPackedPositionType(pos);
+            var treinoPos = ExpandableListView.GetPackedPositionGroup(pos);
+            var treinoTipoPos = ExpandableListView.GetPackedPositionChild(pos);
+
 
             if (itemType == PackedPositionType.Child)
             {
@@ -70,6 +79,18 @@ namespace TCCBruno
                 //2 - Alterar o Subtreino (por enquanto apenas a duração)
                 //3 - Remover o Subtreino
 
+                //var treinoTipoId = (int)_treinosListView.Adapter.GetItemId(e.Position);
+                //int treinoPosition = e.Parent.SelectedItemPosition;
+                //Treino_Tipo treinoTipoSelected = _treinosAdapter.GetChild(treinoPos, treinoTipoPos).Cast<Treino_Tipo>();
+                var treinoTipoNome = _treinosAdapter.GetNomeTreinoTipo(treinoPos, treinoTipoPos);
+                _treinoTipoSelectedId = (int)_treinosAdapter.GetChildId(treinoPos, treinoTipoPos);
+                //_treinosListView.Adapter.
+                //Treino_Tipo treinoTipoSelected = itemSelected.Cast<Treino_Tipo>();
+                var args = new Bundle();
+                //args.PutString("0", treinoTipoSelected.treino_tipo_nome);
+                args.PutString("0", treinoTipoNome);
+                var dialog = OnCreateDialog(DIALOG_TREINO_TIPO, args);
+                dialog.Show();
                 //var treinoTipoId = (int)(_treinosListView.Adapter.GetItemId(e.Position));
                 //Nav.NavigateTo(MainActivity._cadastroExerciciosPageKey, treinoTipoId);
             }
@@ -100,8 +121,8 @@ namespace TCCBruno
             }
 
             //Preence ListView com os Treinos do Aluno
-            var listAdapter = new TreinosExpandableListAdapter(this, treinosList);
-            _treinosListView.SetAdapter(listAdapter);
+            _treinosAdapter = new TreinosExpandableListAdapter(this, treinosList);
+            _treinosListView.SetAdapter(_treinosAdapter);
 
             //var listAdapter = new TreinosAdapter(this, treinosList);
             //_treinosListView.Adapter = listAdapter;
@@ -110,11 +131,7 @@ namespace TCCBruno
         private void BTN_NovoTreino_Click(object sender, EventArgs e)
         {
             Nav.NavigateTo(MainActivity._cadastroTreinoPageKey, _instrutorAlunoDict);
-            //OpenCalendar("Data de Início");
-            //OpenCalendar("Data Final");
         }
-
-
 
         /// <summary>
         /// Ao voltar a esta tela, carrega os treinos novamente do BD
@@ -123,6 +140,45 @@ namespace TCCBruno
         {
             base.OnResume();
             LoadTreinos();
+        }
+
+        protected override Dialog OnCreateDialog(int id, Bundle args)
+        {
+            var builder = new AlertDialog.Builder(this);
+            //builder.SetIconAttribute(A)
+            //args.
+            builder.SetTitle("Sub-Treino " + args.GetString("0"));
+            builder.SetSingleChoiceItems(Resource.Array.subTreinoItemLongClickList, 0, TreinoTipo_SingleChoiceItemClick);
+            builder.SetPositiveButton("OK", TreinoTipo_SingleChoiceOKClick);
+
+            return builder.Create();
+        }
+
+        private void TreinoTipo_SingleChoiceOKClick(object sender, DialogClickEventArgs e)
+        {
+            switch (_treinoTipo_SingleChoiceItemSelected)
+            {
+                default:
+                    break;
+                case 0: //Exibir Exercícios
+                    Nav.NavigateTo(MainActivity._execucaoExerciciosPageKey, _treinoTipoSelectedId);
+                    break;
+                case 1: //Alterar a duração do SubTreino
+
+                    break; //Remover SubTreino
+                case 2:
+
+                    break;
+
+            }
+            _treinoTipo_SingleChoiceItemSelected = 0; //Reinicia a pré-seleção do primeiro item
+        }
+
+        private void TreinoTipo_SingleChoiceItemClick(object sender, DialogClickEventArgs args)
+        {
+            //var items = Resources.GetStringArray(Resource.Array.subTreinoItemLongClickList);
+
+            _treinoTipo_SingleChoiceItemSelected = args.Which;
         }
     }
 
