@@ -41,7 +41,7 @@ namespace TCCBruno
             SetContentView(Resource.Layout.Execucao_ExerciciosPage);
 
             _execucaoExerciciosListView = FindViewById<ListView>(Resource.Id.LV_ExerciciosExecucao);
-            FindViewById<Button>(Resource.Id.BTN_NovoExercicio);
+            FindViewById<Button>(Resource.Id.BTN_NovoExercicio).Click += BTN_NovoExercicio_Click;
             //_treinosListView = FindViewById<ListView>(Resource.Id.LV_Treinos);
 
             //_exerciciosList.ItemClick += LV_Treinos_ItemClick;
@@ -51,6 +51,11 @@ namespace TCCBruno
             //_instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
             _treinoTipoId = Nav.GetAndRemoveParameter<int>(Intent);
             LoadExecucaoExercicios();
+        }
+
+        private void BTN_NovoExercicio_Click(object sender, EventArgs e)
+        {
+            Nav.NavigateTo(MainActivity._cadastroExecucao_ExercicioPageKey, _treinoTipoId);
         }
 
         private void LoadExecucaoExercicios()
@@ -78,7 +83,7 @@ namespace TCCBruno
         protected override void OnResume()
         {
             base.OnResume();
-            //LoadTreinos();
+            LoadExecucaoExercicios();
         }
     }
 }

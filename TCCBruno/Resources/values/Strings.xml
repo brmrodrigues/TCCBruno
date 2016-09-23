@@ -16,4 +16,11 @@
     <item>Alterar a duração do SubTreino</item>
     <item>Remover SubTreino</item>
   </string-array>
+
+  <!--Lista de escolhas para Long Click de Treino-->
+  <string-array name="treinoItemLongClickList">
+    <item>Adicionar SubTreino</item>
+    <item>Alterar Treino</item>
+    <item>Remover Treino</item>
+  </string-array>
 </resources>

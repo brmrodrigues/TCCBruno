@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\Execucao_ExerciciosListAdapter.cs" />
+    <Compile Include="Adapters\TreinosTipoListAdapter.cs" />
     <Compile Include="Adapters\ExerciciosListAdapter.cs" />
     <Compile Include="Adapters\CategoriaExercicioListAdapter.cs" />
     <Compile Include="Adapters\GenericListAdapter.cs" />

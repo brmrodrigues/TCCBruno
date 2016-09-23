@@ -25,8 +25,14 @@ namespace TCCBruno
         private ExpandableListView _treinosListView;
         //private ListView _treinosListView;
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
-        private const int DIALOG_TREINO_TIPO = 0;
+        private const int DIALOG_TREINO = 0;
+        private const int DIALOG_TREINO_TIPO = 1;
+        private const int DIALOG_CADASTRO_TREINO_TIPO = 2;
         private int _treinoTipo_SingleChoiceItemSelected = 0; //Primeira opção pré-selecionada
+        private int _treino_SingleChoiceItemSelected = 0; //Primeira opção pré-selecionada
+        private int _treinoSelectedId;
+        private int _subTreinosCount;
+        //Dictionary<> //TODO: Lista de SubTreinos A, B, C, D, E
 
         //private List<Treino> _treinosList = null;
         TreinosExpandableListAdapter _treinosAdapter;
@@ -71,7 +77,7 @@ namespace TCCBruno
             var treinoPos = ExpandableListView.GetPackedPositionGroup(pos);
             var treinoTipoPos = ExpandableListView.GetPackedPositionChild(pos);
 
-
+            Dialog dialog = null;
             if (itemType == PackedPositionType.Child)
             {
                 //TODO: Se for Child (TreinoTIpo), exibir Fragment que perguntará se o Instrutor deseja:
@@ -89,8 +95,7 @@ namespace TCCBruno
                 var args = new Bundle();
                 //args.PutString("0", treinoTipoSelected.treino_tipo_nome);
                 args.PutString("0", treinoTipoNome);
-                var dialog = OnCreateDialog(DIALOG_TREINO_TIPO, args);
-                dialog.Show();
+                dialog = OnCreateDialog(DIALOG_TREINO_TIPO, args);
                 //var treinoTipoId = (int)(_treinosListView.Adapter.GetItemId(e.Position));
                 //Nav.NavigateTo(MainActivity._cadastroExerciciosPageKey, treinoTipoId);
             }
@@ -100,7 +105,13 @@ namespace TCCBruno
                 //1 - Cadastrar Subtreino
                 //2 - Alterar Treino
                 //3 - Excluir Treino 
+                _treinoSelectedId = (int)_treinosAdapter.GetGroupId(treinoPos); //armazena o id do treino selecionado
+                _subTreinosCount = (int)_treinosAdapter.GetChildrenCount(treinoPos);
+                var args = new Bundle();
+                args.PutString("0", treinoPos.ToString());
+                dialog = OnCreateDialog(DIALOG_TREINO, args);
             }
+            dialog.Show();
         }
 
         private void LoadTreinos()
@@ -142,16 +153,74 @@ namespace TCCBruno
             LoadTreinos();
         }
 
-        protected override Dialog OnCreateDialog(int id, Bundle args)
+        protected override Dialog OnCreateDialog(int dialogType, Bundle args)
         {
             var builder = new AlertDialog.Builder(this);
             //builder.SetIconAttribute(A)
             //args.
-            builder.SetTitle("Sub-Treino " + args.GetString("0"));
-            builder.SetSingleChoiceItems(Resource.Array.subTreinoItemLongClickList, 0, TreinoTipo_SingleChoiceItemClick);
-            builder.SetPositiveButton("OK", TreinoTipo_SingleChoiceOKClick);
+            switch (dialogType)
+            {
+                default:
+                    break;
+                case DIALOG_TREINO:
+                    builder.SetTitle("Treino " + args.GetString("0"));
+                    builder.SetSingleChoiceItems(Resource.Array.treinoItemLongClickList, 0, (s, e) => { _treino_SingleChoiceItemSelected = e.Which; });
+                    builder.SetPositiveButton("OK", Treino_SingleChoiceOKClick);
+                    builder.SetNegativeButton("Cancelar", (s, e) => { });
+                    break;
+                case DIALOG_TREINO_TIPO:
+                    builder.SetTitle("Sub-Treino " + args.GetString("0"));
+                    builder.SetSingleChoiceItems(Resource.Array.subTreinoItemLongClickList, 0, (s, e) => { _treinoTipoSelectedId = e.Which; });
+                    builder.SetPositiveButton("OK", TreinoTipo_SingleChoiceOKClick);
+                    builder.SetNegativeButton("Cancelar", (s, e) => { });
+                    break;
+                case DIALOG_CADASTRO_TREINO_TIPO:
+                    builder.SetTitle("Novo SubTreino");
+                    //builder.SetSingleChoiceItems(Resource.Array.subTreinoItemLongClickList, 0, (s, e) => { _treinoTipoSelectedId = e.Which; });
+                    var adapter = new TreinosTipoListAdapter(this);
+                    builder.SetAdapter(adapter, LV_DuracaoSubTreino_ItemClick);
+                    builder.SetPositiveButton("OK", TreinoTipo_SingleChoiceOKClick);
+                    builder.SetNegativeButton("Cancelar", (s, e) => { });
+                    break;
+            }
+
+
 
             return builder.Create();
+        }
+
+        private void LV_DuracaoSubTreino_ItemClick(object sender, DialogClickEventArgs e)
+        {
+            Treino_Tipo newTreino_Tipo = new Treino_Tipo
+            {
+                treino_id = _treinoSelectedId,
+                treino_tipo_nome
+            };
+
+            Treino_TipoDAO treinoTipoDAO = new Treino_TipoDAO();
+            if (treinoTipoDAO.InsertTreino_Tipo())
+        }
+
+        private void Treino_SingleChoiceOKClick(object sender, DialogClickEventArgs e)
+        {
+            switch (_treino_SingleChoiceItemSelected)
+            {
+                default:
+                    break;
+
+                case 0: //Cadastrar Subtreino
+                    var dialog = OnCreateDialog(DIALOG_CADASTRO_TREINO_TIPO, null);
+                    dialog.Show();
+                    break;
+
+                case 1: //Alterar Treino
+
+                    break;
+
+                case 2: //Excluir Treino
+
+                    break;
+            }
         }
 
         private void TreinoTipo_SingleChoiceOKClick(object sender, DialogClickEventArgs e)
@@ -174,12 +243,12 @@ namespace TCCBruno
             _treinoTipo_SingleChoiceItemSelected = 0; //Reinicia a pré-seleção do primeiro item
         }
 
-        private void TreinoTipo_SingleChoiceItemClick(object sender, DialogClickEventArgs args)
-        {
-            //var items = Resources.GetStringArray(Resource.Array.subTreinoItemLongClickList);
+        //private void TreinoTipo_SingleChoiceItemClick(object sender, DialogClickEventArgs args)
+        //{
+        //    _treinoTipo_SingleChoiceItemSelected = args.Which;
+        //}
 
-            _treinoTipo_SingleChoiceItemSelected = args.Which;
-        }
+
     }
 
 

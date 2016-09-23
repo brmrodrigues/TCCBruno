@@ -18,6 +18,38 @@ namespace TCCBruno.DAO
     public class Execucao_ExercicioDAO
     {
 
+        public bool InsertTreino(Execucao_Exercicio execucaoExercicio)
+        {
+            SqlConnection connection;
+            using (connection = new SqlConnection(DBConnection.ConnectionString))
+            {
+                string queryString = "INSERT INTO [dbo].[Execucao_Exercicio] ([exercicio_id], [treino_tipo_id], [series], [repeticoes], [carga], [duracao_descanso])" +
+                                        " VALUES (@pexercicio_id, @ptreino_tipo_id, @pseries, @prepeticoes, @pcarga, @pduracao_descanso)";
+                SqlCommand sqlCommand = new SqlCommand(queryString, connection);
+                sqlCommand.Parameters.Add("@pexercicio_id", SqlDbType.Int).Value = execucaoExercicio.exercicio_id;
+                sqlCommand.Parameters.Add("@ptreino_tipo_id", SqlDbType.Int).Value = execucaoExercicio.treino_tipo_id;
+                sqlCommand.Parameters.Add("@pseries", SqlDbType.TinyInt).Value = execucaoExercicio.series;
+                sqlCommand.Parameters.Add("@prepeticoes", SqlDbType.SmallInt).Value = execucaoExercicio.repeticoes;
+                sqlCommand.Parameters.Add("@pcarga", SqlDbType.TinyInt).Value = execucaoExercicio.carga;
+                sqlCommand.Parameters.Add("@pduracao_descanso", SqlDbType.SmallInt).Value = execucaoExercicio.duracao_descanso;
+
+                try
+                {
+                    connection.Open();
+                    sqlCommand.CommandType = CommandType.Text;
+                    sqlCommand.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public List<Execucao_Exercicio> LoadExecucaoExercicios(int treinoTipoId)
         {
             SqlConnection connection;

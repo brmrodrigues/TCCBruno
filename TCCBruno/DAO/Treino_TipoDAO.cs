@@ -18,6 +18,33 @@ namespace TCCBruno.DAO
     public class Treino_TipoDAO
     {
 
+        public bool InsertTreino_Tipo(Treino_Tipo newTreino_Tipo)
+        {
+            SqlConnection connection;
+            using (connection = new SqlConnection(DBConnection.ConnectionString))
+            {
+                string queryString = "INSERT INTO [dbo].[Treino_Tipo] ([treino_id], [duracao])" +
+                                        " VALUES (@ptreino_id, @pduracao)";
+                SqlCommand sqlCommand = new SqlCommand(queryString, connection);
+                sqlCommand.Parameters.Add("@ptreino_id", SqlDbType.Int).Value = newTreino_Tipo.treino_id;
+                sqlCommand.Parameters.Add("@pduracao", SqlDbType.Float).Value = newTreino_Tipo.duracao;
+                try
+                {
+                    connection.Open();
+                    sqlCommand.CommandType = CommandType.Text;
+                    sqlCommand.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
         public List<Treino_Tipo> LoadTreino_Tipos(int treinoId)
         {
             SqlConnection connection;

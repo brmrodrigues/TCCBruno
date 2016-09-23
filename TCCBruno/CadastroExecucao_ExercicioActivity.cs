@@ -25,6 +25,10 @@ namespace TCCBruno
         private Spinner _spnExercicios;
         private EditText _edtSeries;
         private EditText _edtRepeticoes;
+        private EditText _edtCarga;
+        private EditText _edtDescanso;
+
+        private Button _btnSalvarExecucaoExercicio;
 
         public NavigationService Nav
         {
@@ -44,15 +48,43 @@ namespace TCCBruno
 
             _edtSeries = FindViewById<EditText>(Resource.Id.EDT_Series);
             _edtRepeticoes = FindViewById<EditText>(Resource.Id.EDT_Repeticoes);
+            _edtCarga = FindViewById<EditText>(Resource.Id.EDT_Carga);
+            _edtDescanso = FindViewById<EditText>(Resource.Id.EDT_Descanso);
             _spnCategorias = FindViewById<Spinner>(Resource.Id.SPN_CategoriaExercicio);
             _spnExercicios = FindViewById<Spinner>(Resource.Id.SPN_Exercicios);
+            _btnSalvarExecucaoExercicio = FindViewById<Button>(Resource.Id.BTN_SalvarExecucaoExercicio);
 
 
             //Eventos:
             _spnCategorias.ItemSelected += SPN_CategoriaExercicio_ItemSelected;
+            _btnSalvarExecucaoExercicio.Click += BTN_SalvarExecucaoExercicio_Click;
 
             _treinoTipoId = Nav.GetAndRemoveParameter<int>(Intent);
             LoadCategoriasAndExercicios();
+        }
+
+        private void BTN_SalvarExecucaoExercicio_Click(object sender, EventArgs e)
+        {
+            Execucao_Exercicio newExecucaoExercicio = new Execucao_Exercicio
+            {
+                exercicio_id = (int)_spnExercicios.SelectedItemId,
+                treino_tipo_id = _treinoTipoId,
+                series = Convert.ToByte(_edtSeries.Text),
+                repeticoes = Convert.ToInt16(_edtRepeticoes.Text),
+                carga = Convert.ToInt16(_edtCarga.Text),
+                duracao_descanso = Convert.ToInt16(_edtDescanso.Text)
+            };
+
+            Execucao_ExercicioDAO execucaoDAO = new Execucao_ExercicioDAO();
+            if (execucaoDAO.InsertTreino(newExecucaoExercicio))
+            {
+                //Validation.DisplayAlertMessage("Aluno cadastrado com sucesso!", this);
+                GoBack();
+            }
+            else
+            {
+                Validation.DisplayAlertMessage("Não foi possível salvar o Exercício", this);
+            }
         }
 
         private void SPN_CategoriaExercicio_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
