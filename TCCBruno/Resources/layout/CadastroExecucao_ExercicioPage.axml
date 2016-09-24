@@ -24,14 +24,14 @@
             android:id="@+id/SPN_CategoriaExercicio"
             android:layout_marginLeft="50.0dp" />
     </LinearLayout>
-<!-- EXercícios da Categoria selecionada-->
+<!-- Exercícios da Categoria selecionada-->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="70.0dp"
         android:layout_marginBottom="52.0dp">
         <TextView
-            android:text="Categoria:"
+            android:text="Exercício:"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"

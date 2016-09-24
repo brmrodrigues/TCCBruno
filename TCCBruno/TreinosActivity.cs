@@ -32,9 +32,6 @@ namespace TCCBruno
         private int _treino_SingleChoiceItemSelected = 0; //Primeira opção pré-selecionada
         private int _treinoSelectedId;
         private int _subTreinosCount;
-        //Dictionary<> //TODO: Lista de SubTreinos A, B, C, D, E
-
-        //private List<Treino> _treinosList = null;
         TreinosExpandableListAdapter _treinosAdapter;
         private int _treinoTipoSelectedId = -1;
 
@@ -108,7 +105,7 @@ namespace TCCBruno
                 _treinoSelectedId = (int)_treinosAdapter.GetGroupId(treinoPos); //armazena o id do treino selecionado
                 _subTreinosCount = (int)_treinosAdapter.GetChildrenCount(treinoPos);
                 var args = new Bundle();
-                args.PutString("0", treinoPos.ToString());
+                args.PutString("0", (treinoPos + 1).ToString());
                 dialog = OnCreateDialog(DIALOG_TREINO, args);
             }
             dialog.Show();
@@ -174,14 +171,14 @@ namespace TCCBruno
                     builder.SetPositiveButton("OK", TreinoTipo_SingleChoiceOKClick);
                     builder.SetNegativeButton("Cancelar", (s, e) => { });
                     break;
-                case DIALOG_CADASTRO_TREINO_TIPO:
-                    builder.SetTitle("Novo SubTreino");
-                    //builder.SetSingleChoiceItems(Resource.Array.subTreinoItemLongClickList, 0, (s, e) => { _treinoTipoSelectedId = e.Which; });
-                    var adapter = new TreinosTipoListAdapter(this);
-                    builder.SetAdapter(adapter, LV_DuracaoSubTreino_ItemClick);
-                    builder.SetPositiveButton("OK", TreinoTipo_SingleChoiceOKClick);
-                    builder.SetNegativeButton("Cancelar", (s, e) => { });
-                    break;
+                    //case DIALOG_CADASTRO_TREINO_TIPO:
+                    //    builder.SetTitle("Novo SubTreino");
+                    //    //builder.SetSingleChoiceItems(Resource.Array.subTreinoItemLongClickList, 0, (s, e) => { _treinoTipoSelectedId = e.Which; });
+                    //    var adapter = new DuracaoTreinosTipoListAdapter(this);
+                    //    builder.SetAdapter(adapter, LV_DuracaoSubTreino_ItemClick);
+                    //    builder.SetPositiveButton("OK", TreinoTipo_SingleChoiceOKClick);
+                    //    builder.SetNegativeButton("Cancelar", (s, e) => { });
+                    //    break;
             }
 
 
@@ -191,14 +188,14 @@ namespace TCCBruno
 
         private void LV_DuracaoSubTreino_ItemClick(object sender, DialogClickEventArgs e)
         {
-            Treino_Tipo newTreino_Tipo = new Treino_Tipo
-            {
-                treino_id = _treinoSelectedId,
-                treino_tipo_nome
-            };
+            //Treino_Tipo newTreino_Tipo = new Treino_Tipo
+            //{
+            //    treino_id = _treinoSelectedId,
+            //    treino_tipo_nome
+            //};
 
-            Treino_TipoDAO treinoTipoDAO = new Treino_TipoDAO();
-            if (treinoTipoDAO.InsertTreino_Tipo())
+            //Treino_TipoDAO treinoTipoDAO = new Treino_TipoDAO();
+            //if (treinoTipoDAO.InsertTreino_Tipo())
         }
 
         private void Treino_SingleChoiceOKClick(object sender, DialogClickEventArgs e)
@@ -209,8 +206,12 @@ namespace TCCBruno
                     break;
 
                 case 0: //Cadastrar Subtreino
-                    var dialog = OnCreateDialog(DIALOG_CADASTRO_TREINO_TIPO, null);
-                    dialog.Show();
+                    //var dialog = OnCreateDialog(DIALOG_CADASTRO_TREINO_TIPO, null);
+                    //dialog.Show();
+                    Dictionary<string, int> treinoId_subTreinosCount = new Dictionary<string, int>();
+                    treinoId_subTreinosCount.Add("treinoId", _treinoSelectedId);
+                    treinoId_subTreinosCount.Add("subTreinosCount", _subTreinosCount);
+                    Nav.NavigateTo(MainActivity._cadastroTreinoTipoPageKey, treinoId_subTreinosCount);
                     break;
 
                 case 1: //Alterar Treino

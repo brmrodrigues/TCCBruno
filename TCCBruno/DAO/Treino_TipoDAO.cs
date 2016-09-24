@@ -23,11 +23,13 @@ namespace TCCBruno.DAO
             SqlConnection connection;
             using (connection = new SqlConnection(DBConnection.ConnectionString))
             {
-                string queryString = "INSERT INTO [dbo].[Treino_Tipo] ([treino_id], [duracao])" +
-                                        " VALUES (@ptreino_id, @pduracao)";
+                string queryString = "INSERT INTO [dbo].[Treino_Tipo] ([treino_id], [treino_tipo_nome], [duracao], [descricao])" +
+                                        " VALUES (@ptreino_id, @ptreino_tipo_nome, @pduracao, @pdescricao)";
                 SqlCommand sqlCommand = new SqlCommand(queryString, connection);
                 sqlCommand.Parameters.Add("@ptreino_id", SqlDbType.Int).Value = newTreino_Tipo.treino_id;
+                sqlCommand.Parameters.Add("@ptreino_tipo_nome", SqlDbType.VarChar, 300).Value = newTreino_Tipo.treino_tipo_nome;
                 sqlCommand.Parameters.Add("@pduracao", SqlDbType.Float).Value = newTreino_Tipo.duracao;
+                sqlCommand.Parameters.Add("@pdescricao", SqlDbType.VarChar, -1).Value = newTreino_Tipo.descricao;
                 try
                 {
                     connection.Open();

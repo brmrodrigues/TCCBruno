@@ -13,12 +13,12 @@ using TCCBruno.Model;
 
 namespace TCCBruno.Adapters
 {
-    public class TreinosTipoListAdapter : BaseAdapter<string>
+    public class DuracaoTreinosTipoListAdapter : BaseAdapter<string>
     {
         List<string> _items;
         Activity _context;
 
-        public TreinosTipoListAdapter(Activity context) : base()
+        public DuracaoTreinosTipoListAdapter(Activity context) : base()
         {
             _items = new List<string>();
             _items.Add("30 min");

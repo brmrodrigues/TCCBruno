@@ -91,7 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\Execucao_ExerciciosListAdapter.cs" />
-    <Compile Include="Adapters\TreinosTipoListAdapter.cs" />
+    <Compile Include="Adapters\DuracaoTreinosTipoListAdapter.cs" />
     <Compile Include="Adapters\ExerciciosListAdapter.cs" />
     <Compile Include="Adapters\CategoriaExercicioListAdapter.cs" />
     <Compile Include="Adapters\GenericListAdapter.cs" />
@@ -101,6 +101,7 @@
     <Compile Include="CadastrarAvFisicaActivity.cs" />
     <Compile Include="CadastroExecucao_ExercicioActivity.cs" />
     <Compile Include="CadastroTreinoActivity.cs" />
+    <Compile Include="CadastroTreinoTipoActivity.cs" />
     <Compile Include="DAO\CategoriaExercicioDAO.cs" />
     <Compile Include="DAO\Execucao_ExercicioDAO.cs" />
     <Compile Include="DAO\ExercicioDAO.cs" />
@@ -155,6 +156,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\TreinoTipoDialog.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CadastroTreinoTipoPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

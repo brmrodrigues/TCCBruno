@@ -26,6 +26,7 @@ namespace TCCBruno
         public const string _cadastroTreinoPageKey = "CadastroTreinoPage";
         public const string _execucaoExerciciosPageKey = "ExerciciosExecucaoPage";
         public const string _cadastroExecucao_ExercicioPageKey = "CadastroExecucao_ExercicioPage";
+        public const string _cadastroTreinoTipoPageKey = "CadastroTreinoTipoPage";
         private static bool _initialized; //flag utilizada na inicialização do ServiceLocator
 
         private LinearLayout _linearLayoutLoginPage;
@@ -59,6 +60,7 @@ namespace TCCBruno
                 nav.Configure(_cadastroTreinoPageKey, typeof(CadastroTreinoActivity));
                 nav.Configure(_cadastroExecucao_ExercicioPageKey, typeof(CadastroExecucao_ExercicioActivity));
                 nav.Configure(_execucaoExerciciosPageKey, typeof(Execucao_ExerciciosActivity));
+                nav.Configure(_cadastroTreinoTipoPageKey, typeof(CadastroTreinoTipoActivity));
 
                 SimpleIoc.Default.Register<INavigationService>(() => nav);
             }
