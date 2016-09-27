@@ -24,6 +24,8 @@ namespace TCCBruno
         private Button _btnDataFim;
         private string _dataInicio = DateTime.Now.ToShortDateString();
         private string _dataFim = DateTime.Now.AddMonths(3).ToShortDateString();
+        private long lastClickTime = 0;
+
 
         public NavigationService Nav
         {
@@ -84,6 +86,13 @@ namespace TCCBruno
 
         private void BTN_CadastrarTreino_Click(object sender, EventArgs e)
         {
+            //Debounce Issue Fix:
+            if (SystemClock.ElapsedRealtime() - lastClickTime < 1000) //1000ms
+            {
+                return;
+            }
+            lastClickTime = SystemClock.ElapsedRealtime();
+
             if (_dataInicio.Equals("") || _dataFim.Equals("")) //Verificação se o usuário selecionou alguma data
             {
                 Validation.DisplayAlertMessage("Selecione o período do treino antes de fazer o cadastro!", this);

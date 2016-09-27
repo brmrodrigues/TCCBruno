@@ -21,6 +21,8 @@ namespace TCCBruno
     {
         private GridLayout _gridLayout;
         private int _instrutorId;
+        private long lastClickTime = 0;
+
 
         public NavigationService Nav
         {
@@ -71,6 +73,13 @@ namespace TCCBruno
         [Java.Interop.Export("BTN_CadastrarAluno_Click")]
         public void BTN_CadastrarAluno_Click(View v)
         {
+            //Debounce Issue Fix:
+            if (SystemClock.ElapsedRealtime() - lastClickTime < 1000) //1000ms
+            {
+                return;
+            }
+            lastClickTime = SystemClock.ElapsedRealtime();
+
             if (!Validation.ValidatedFields(_gridLayout))
             {
                 Validation.DisplayAlertMessage("Preencha todos os campos antes de cadastrar um Aluno", this);

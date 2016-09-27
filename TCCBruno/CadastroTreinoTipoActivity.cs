@@ -27,6 +27,8 @@ namespace TCCBruno
         private readonly string[] _nomesTreinoTipo = { "A", "B", "C", "D", "E" };
         //private int _treinoId;
         private Dictionary<string, int> _treinoId_subTreinosCount;
+        private long lastClickTime = 0;
+
 
         public NavigationService Nav
         {
@@ -55,13 +57,19 @@ namespace TCCBruno
 
         private void BTN_SalvarTreinoTipo_Click(object sender, EventArgs e)
         {
+            //Debounce Issue Fix:
+            if (SystemClock.ElapsedRealtime() - lastClickTime < 1000) //1000ms
+            {
+                return;
+            }
+            lastClickTime = SystemClock.ElapsedRealtime();
+
             var selectedItemPos = _spnDuracaoTreinoTipo.SelectedItemPosition;
             //Console.WriteLine(duracoes[selectedItemPos].ToString());
             var subTreinosCount = _treinoId_subTreinosCount["subTreinosCount"];
-            if ((subTreinosCount > _nomesTreinoTipo.Length))
+            if ((subTreinosCount >= _nomesTreinoTipo.Length))
             {
                 Validation.DisplayAlertMessage("Não é possível cadastrar mais do que cinco SubTreinos", this);
-                return;
             }
             else
             {

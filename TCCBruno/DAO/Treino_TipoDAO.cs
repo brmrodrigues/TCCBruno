@@ -20,30 +20,46 @@ namespace TCCBruno.DAO
 
         public bool InsertTreino_Tipo(Treino_Tipo newTreino_Tipo)
         {
-            SqlConnection connection;
-            using (connection = new SqlConnection(DBConnection.ConnectionString))
+            //SqlConnection connection;
+            //using (connection = new SqlConnection(DBConnection.ConnectionString))
+            //{
+            string queryString = "INSERT INTO [dbo].[Treino_Tipo] ([treino_id], [treino_tipo_nome], [duracao], [descricao])" +
+                                    " VALUES (@ptreino_id, @ptreino_tipo_nome, @pduracao, @pdescricao)";
+            //SqlCommand sqlCommand = new SqlCommand(queryString, connection);
+            //sqlCommand.Parameters.Add("@ptreino_id", SqlDbType.Int).Value = newTreino_Tipo.treino_id;
+            //sqlCommand.Parameters.Add("@ptreino_tipo_nome", SqlDbType.VarChar, 300).Value = newTreino_Tipo.treino_tipo_nome;
+            //sqlCommand.Parameters.Add("@pduracao", SqlDbType.Float).Value = newTreino_Tipo.duracao;
+            //sqlCommand.Parameters.Add("@pdescricao", SqlDbType.VarChar, -1).Value = newTreino_Tipo.descricao;
+            //    try
+            //    {
+            //        connection.Open();
+            //        sqlCommand.CommandType = CommandType.Text;
+            //        sqlCommand.ExecuteNonQuery();
+            //        connection.Close();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine("Erro SQL: " + ex.Message);
+            //        connection.Close();
+            //        return false;
+            //    }
+            //}
+
+            List<SqlParameter> parametersList = new List<SqlParameter>()
             {
-                string queryString = "INSERT INTO [dbo].[Treino_Tipo] ([treino_id], [treino_tipo_nome], [duracao], [descricao])" +
-                                        " VALUES (@ptreino_id, @ptreino_tipo_nome, @pduracao, @pdescricao)";
-                SqlCommand sqlCommand = new SqlCommand(queryString, connection);
-                sqlCommand.Parameters.Add("@ptreino_id", SqlDbType.Int).Value = newTreino_Tipo.treino_id;
-                sqlCommand.Parameters.Add("@ptreino_tipo_nome", SqlDbType.VarChar, 300).Value = newTreino_Tipo.treino_tipo_nome;
-                sqlCommand.Parameters.Add("@pduracao", SqlDbType.Float).Value = newTreino_Tipo.duracao;
-                sqlCommand.Parameters.Add("@pdescricao", SqlDbType.VarChar, -1).Value = newTreino_Tipo.descricao;
-                try
-                {
-                    connection.Open();
-                    sqlCommand.CommandType = CommandType.Text;
-                    sqlCommand.ExecuteNonQuery();
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    return false;
-                }
+                new SqlParameter() {ParameterName="@ptreino_id", SqlDbType = SqlDbType.Int, Value = newTreino_Tipo.treino_id },
+                new SqlParameter() {ParameterName="@ptreino_tipo_nome", SqlDbType = SqlDbType.VarChar, Size=300, Value = newTreino_Tipo.treino_tipo_nome },
+                new SqlParameter() {ParameterName="@pduracao", SqlDbType = SqlDbType.Float, Value = newTreino_Tipo.duracao },
+                new SqlParameter() {ParameterName="@pdescricao", SqlDbType = SqlDbType.VarChar, Size = -1, Value = newTreino_Tipo.descricao }
+
+            };
+
+            if (DBConnection.InsertQuery(queryString, parametersList))
+            {
+                return true;
             }
-            return true;
+
+            return false;
         }
 
 

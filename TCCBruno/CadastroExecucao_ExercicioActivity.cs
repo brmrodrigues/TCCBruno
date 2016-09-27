@@ -29,6 +29,7 @@ namespace TCCBruno
         private EditText _edtDescanso;
 
         private Button _btnSalvarExecucaoExercicio;
+        private long lastClickTime = 0;
 
         public NavigationService Nav
         {
@@ -65,6 +66,13 @@ namespace TCCBruno
 
         private void BTN_SalvarExecucaoExercicio_Click(object sender, EventArgs e)
         {
+            //Debounce Issue Fix:
+            if (SystemClock.ElapsedRealtime() - lastClickTime < 1000) //1000ms
+            {
+                return;
+            }
+            lastClickTime = SystemClock.ElapsedRealtime();
+
             Execucao_Exercicio newExecucaoExercicio = new Execucao_Exercicio
             {
                 exercicio_id = (int)_spnExercicios.SelectedItemId,
