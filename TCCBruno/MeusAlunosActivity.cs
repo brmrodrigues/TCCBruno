@@ -38,6 +38,7 @@ namespace TCCBruno
             SetContentView(Resource.Layout.MeusAlunosPage);
 
             _listViewAlunos = FindViewById<ListView>(Resource.Id.LV_MeusAlunos);
+            FindViewById<Button>(Resource.Id.BTN_NovoAluno).Click += BTN_NovoAluno_Click;
             //Instancia evento de Click da List View
             _listViewAlunos.ItemClick += LV_MeusAlunos_ItemClick;
             //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
@@ -45,6 +46,10 @@ namespace TCCBruno
             LoadAlunos();
         }
 
+        private void BTN_NovoAluno_Click(object sender, EventArgs e)
+        {
+            Nav.NavigateTo(MainActivity._cadastroAlunoPageKey, _instrutorId);
+        }
 
         private void LoadAlunos()
         {
@@ -67,6 +72,12 @@ namespace TCCBruno
             instrutorAlunoDict.Add("instrutor_id", _instrutorId);
             instrutorAlunoDict.Add("aluno_id", aluno_Id);
             Nav.NavigateTo("TreinosPage", instrutorAlunoDict);
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            LoadAlunos();
         }
 
 

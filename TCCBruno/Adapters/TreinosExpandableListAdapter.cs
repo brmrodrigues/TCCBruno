@@ -35,8 +35,8 @@ namespace TCCBruno.Adapters
             }
             header.FindViewById<TextView>(Resource.Id.LV_Text1).Text = "Treino " + (groupPosition + 1).ToString();
             header.FindViewById<TextView>(Resource.Id.LV_Text2).Text = "De: " +
-                                            _items[groupPosition].data_inicio.ToString("dd/MM/yyyy") +
-                                            "   Até: " + _items[groupPosition].data_fim.ToString("dd/MM/yyyy");
+                                            DateTime.Parse(_items[groupPosition].data_inicio).ToString("dd/MM/yyyy") +
+                                            "   Até: " + DateTime.Parse(_items[groupPosition].data_fim).ToString("dd/MM/yyyy");
 
             return header;
         }

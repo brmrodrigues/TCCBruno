@@ -41,6 +41,10 @@ namespace TCCBruno.Adapters
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
+            //Mostra na lista apenas se o Exercicio do ExercicioExecucao foi carregado
+            if (_items[position].Exercicio == null)
+                return null;
+
             View view = convertView;
             if (view == null)
                 view = _context.LayoutInflater.Inflate(Resource.Layout.MeusAlunosCustomLV, null);

@@ -25,6 +25,7 @@ namespace TCCBruno
         private ExpandableListView _treinosListView;
         //private ListView _treinosListView;
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
+        private int _alunoId = -1;
         private const int DIALOG_TREINO = 0;
         private const int DIALOG_TREINO_TIPO = 1;
         private const int DIALOG_CADASTRO_TREINO_TIPO = 2;
@@ -57,8 +58,10 @@ namespace TCCBruno
 
             FindViewById<Button>(Resource.Id.BTN_NovoTreino).Click += BTN_NovoTreino_Click;
 
-            //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
+            //Por passagem de parâmetro, reconhecer quando um ALUNO ou INSTRUTOR acessa esta Page:
             _instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
+            //TODO: NÃO PRECISAMOS DE UM DICT QUE ARMAZENA O ID DE INSTRUTOR_ALUNO, APENAS O ID DO ALUNO É SUFICIENTE!
+            //if (!_instrutorAlunoDict.ContainsKey("instrutor_id"))
         }
 
         private void LV_Treinos_ChildClick(object sender, ExpandableListView.ChildClickEventArgs e)

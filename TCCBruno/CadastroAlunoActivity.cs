@@ -105,7 +105,8 @@ namespace TCCBruno
                 Validation.DisplayAlertMessage("Não foi possível cadastrar o Aluno", this);
             }
 
-
+            //Volta para a tela MeusAlunos
+            GoBack();
         }
 
     }

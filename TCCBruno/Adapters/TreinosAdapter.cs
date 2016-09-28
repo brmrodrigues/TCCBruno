@@ -48,8 +48,8 @@ namespace TCCBruno.Adapters
                 view = _context.LayoutInflater.Inflate(Resource.Layout.MeusAlunosCustomLV, null);
             view.FindViewById<TextView>(Resource.Id.LV_Text1).Text = "Treino " + treinoCount++;
             view.FindViewById<TextView>(Resource.Id.LV_Text2).Text = "De: " +
-                                            _items[position].data_inicio.ToString("dd/MM/yyyy") +
-                                            "   Até: " + _items[position].data_fim.ToString("dd/MM/yyyy");
+                                            _items[position].data_inicio +
+                                            "   Até: " + _items[position].data_fim;
 
 
             return view;

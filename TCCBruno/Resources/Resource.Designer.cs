@@ -109,11 +109,14 @@ namespace TCCBruno
 			// aapt resource value: 0x7f070021
 			public const int BTN_Entrar = 2131165217;
 			
+			// aapt resource value: 0x7f070026
+			public const int BTN_NovoAluno = 2131165222;
+			
 			// aapt resource value: 0x7f07001c
 			public const int BTN_NovoExercicio = 2131165212;
 			
-			// aapt resource value: 0x7f07002c
-			public const int BTN_NovoTreino = 2131165228;
+			// aapt resource value: 0x7f07002d
+			public const int BTN_NovoTreino = 2131165229;
 			
 			// aapt resource value: 0x7f070011
 			public const int BTN_SalvarExecucaoExercicio = 2131165201;
@@ -175,8 +178,8 @@ namespace TCCBruno
 			// aapt resource value: 0x7f070024
 			public const int LV_Text2 = 2131165220;
 			
-			// aapt resource value: 0x7f07002b
-			public const int LV_Treinos = 2131165227;
+			// aapt resource value: 0x7f07002c
+			public const int LV_Treinos = 2131165228;
 			
 			// aapt resource value: 0x7f070006
 			public const int SPN_CategoriaExercicio = 2131165190;
@@ -193,20 +196,20 @@ namespace TCCBruno
 			// aapt resource value: 0x7f07001f
 			public const int editText_Email = 2131165215;
 			
-			// aapt resource value: 0x7f07002a
-			public const int editText_Excesso = 2131165226;
-			
-			// aapt resource value: 0x7f070027
-			public const int editText_PesoGordo = 2131165223;
-			
-			// aapt resource value: 0x7f070029
-			public const int editText_PesoIdeal = 2131165225;
+			// aapt resource value: 0x7f07002b
+			public const int editText_Excesso = 2131165227;
 			
 			// aapt resource value: 0x7f070028
-			public const int editText_PesoMagro = 2131165224;
+			public const int editText_PesoGordo = 2131165224;
 			
-			// aapt resource value: 0x7f070026
-			public const int editText_PesoMuscular = 2131165222;
+			// aapt resource value: 0x7f07002a
+			public const int editText_PesoIdeal = 2131165226;
+			
+			// aapt resource value: 0x7f070029
+			public const int editText_PesoMagro = 2131165225;
+			
+			// aapt resource value: 0x7f070027
+			public const int editText_PesoMuscular = 2131165223;
 			
 			// aapt resource value: 0x7f070005
 			public const int linearLayout1 = 2131165189;

@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using GalaSoft.MvvmLight.Ioc;
+using System.Collections.Generic;
 
 namespace TCCBruno
 {
@@ -78,7 +79,8 @@ namespace TCCBruno
             ValidateFields();
             var usuario = FindViewById<EditText>(Resource.Id.editText_Email).Text;
             var senha = FindViewById<EditText>(Resource.Id.ediText_Senha).Text;
-            int resultLogin = LoginExecute(usuario, senha);
+            bool tipoPessoa = false;
+            int resultLogin = LoginExecuteNew(usuario, senha, ref tipoPessoa);
             switch (resultLogin)
             {
                 case 0:
@@ -96,9 +98,18 @@ namespace TCCBruno
                     var nav = ServiceLocator.Current.GetInstance<INavigationService>();
                     //TODO: Fazer verificação se usuário logado é Aluno ou Instrutor: 
                     //direcioná -lo para sua tela correspondente.
-                    //...
+                    if (!tipoPessoa) //Usuário é um ALUNO
+                    {
+                        Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
+                        _instrutorAlunoDict.Add("aluno_id", _usuarioId);
+                        nav.NavigateTo(_treinosPageKey, _usuarioId);
+                    }
+                    else //Usuário é um INSTRUTOR
+                    {
+                        nav.NavigateTo(_meusAlunosPageKey, _usuarioId);
+                    }
                     //nav.NavigateTo(_cadastroAlunoPageKey, _usuarioId); //Instrutor
-                    nav.NavigateTo(_meusAlunosPageKey, _usuarioId); //Instrutor
+                    //nav.NavigateTo(_meusAlunosPageKey, _usuarioId); //Instrutor
                     break;
             }
 
@@ -151,6 +162,42 @@ namespace TCCBruno
                 }
             }
             return result;
+        }
+
+        private int LoginExecuteNew(string usuario, string senha, ref bool tipoPessoa)
+        {
+            int resultId;
+
+            using (_connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    _connection.Open();
+                    SqlCommand command = new SqlCommand("LoginAutenticacaoNew", _connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@usuario", usuario);
+                    command.Parameters.AddWithValue("@senha", senha);
+                    //Configuração do parâmetro de retorno da StoredProcedure
+                    //SqlParameter retParameter = new SqlParameter("ret", SqlDbType.Int);
+                    //retParameter.Direction = ParameterDirection.ReturnValue;
+                    command.Parameters.Add("@id", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    command.Parameters.Add("@tipoPessoa", SqlDbType.Bit).Direction = ParameterDirection.Output; //tipoPessoa => 0 - Aluno, 1 - Instrutor
+                    command.ExecuteNonQuery();
+
+                    resultId = Convert.ToInt32(command.Parameters["@id"].Value);
+                    tipoPessoa = Convert.ToBoolean(command.Parameters["@tipoPessoa"].Value);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    resultId = 0;
+                }
+                finally
+                {
+                    _connection.Close();
+                }
+            }
+            return resultId;
         }
 
         /// <summary>

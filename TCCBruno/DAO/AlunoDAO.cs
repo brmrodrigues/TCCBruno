@@ -31,7 +31,6 @@ namespace TCCBruno.DAO
                 sqlCommand.Parameters.Add("@psenha", SqlDbType.NVarChar).Value = newPessoa.senha;
                 sqlCommand.Parameters.Add("@pstatus", SqlDbType.Bit).Value = newPessoa.status;
 
-                //sqlCommand.Parameters.AddWithValue("@parameter", paramValue);
                 try
                 {
                     connection.Open();
@@ -60,31 +59,38 @@ namespace TCCBruno.DAO
 
         private bool InserAlunoFromPessoa(Aluno newAluno)
         {
-            SqlConnection connection;
-            using (connection = new SqlConnection(DBConnection.ConnectionString))
+            //SqlConnection connection;
+            //using (connection = new SqlConnection(DBConnection.ConnectionString))
+            //{
+            string queryString = "INSERT INTO [dbo].[Aluno] ([pessoa_id], [instrutor_id])" +
+                                    " VALUES (@ppessoa_id, @pinstrutor_id)";
+
+            List<SqlParameter> parametersList = new List<SqlParameter>()
             {
-                string queryString = "INSERT INTO [dbo].[Aluno] ([pessoa_id], [instrutor_id])" +
-                                        " VALUES (@ppessoa_id, @pinstrutor_id)";
-                SqlCommand sqlCommand = new SqlCommand(queryString, connection);
-                sqlCommand.Parameters.Add("@ppessoa_id", SqlDbType.Int).Value = newAluno.pessoa_id;
-                sqlCommand.Parameters.Add("@pinstrutor_id", SqlDbType.Int).Value = newAluno.instrutor_id;
+                new SqlParameter() {ParameterName="@ppessoa_id", SqlDbType = SqlDbType.Int, Value = newAluno.pessoa_id },
+                new SqlParameter() {ParameterName="@pinstrutor_id", SqlDbType = SqlDbType.Int, Value = newAluno.instrutor_id },
+            };
+
+            return DBConnection.InsertQuery(queryString, parametersList);
+            //    SqlCommand sqlCommand = new SqlCommand(queryString, connection);
+            //    sqlCommand.Parameters.Add("@ppessoa_id", SqlDbType.Int).Value = newAluno.pessoa_id;
+            //    sqlCommand.Parameters.Add("@pinstrutor_id", SqlDbType.Int).Value = newAluno.instrutor_id;
 
 
-                //sqlCommand.Parameters.AddWithValue("@parameter", paramValue);
-                try
-                {
-                    connection.Open();
-                    sqlCommand.CommandType = CommandType.Text;
-                    sqlCommand.ExecuteNonQuery();
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    return false;
-                }
-            }
-            return true;
+            //    try
+            //    {
+            //        connection.Open();
+            //        sqlCommand.CommandType = CommandType.Text;
+            //        sqlCommand.ExecuteNonQuery();
+            //        connection.Close();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine(ex.Message);
+            //        return false;
+            //    }
+            //}
+            //return true;
         }
 
         public List<Aluno> LoadAlunos(int instrutorId)

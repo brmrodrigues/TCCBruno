@@ -68,6 +68,12 @@ namespace TCCBruno
                 return;
             }
 
+            ExercicioDAO exercicioDAO = new ExercicioDAO();
+            foreach (var execucaoExercicio in execucaoExerciciosList)
+            {
+                execucaoExercicio.Exercicio = exercicioDAO.GetExercicio(execucaoExercicio.exercicio_id); ;
+            }
+
             //Preenche ListView
             var listAdapter = new Execucao_ExerciciosListAdapter(this, execucaoExerciciosList);
             _execucaoExerciciosListView.Adapter = listAdapter;

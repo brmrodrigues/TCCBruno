@@ -84,7 +84,7 @@ namespace TCCBruno
             };
 
             Execucao_ExercicioDAO execucaoDAO = new Execucao_ExercicioDAO();
-            if (execucaoDAO.InsertTreino(newExecucaoExercicio))
+            if (execucaoDAO.InsertExecucaoExercicio(newExecucaoExercicio))
             {
                 //Validation.DisplayAlertMessage("Aluno cadastrado com sucesso!", this);
                 GoBack();

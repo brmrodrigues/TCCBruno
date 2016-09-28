@@ -102,8 +102,8 @@ namespace TCCBruno
             TreinoDAO treinoDAO = new TreinoDAO();
             Treino newTreino = new Treino
             {
-                data_inicio = DateTime.Parse(_dataInicio),
-                data_fim = DateTime.Parse(_dataFim),
+                data_inicio = _dataInicio,
+                data_fim = _dataFim,
                 aluno_id = _instrutorAlunoDict["aluno_id"]
             };
             if (!treinoDAO.InsertTreino(newTreino))

@@ -20,46 +20,28 @@ namespace TCCBruno.DAO
 
         public List<Exercicio> LoadExerciciosByCategoria(int categoriaId)
         {
-            SqlConnection connection;
-            using (connection = new SqlConnection(DBConnection.ConnectionString))
+            string queryString = "SELECT [exercicio_id], [nome_exercicio], [descricao]" +
+                                  " FROM Exercicio" +
+                                  " WHERE [categoria_exercicio_id] = @pcategoria_exercicio_id";
+            List<SqlParameter> parametersList = new List<SqlParameter>()
             {
-                string queryString = "SELECT [exercicio_id], [nome_exercicio], [descricao]" +
-                                      " FROM Exercicio" +
-                                      " WHERE [categoria_exercicio_id] = @pcategoria_exercicio_id";
-                SqlCommand sqlCommand = new SqlCommand(queryString, connection);
-                sqlCommand.Parameters.Add("@pcategoria_exercicio_id", SqlDbType.Int).Value = categoriaId;
-                try
-                {
-                    connection.Open();
-                    sqlCommand.CommandType = CommandType.Text;
-                    SqlDataReader reader = sqlCommand.ExecuteReader();
-                    List<Exercicio> exerciciosList = new List<Exercicio>();
-                    while (reader.Read())
-                    {
+                new SqlParameter() {ParameterName="@pcategoria_exercicio_id", SqlDbType = SqlDbType.Int, Value = categoriaId }
+            };
 
-                        Exercicio exercicio = new Exercicio
-                        {
-                            exercicio_id = Convert.ToInt32(reader["exercicio_id"]),
-                            nome_exercicio = reader["nome_exercicio"].ToString(),
-                            descricao = reader["descricao"].ToString()
-                        };
-                        exerciciosList.Add(exercicio);
+            return DBConnection.SelectQuery<Exercicio>(queryString, parametersList);
+        }
 
-                    }
-                    reader.Close();
-                    connection.Close();
-                    //ListView aceita apenas Arrays
-                    //Pessoa[] pessoasArray = new Pessoa[pessoasList.Count];
+        public Exercicio GetExercicio(int exercicioId)
+        {
+            string queryString = "SELECT [exercicio_id], [nome_exercicio], [descricao]" +
+                                  " FROM Exercicio" +
+                                  " WHERE [exercicio_id] = @pexercicio_id";
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName="@pexercicio_id", SqlDbType = SqlDbType.Int, Value = exercicioId }
+            };
 
-                    return exerciciosList;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    return null;
-                }
-            }
-
+            return DBConnection.SelectQuery<Exercicio>(queryString, parametersList).FirstOrDefault(x => x.exercicio_id == exercicioId);
         }
 
     }
