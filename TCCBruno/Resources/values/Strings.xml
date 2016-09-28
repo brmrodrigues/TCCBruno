@@ -13,7 +13,7 @@
   <!--Lista de escolhas para Long Click de SubTreino-->
   <string-array name="subTreinoItemLongClickList">
     <item>Exibir Exercícios</item>
-    <item>Alterar a duração do SubTreino</item>
+    <item>Alterar o SubTreino</item>
     <item>Remover SubTreino</item>
   </string-array>
 

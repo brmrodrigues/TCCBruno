@@ -22,9 +22,10 @@ namespace TCCBruno
         //private GridLayout _gridLayout;
         //private int _instrutorId;
         private ListView _execucaoExerciciosListView;
+        private Button _novoExercicioButton;
         //private ListView _treinosListView;
-        Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
-        private int _treinoTipoId;
+        Dictionary<string, int> _alunoTreinoTipoDict = new Dictionary<string, int>();
+        //private int _treinoTipoId;
 
         public NavigationService Nav
         {
@@ -40,28 +41,31 @@ namespace TCCBruno
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Execucao_ExerciciosPage);
 
+            //Get View Controls
             _execucaoExerciciosListView = FindViewById<ListView>(Resource.Id.LV_ExerciciosExecucao);
-            FindViewById<Button>(Resource.Id.BTN_NovoExercicio).Click += BTN_NovoExercicio_Click;
-            //_treinosListView = FindViewById<ListView>(Resource.Id.LV_Treinos);
+            _novoExercicioButton = FindViewById<Button>(Resource.Id.BTN_NovoExercicio);
 
-            //_exerciciosList.ItemClick += LV_Treinos_ItemClick;
-            //FindViewById<Button>(Resource.Id.BTN_NovoTreino).Click += BTN_NovoTreino_Click; ;
+            //Declare View Event Handlers
+            _novoExercicioButton.Click += BTN_NovoExercicio_Click;
 
-            //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
-            //_instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
-            _treinoTipoId = Nav.GetAndRemoveParameter<int>(Intent);
+            //Get parameter from MVVMLight Navigator
+            _alunoTreinoTipoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
+            if (_alunoTreinoTipoDict.ContainsKey("aluno_id")) // Aluno logado, ajustar a GUI da Page para o mesmo
+            {
+                _novoExercicioButton.Visibility = ViewStates.Invisible;
+            }
             LoadExecucaoExercicios();
         }
 
         private void BTN_NovoExercicio_Click(object sender, EventArgs e)
         {
-            Nav.NavigateTo(MainActivity._cadastroExecucao_ExercicioPageKey, _treinoTipoId);
+            Nav.NavigateTo(MainActivity._cadastroExecucao_ExercicioPageKey, _alunoTreinoTipoDict["treinoTipo_id"]);
         }
 
         private void LoadExecucaoExercicios()
         {
             Execucao_ExercicioDAO execucaoExercicioDAO = new Execucao_ExercicioDAO();
-            var execucaoExerciciosList = execucaoExercicioDAO.LoadExecucaoExercicios(_treinoTipoId);
+            var execucaoExerciciosList = execucaoExercicioDAO.LoadExecucaoExercicios(_alunoTreinoTipoDict["treinoTipo_id"]);
             if (execucaoExerciciosList == null)
             {
                 Validation.DisplayAlertMessage("Falha ao carregar Exercícios de Execução", this);

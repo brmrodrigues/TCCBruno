@@ -20,10 +20,8 @@ namespace TCCBruno
     [Activity(Label = "Treinos")]
     public class TreinosActivity : ActivityBase
     {
-        //private GridLayout _gridLayout;
-        //private int _instrutorId;
         private ExpandableListView _treinosListView;
-        //private ListView _treinosListView;
+        private Button _novoTreinoButton;
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
         private int _alunoId = -1;
         private const int DIALOG_TREINO = 0;
@@ -50,18 +48,21 @@ namespace TCCBruno
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.TreinosPage);
 
+            //Get View Controls
             _treinosListView = FindViewById<ExpandableListView>(Resource.Id.LV_Treinos);
-            //_treinosListView = FindViewById<ListView>(Resource.Id.LV_Treinos);
+            _novoTreinoButton = FindViewById<Button>(Resource.Id.BTN_NovoTreino);
 
+            //Declare View Event Handlers
             _treinosListView.ItemLongClick += LV_Treinos_ItemLongClick;
             _treinosListView.ChildClick += LV_Treinos_ChildClick;
+            _novoTreinoButton.Click += BTN_NovoTreino_Click;
 
-            FindViewById<Button>(Resource.Id.BTN_NovoTreino).Click += BTN_NovoTreino_Click;
-
-            //Por passagem de parâmetro, reconhecer quando um ALUNO ou INSTRUTOR acessa esta Page:
+            //Por passagem de parâmetro, recebe um Dict com chaves: "instrutorId" e "alunoId" OU apenas "alunoId"
             _instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
-            //TODO: NÃO PRECISAMOS DE UM DICT QUE ARMAZENA O ID DE INSTRUTOR_ALUNO, APENAS O ID DO ALUNO É SUFICIENTE!
-            //if (!_instrutorAlunoDict.ContainsKey("instrutor_id"))
+            if (!_instrutorAlunoDict.ContainsKey("instrutor_id")) // Aluno logado, ajustar a GUI da Page para o mesmo
+            {
+                _novoTreinoButton.Visibility = ViewStates.Invisible;
+            }
         }
 
         private void LV_Treinos_ChildClick(object sender, ExpandableListView.ChildClickEventArgs e)
@@ -78,40 +79,38 @@ namespace TCCBruno
             var treinoTipoPos = ExpandableListView.GetPackedPositionChild(pos);
 
             Dialog dialog = null;
-            if (itemType == PackedPositionType.Child)
+            if (itemType == PackedPositionType.Child) //Long Click em SubTreino
             {
-                //TODO: Se for Child (TreinoTIpo), exibir Fragment que perguntará se o Instrutor deseja:
-                //1 - Exibir Exercícios do Subtreino
-                //2 - Alterar o Subtreino (por enquanto apenas a duração)
-                //3 - Remover o Subtreino
-
-                //var treinoTipoId = (int)_treinosListView.Adapter.GetItemId(e.Position);
-                //int treinoPosition = e.Parent.SelectedItemPosition;
-                //Treino_Tipo treinoTipoSelected = _treinosAdapter.GetChild(treinoPos, treinoTipoPos).Cast<Treino_Tipo>();
-                var treinoTipoNome = _treinosAdapter.GetNomeTreinoTipo(treinoPos, treinoTipoPos);
+                //Retirar o Id do SubTreino selecionado
                 _treinoTipoSelectedId = (int)_treinosAdapter.GetChildId(treinoPos, treinoTipoPos);
-                //_treinosListView.Adapter.
-                //Treino_Tipo treinoTipoSelected = itemSelected.Cast<Treino_Tipo>();
-                var args = new Bundle();
-                //args.PutString("0", treinoTipoSelected.treino_tipo_nome);
-                args.PutString("0", treinoTipoNome);
-                dialog = OnCreateDialog(DIALOG_TREINO_TIPO, args);
-                //var treinoTipoId = (int)(_treinosListView.Adapter.GetItemId(e.Position));
-                //Nav.NavigateTo(MainActivity._cadastroExerciciosPageKey, treinoTipoId);
+                //Fragment: Exibir Exercicios, Alterar Subtreino, Remover Subtreino
+                if (_instrutorAlunoDict.ContainsKey("instrutor_id")) //Acesso para Instrutor
+                {
+                    //Acesso restrito para Instrutor
+                    var treinoTipoNome = _treinosAdapter.GetNomeTreinoTipo(treinoPos, treinoTipoPos);
+                    var args = new Bundle();
+                    args.PutString("0", treinoTipoNome);
+                    dialog = OnCreateDialog(DIALOG_TREINO_TIPO, args);
+                    dialog.Show();
+                }
+                else //Aluno logado, redirecioná-lo para os Exercícios do Subtreino escolhido
+                {
+                    Dictionary<string, int> alunoTreinoTipoDict = new Dictionary<string, int>();
+                    alunoTreinoTipoDict.Add("aluno_id", _instrutorAlunoDict["aluno_id"]);
+                    alunoTreinoTipoDict.Add("treinoTipo_id", _treinoTipoSelectedId);
+                    Nav.NavigateTo(MainActivity._execucaoExerciciosPageKey, alunoTreinoTipoDict); //Aluno logado, logo Execucao_ExercicioActivity receberá treinoTipoId inválido
+                }
             }
-            else if (itemType == PackedPositionType.Group)
+            else if (itemType == PackedPositionType.Group && _instrutorAlunoDict.ContainsKey("instrutor_id")) //Long Click em Treino. Acesso para Instrutor
             {
-                //TODO: Se for do Group (Treino), exibir Fragment que perguntará se o Instrutor deseja:
-                //1 - Cadastrar Subtreino
-                //2 - Alterar Treino
-                //3 - Excluir Treino 
+                //Fragment: Add Subtreino, Alterar Treino, Remover Treino
                 _treinoSelectedId = (int)_treinosAdapter.GetGroupId(treinoPos); //armazena o id do treino selecionado
                 _subTreinosCount = (int)_treinosAdapter.GetChildrenCount(treinoPos);
                 var args = new Bundle();
                 args.PutString("0", (treinoPos + 1).ToString());
                 dialog = OnCreateDialog(DIALOG_TREINO, args);
+                dialog.Show();
             }
-            dialog.Show();
         }
 
         private void LoadTreinos()
@@ -174,31 +173,9 @@ namespace TCCBruno
                     builder.SetPositiveButton("OK", TreinoTipo_SingleChoiceOKClick);
                     builder.SetNegativeButton("Cancelar", (s, e) => { });
                     break;
-                    //case DIALOG_CADASTRO_TREINO_TIPO:
-                    //    builder.SetTitle("Novo SubTreino");
-                    //    //builder.SetSingleChoiceItems(Resource.Array.subTreinoItemLongClickList, 0, (s, e) => { _treinoTipoSelectedId = e.Which; });
-                    //    var adapter = new DuracaoTreinosTipoListAdapter(this);
-                    //    builder.SetAdapter(adapter, LV_DuracaoSubTreino_ItemClick);
-                    //    builder.SetPositiveButton("OK", TreinoTipo_SingleChoiceOKClick);
-                    //    builder.SetNegativeButton("Cancelar", (s, e) => { });
-                    //    break;
             }
 
-
-
             return builder.Create();
-        }
-
-        private void LV_DuracaoSubTreino_ItemClick(object sender, DialogClickEventArgs e)
-        {
-            //Treino_Tipo newTreino_Tipo = new Treino_Tipo
-            //{
-            //    treino_id = _treinoSelectedId,
-            //    treino_tipo_nome
-            //};
-
-            //Treino_TipoDAO treinoTipoDAO = new Treino_TipoDAO();
-            //if (treinoTipoDAO.InsertTreino_Tipo())
         }
 
         private void Treino_SingleChoiceOKClick(object sender, DialogClickEventArgs e)
@@ -234,9 +211,11 @@ namespace TCCBruno
                 default:
                     break;
                 case 0: //Exibir Exercícios
-                    Nav.NavigateTo(MainActivity._execucaoExerciciosPageKey, _treinoTipoSelectedId);
+                    Dictionary<string, int> alunoTreinoTipoDict = new Dictionary<string, int>();
+                    alunoTreinoTipoDict.Add("treinoTipo_id", _treinoTipoSelectedId);
+                    Nav.NavigateTo(MainActivity._execucaoExerciciosPageKey, alunoTreinoTipoDict);
                     break;
-                case 1: //Alterar a duração do SubTreino
+                case 1: //Alterar o SubTreino
 
                     break; //Remover SubTreino
                 case 2:

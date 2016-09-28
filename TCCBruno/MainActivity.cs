@@ -102,7 +102,7 @@ namespace TCCBruno
                     {
                         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
                         _instrutorAlunoDict.Add("aluno_id", _usuarioId);
-                        nav.NavigateTo(_treinosPageKey, _usuarioId);
+                        nav.NavigateTo(_treinosPageKey, _instrutorAlunoDict);
                     }
                     else //Usuário é um INSTRUTOR
                     {
