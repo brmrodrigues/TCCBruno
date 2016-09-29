@@ -28,6 +28,8 @@ namespace TCCBruno
         public const string _execucaoExerciciosPageKey = "ExerciciosExecucaoPage";
         public const string _cadastroExecucao_ExercicioPageKey = "CadastroExecucao_ExercicioPage";
         public const string _cadastroTreinoTipoPageKey = "CadastroTreinoTipoPage";
+        public const string _checkInPageKey = "CheckInPage";
+
         private static bool _initialized; //flag utilizada na inicialização do ServiceLocator
 
         private LinearLayout _linearLayoutLoginPage;
@@ -62,6 +64,7 @@ namespace TCCBruno
                 nav.Configure(_cadastroExecucao_ExercicioPageKey, typeof(CadastroExecucao_ExercicioActivity));
                 nav.Configure(_execucaoExerciciosPageKey, typeof(Execucao_ExerciciosActivity));
                 nav.Configure(_cadastroTreinoTipoPageKey, typeof(CadastroTreinoTipoActivity));
+                nav.Configure(_checkInPageKey, typeof(CheckInActivity));
 
                 SimpleIoc.Default.Register<INavigationService>(() => nav);
             }
@@ -102,7 +105,10 @@ namespace TCCBruno
                     {
                         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
                         _instrutorAlunoDict.Add("aluno_id", _usuarioId);
-                        nav.NavigateTo(_treinosPageKey, _instrutorAlunoDict);
+                        //nav.NavigateTo(_treinosPageKey, _instrutorAlunoDict);
+
+                        //Apenas para testar GPS:
+                        nav.NavigateTo(_checkInPageKey, _usuarioId);
                     }
                     else //Usuário é um INSTRUTOR
                     {

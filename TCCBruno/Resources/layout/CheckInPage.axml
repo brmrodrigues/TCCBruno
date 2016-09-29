@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+<!-- Exercícios da Categoria selecionada-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70.0dp"
+        android:layout_marginBottom="52.0dp">
+        <TextView
+            android:text="Treino do dia:"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginLeft="30.0dp" />
+        <Spinner
+            android:layout_width="190.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/SPN_TreinoTipo"
+            android:layout_marginLeft="50.0dp" />
+    </LinearLayout>
+    <Button
+        android:text="Check-in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/BTN_CheckIn"
+        android:layout_marginTop="30.0dp" />
+</LinearLayout>

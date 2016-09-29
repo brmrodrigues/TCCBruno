@@ -102,6 +102,7 @@
     <Compile Include="CadastroExecucao_ExercicioActivity.cs" />
     <Compile Include="CadastroTreinoActivity.cs" />
     <Compile Include="CadastroTreinoTipoActivity.cs" />
+    <Compile Include="CheckInActivity.cs" />
     <Compile Include="DAO\CategoriaExercicioDAO.cs" />
     <Compile Include="DAO\Execucao_ExercicioDAO.cs" />
     <Compile Include="DAO\ExercicioDAO.cs" />
@@ -152,13 +153,16 @@
     <AndroidResource Include="Resources\layout\Execucao_ExerciciosPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\CadastroExecucao_ExercicioPage.axml">
+    <AndroidResource Include="Resources\layout\CheckInPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\TreinoTipoDialog.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\CadastroTreinoTipoPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CadastroExecucao_ExercicioPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
