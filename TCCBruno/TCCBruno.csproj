@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -110,6 +111,7 @@
     <Compile Include="DAO\Treino_TipoDAO.cs" />
     <Compile Include="DatePickerFragment.cs" />
     <Compile Include="Execucao_ExerciciosActivity.cs" />
+    <Compile Include="Extension\NumericExtensions.cs" />
     <Compile Include="JavaObjectConverter.cs" />
     <Compile Include="Model\Execucao_Exercicio.cs" />
     <Compile Include="Model\Treino.cs" />
