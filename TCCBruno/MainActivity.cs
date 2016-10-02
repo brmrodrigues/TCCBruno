@@ -20,7 +20,7 @@ namespace TCCBruno
     {
         private int _usuarioId; //Id do usuário logado no sistema
         //Navegação de Pages:
-        public const string Page2Key = "Page2";
+        public const string _cadastroAvFisicaPageKey = "CadastroAvFisicaPage";
         public const string _cadastroAlunoPageKey = "CadastroAlunoPage";
         public const string _meusAlunosPageKey = "MeusAlunosPage";
         public const string _treinosPageKey = "TreinosPage";
@@ -37,8 +37,8 @@ namespace TCCBruno
         public static string connectionString =
             "Data Source=tcp:tccbruno.database.windows.net,1433;" +
             "Initial Catalog=Tcc;User ID=tccbruno@tccbruno;Password=dmXrsYc2";
-        public static MobileServiceClient mobileService =
-                   new MobileServiceClient("https://appquickstart.azurewebsites.net");
+        //public static MobileServiceClient mobileService =
+        //           new MobileServiceClient("https://appquickstart.azurewebsites.net");
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -56,7 +56,7 @@ namespace TCCBruno
 
                 var nav = new NavigationService();
                 //Registro das Views com suas respectivas ViewModels
-                nav.Configure(Page2Key, typeof(CadastrarAvFisicaActivity));
+                nav.Configure(_cadastroAvFisicaPageKey, typeof(CadastroAvFisicaActivity));
                 nav.Configure(_cadastroAlunoPageKey, typeof(CadastroAlunoActivity));
                 nav.Configure(_meusAlunosPageKey, typeof(MeusAlunosActivity));
                 nav.Configure(_treinosPageKey, typeof(TreinosActivity));
@@ -119,10 +119,10 @@ namespace TCCBruno
                     break;
             }
 
-            if (usuario.Equals("page2"))
+            if (usuario.Equals("av"))
             {
                 var nav = ServiceLocator.Current.GetInstance<INavigationService>();
-                nav.NavigateTo(Page2Key);
+                nav.NavigateTo(_cadastroAvFisicaPageKey, 2); //Para testes
             }
             else if (usuario.Equals("aluno"))
             {

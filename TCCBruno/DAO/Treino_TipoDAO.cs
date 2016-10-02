@@ -58,5 +58,23 @@ namespace TCCBruno.DAO
             //}
 
         }
+
+        public List<Treino_Tipo> LoadTreino_TiposAtual(int alunoId)
+        {
+            string queryString = "SELECT DISTINCT [treino_tipo_id], [treino_tipo_nome]" +
+                                    " FROM Treino_Tipo AS tipo" +
+                                    " INNER JOIN Treino AS treino on (tipo.treino_id = treino.treino_id)" +
+                                    " INNER JOIN Aluno AS aluno on (treino.aluno_id = aluno.aluno_id)" +
+                                    " WHERE aluno.aluno_id = @alunoId AND @pdataAtual BETWEEN treino.data_inicio AND treino.data_fim";
+
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+                {
+                    new SqlParameter() {ParameterName="@alunoId", SqlDbType = SqlDbType.Int, Value = alunoId },
+                    new SqlParameter() {ParameterName="@pdataAtual", SqlDbType = SqlDbType.SmallDateTime, Value = DateTime.Now }
+                };
+
+            return DBConnection.SelectQuery<Treino_Tipo>(queryString, parametersList);
+        }
+
     }
 }

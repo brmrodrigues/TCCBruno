@@ -15,6 +15,9 @@ using Android.Locations;
 using Android.Util;
 using System.Threading.Tasks;
 using TCCBruno.Extension;
+using TCCBruno.Adapters;
+using TCCBruno.DAO;
+using TCCBruno.Model;
 
 namespace TCCBruno
 {
@@ -26,6 +29,7 @@ namespace TCCBruno
         private LocationManager _locationManager;
         private string _locationProvider;
         private Button _checkInButton;
+        private Spinner _treinoTipoSpinner;
         private const double ACADEMIA_LATITUDE = -21.99476054;
         private const double ACADEMIA_LONGITUDE = -47.91893633;
         private const double ACADEMIA_RAIO_MAX = 0.3; //Kilometros
@@ -44,6 +48,10 @@ namespace TCCBruno
         public void OnLocationChanged(Location location)
         {
             _currentLocation = location;
+            var distance = HaversineDistance();
+
+            //Permitir realizar o CheckIn se a localização do aluno estiver no raio de cobertura definido da Academia
+            _checkInButton.Visibility = distance < ACADEMIA_RAIO_MAX ? ViewStates.Visible : ViewStates.Invisible;
         }
 
         public void OnProviderDisabled(string provider)
@@ -66,11 +74,25 @@ namespace TCCBruno
 
             //Get View Controls
             _checkInButton = FindViewById<Button>(Resource.Id.BTN_CheckIn);
+            _treinoTipoSpinner = FindViewById<Spinner>(Resource.Id.SPN_TreinoTipo);
+
+            //Controls Event Handlers
             _checkInButton.Click += BTN_CheckIn_Click;
 
             _alunoId = Nav.GetAndRemoveParameter<int>(Intent);
 
+            LoadTreinoTiposAtual();
+
             InitializeLocationManager();
+        }
+
+        private void LoadTreinoTiposAtual()
+        {
+            Treino_TipoDAO treinoTipoDAO = new Treino_TipoDAO();
+
+            var treinosTipoList = treinoTipoDAO.LoadTreino_TiposAtual(_alunoId);
+            _treinoTipoSpinner.Adapter = new TreinoTipoListAdapter(this, treinosTipoList);
+
         }
 
         /// <summary>
@@ -99,14 +121,30 @@ namespace TCCBruno
             }
             else //Verificar se o Aluno está em uma região próxima das coordenadas da academia
             {
-                var distance = HaversineDistance();
-                if (distance < ACADEMIA_RAIO_MAX)
-                    Validation.DisplayAlertMessage("CheckIn Disponível!", this);
+                if (DoCheckIn())
+                    Validation.DisplayAlertMessage("Check-in realizado com sucesso!", this);
+                else
+                    Validation.DisplayAlertMessage("Falha ao realizar o checkin", this);
             }
 
             //Address address = await ReverseGeocodeCurrentLocation();
             //DisplayAddress(address);
         }
+
+        private bool DoCheckIn()
+        {
+            CheckInDAO checkinDAO = new CheckInDAO();
+
+            CheckIn newcheckin = new CheckIn
+            {
+                aluno_id = _alunoId,
+                treino_tipo_id = Convert.ToInt32(_treinoTipoSpinner.Adapter.GetItemId(_treinoTipoSpinner.SelectedItemPosition)),
+                data_checkin = DateTime.Now
+
+            };
+            return checkinDAO.InsertCheckIn(newcheckin);
+        }
+
 
         //private void DisplayAddress(Address address)
         //{

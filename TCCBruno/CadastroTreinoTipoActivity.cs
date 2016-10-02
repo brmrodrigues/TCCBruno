@@ -22,7 +22,7 @@ namespace TCCBruno
     {
         private Spinner _spnDuracaoTreinoTipo;
         private EditText _edtDescricaoTreinoTipo;
-        DuracaoTreinosTipoListAdapter _duraoListAdapter;
+        DuracaoTreinosTipoListAdapter _duracaoListAdapter;
         private readonly double[] _duracoesTreinoTipo = { 0.5, 1.0, 1.5, 2.0, 2.5, 3.0 };
         private readonly string[] _nomesTreinoTipo = { "A", "B", "C", "D", "E" };
         //private int _treinoId;
@@ -48,8 +48,8 @@ namespace TCCBruno
             FindViewById<Button>(Resource.Id.BTN_SalvarTreinoTipo).Click += BTN_SalvarTreinoTipo_Click;
             _edtDescricaoTreinoTipo = FindViewById<EditText>(Resource.Id.EDT_DescricaoTreinoTipo);
 
-            _duraoListAdapter = new DuracaoTreinosTipoListAdapter(this);
-            _spnDuracaoTreinoTipo.Adapter = _duraoListAdapter;
+            _duracaoListAdapter = new DuracaoTreinosTipoListAdapter(this);
+            _spnDuracaoTreinoTipo.Adapter = _duracaoListAdapter;
 
             _treinoId_subTreinosCount = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
 

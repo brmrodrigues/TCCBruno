@@ -91,6 +91,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\TreinoTipoListAdapter.cs" />
+    <Compile Include="Adapters\ProtocoloAvFisicaListAdapter.cs" />
     <Compile Include="Adapters\Execucao_ExerciciosListAdapter.cs" />
     <Compile Include="Adapters\DuracaoTreinosTipoListAdapter.cs" />
     <Compile Include="Adapters\ExerciciosListAdapter.cs" />
@@ -99,7 +101,7 @@
     <Compile Include="Adapters\TreinosAdapter.cs" />
     <Compile Include="Adapters\MeusAlunosPageAdapter.cs" />
     <Compile Include="Adapters\TreinosExpandableListAdapter.cs" />
-    <Compile Include="CadastrarAvFisicaActivity.cs" />
+    <Compile Include="CadastroAvFisicaActivity.cs" />
     <Compile Include="CadastroExecucao_ExercicioActivity.cs" />
     <Compile Include="CadastroTreinoActivity.cs" />
     <Compile Include="CadastroTreinoTipoActivity.cs" />
@@ -107,12 +109,15 @@
     <Compile Include="DAO\CategoriaExercicioDAO.cs" />
     <Compile Include="DAO\Execucao_ExercicioDAO.cs" />
     <Compile Include="DAO\ExercicioDAO.cs" />
+    <Compile Include="DAO\CheckInDAO.cs" />
     <Compile Include="DAO\TreinoDAO.cs" />
     <Compile Include="DAO\Treino_TipoDAO.cs" />
     <Compile Include="DatePickerFragment.cs" />
     <Compile Include="Execucao_ExerciciosActivity.cs" />
+    <Compile Include="Extension\Enumeration.cs" />
     <Compile Include="Extension\NumericExtensions.cs" />
     <Compile Include="JavaObjectConverter.cs" />
+    <Compile Include="Model\CheckIn.cs" />
     <Compile Include="Model\Execucao_Exercicio.cs" />
     <Compile Include="Model\Treino.cs" />
     <Compile Include="Model\Treino_Tipo.cs" />
@@ -137,7 +142,7 @@
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\Page2.axml">
+    <AndroidResource Include="Resources\layout\CadastroAvFIsicaPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\CadastroAlunoPage.axml">
