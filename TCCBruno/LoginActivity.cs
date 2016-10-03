@@ -16,7 +16,7 @@ using System.Collections.Generic;
 namespace TCCBruno
 {
     [Activity(Label = "Personal Academia", MainLauncher = true, Icon = "@drawable/logoAcademia")]
-    public class MainActivity : ActivityBase
+    public class LoginActivity : ActivityBase
     {
         private int _usuarioId; //Id do usuário logado no sistema
         //Navegação de Pages:
@@ -45,7 +45,7 @@ namespace TCCBruno
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
+            SetContentView(Resource.Layout.LoginPage);
             FindViewById<Button>(Resource.Id.BTN_Entrar).Click += ButtonClick_Entrar;
 
             //Inicialização do ServiceLocator para registrar as Views que serão utilizadas neste Projeto
@@ -83,7 +83,7 @@ namespace TCCBruno
             var usuario = FindViewById<EditText>(Resource.Id.editText_Email).Text;
             var senha = FindViewById<EditText>(Resource.Id.ediText_Senha).Text;
             bool tipoPessoa = false;
-            int resultLogin = LoginExecuteNew(usuario, senha, ref tipoPessoa);
+            int resultLogin = LoginExecute(usuario, senha, ref tipoPessoa);
             switch (resultLogin)
             {
                 case 0:
@@ -129,48 +129,9 @@ namespace TCCBruno
                 var nav = ServiceLocator.Current.GetInstance<INavigationService>();
                 nav.NavigateTo(_cadastroAlunoPageKey);
             }
-
-            //Console.WriteLine("Button Entrar clicado");
         }
 
-        /// <summary>
-        /// Executa o Login, faz consulta no BD para validar o login/senha informados
-        /// </summary>
-        private int LoginExecute(string usuario, string senha)
-        {
-            int result;
-
-            using (_connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    _connection.Open();
-                    SqlCommand command = new SqlCommand("LoginAutenticacao", _connection);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@usuario", usuario);
-                    command.Parameters.AddWithValue("@senha", senha);
-                    //Configuração do parâmetro de retorno da StoredProcedure
-                    SqlParameter retParameter = new SqlParameter("ret", SqlDbType.Int);
-                    retParameter.Direction = ParameterDirection.ReturnValue;
-                    command.Parameters.Add(retParameter);
-                    command.ExecuteNonQuery();
-
-                    result = Convert.ToInt32(command.Parameters["ret"].Value);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    result = 0;
-                }
-                finally
-                {
-                    _connection.Close();
-                }
-            }
-            return result;
-        }
-
-        private int LoginExecuteNew(string usuario, string senha, ref bool tipoPessoa)
+        private int LoginExecute(string usuario, string senha, ref bool tipoPessoa)
         {
             int resultId;
 

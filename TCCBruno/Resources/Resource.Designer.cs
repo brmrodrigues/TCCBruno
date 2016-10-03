@@ -315,7 +315,7 @@ namespace TCCBruno
 			public const int HeaderExpandableLV = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int Main = 2130903049;
+			public const int LoginPage = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
 			public const int MeusAlunosCustomLV = 2130903050;
@@ -343,7 +343,7 @@ namespace TCCBruno
 		{
 			
 			// aapt resource value: 0x7f040000
-			public const int Hello = 2130968576;
+			public const int app_name = 2130968576;
 			
 			static String()
 			{

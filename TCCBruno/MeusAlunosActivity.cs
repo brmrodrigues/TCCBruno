@@ -48,7 +48,7 @@ namespace TCCBruno
 
         private void BTN_NovoAluno_Click(object sender, EventArgs e)
         {
-            Nav.NavigateTo(MainActivity._cadastroAlunoPageKey, _instrutorId);
+            Nav.NavigateTo(LoginActivity._cadastroAlunoPageKey, _instrutorId);
         }
 
         private void LoadAlunos()

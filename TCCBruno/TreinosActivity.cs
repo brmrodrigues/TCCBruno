@@ -98,7 +98,7 @@ namespace TCCBruno
                     Dictionary<string, int> alunoTreinoTipoDict = new Dictionary<string, int>();
                     alunoTreinoTipoDict.Add("aluno_id", _instrutorAlunoDict["aluno_id"]);
                     alunoTreinoTipoDict.Add("treinoTipo_id", _treinoTipoSelectedId);
-                    Nav.NavigateTo(MainActivity._execucaoExerciciosPageKey, alunoTreinoTipoDict); //Aluno logado, logo Execucao_ExercicioActivity receberá treinoTipoId inválido
+                    Nav.NavigateTo(LoginActivity._execucaoExerciciosPageKey, alunoTreinoTipoDict); //Aluno logado, logo Execucao_ExercicioActivity receberá treinoTipoId inválido
                 }
             }
             else if (itemType == PackedPositionType.Group && _instrutorAlunoDict.ContainsKey("instrutor_id")) //Long Click em Treino. Acesso para Instrutor
@@ -140,7 +140,7 @@ namespace TCCBruno
 
         private void BTN_NovoTreino_Click(object sender, EventArgs e)
         {
-            Nav.NavigateTo(MainActivity._cadastroTreinoPageKey, _instrutorAlunoDict);
+            Nav.NavigateTo(LoginActivity._cadastroTreinoPageKey, _instrutorAlunoDict);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace TCCBruno
                     Dictionary<string, int> treinoId_subTreinosCount = new Dictionary<string, int>();
                     treinoId_subTreinosCount.Add("treinoId", _treinoSelectedId);
                     treinoId_subTreinosCount.Add("subTreinosCount", _subTreinosCount);
-                    Nav.NavigateTo(MainActivity._cadastroTreinoTipoPageKey, treinoId_subTreinosCount);
+                    Nav.NavigateTo(LoginActivity._cadastroTreinoTipoPageKey, treinoId_subTreinosCount);
                     break;
 
                 case 1: //Alterar Treino
@@ -213,7 +213,7 @@ namespace TCCBruno
                 case 0: //Exibir Exercícios
                     Dictionary<string, int> alunoTreinoTipoDict = new Dictionary<string, int>();
                     alunoTreinoTipoDict.Add("treinoTipo_id", _treinoTipoSelectedId);
-                    Nav.NavigateTo(MainActivity._execucaoExerciciosPageKey, alunoTreinoTipoDict);
+                    Nav.NavigateTo(LoginActivity._execucaoExerciciosPageKey, alunoTreinoTipoDict);
                     break;
                 case 1: //Alterar o SubTreino
 

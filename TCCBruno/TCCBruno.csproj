@@ -116,7 +116,7 @@
     <Compile Include="Execucao_ExerciciosActivity.cs" />
     <Compile Include="Extension\Enumeration.cs" />
     <Compile Include="Extension\NumericExtensions.cs" />
-    <Compile Include="JavaObjectConverter.cs" />
+    <Compile Include="Extension\JavaObjectConverter.cs" />
     <Compile Include="Model\CheckIn.cs" />
     <Compile Include="Model\Execucao_Exercicio.cs" />
     <Compile Include="Model\Treino.cs" />
@@ -128,7 +128,7 @@
     <Compile Include="Model\Aluno.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="ExibirAvFisicaActivity.cs" />
-    <Compile Include="MainActivity.cs" />
+    <Compile Include="LoginActivity.cs" />
     <Compile Include="Model\Categoria_Exercicio.cs" />
     <Compile Include="Model\Exercicio.cs" />
     <Compile Include="Model\Pessoa.cs" />
@@ -174,7 +174,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml">
+    <AndroidResource Include="Resources\layout\LoginPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

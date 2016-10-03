@@ -14,6 +14,7 @@ using Microsoft.Practices.ServiceLocation;
 using TCCBruno.DAO;
 using TCCBruno.Adapters;
 using TCCBruno.Model;
+using TCCBruno.Extension;
 
 namespace TCCBruno
 {

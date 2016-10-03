@@ -59,7 +59,7 @@ namespace TCCBruno
 
         private void BTN_NovoExercicio_Click(object sender, EventArgs e)
         {
-            Nav.NavigateTo(MainActivity._cadastroExecucao_ExercicioPageKey, _alunoTreinoTipoDict["treinoTipo_id"]);
+            Nav.NavigateTo(LoginActivity._cadastroExecucao_ExercicioPageKey, _alunoTreinoTipoDict["treinoTipo_id"]);
         }
 
         private void LoadExecucaoExercicios()
