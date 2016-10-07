@@ -23,4 +23,9 @@
     <item>Alterar Treino</item>
     <item>Remover Treino</item>
   </string-array>
+
+
+  <string name="app_name">DrawerLayout_V7_Tutorial</string>
+  <string name="openDrawer">Drawer Open</string>
+  <string name="closeDrawer">Drawer Closed</string>
 </resources>

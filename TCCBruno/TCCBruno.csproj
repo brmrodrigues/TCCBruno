@@ -89,6 +89,12 @@
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\..\..\..\..\..\Downloads\xamandroidsupportv7appcompat-21.0.3.0\xamandroidsupportv7appcompat-21.0.3.0\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\..\..\..\..\..\Downloads\xamandroidsupportv7appcompat-21.0.3.0\xamandroidsupportv7appcompat-21.0.3.0\lib\android\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\TreinoTipoListAdapter.cs" />
@@ -117,6 +123,8 @@
     <Compile Include="Extension\Enumeration.cs" />
     <Compile Include="Extension\NumericExtensions.cs" />
     <Compile Include="Extension\JavaObjectConverter.cs" />
+    <Compile Include="HomeActivity.cs" />
+    <Compile Include="MyActionBarDrawerToggle.cs" />
     <Compile Include="Model\CheckIn.cs" />
     <Compile Include="Model\Execucao_Exercicio.cs" />
     <Compile Include="Model\Treino.cs" />
@@ -172,6 +180,9 @@
     <AndroidResource Include="Resources\layout\CadastroExecucao_ExercicioPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\HomePage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\LoginPage.axml">
@@ -214,6 +225,17 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\ContentExpandableLV.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\action_menu.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_action_help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
