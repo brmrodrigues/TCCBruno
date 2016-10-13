@@ -11,7 +11,7 @@
 
 
   <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="colorPrimary">#2196F3</item>
+    <item name="colorPrimary">#5AAC56</item>
     <item name="drawerArrowStyle">@style/MyDrawerArrowStyle</item>
   </style>
 

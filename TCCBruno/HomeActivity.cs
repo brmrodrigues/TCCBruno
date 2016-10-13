@@ -10,6 +10,9 @@ using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using Android.Support.V4.Widget;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight.Views;
+using TCCBruno.Adapters;
+using Microsoft.Practices.ServiceLocation;
 
 namespace TCCBruno
 {
@@ -20,11 +23,28 @@ namespace TCCBruno
         private MyActionBarDrawerToggle mDrawerToggle;
         private DrawerLayout mDrawerLayout;
         private ListView mLeftDrawer;
-        private ListView mRightDrawer;
-        private ArrayAdapter mLeftAdapter;
-        private ArrayAdapter mRightAdapter;
-        private List<string> mLeftDataSet;
-        private List<string> mRightDataSet;
+        //private ListView mRightDrawer;
+        private LeftMenuListAdapter mLeftAdapter;
+        //private ArrayAdapter mRightAdapter;
+        //private List<string> mLeftDataSet;
+        //private List<string> mRightDataSet;
+        Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
+
+        private string[] _instrutorMenuItems =
+        {
+            "Meus Alunos",
+            "Treinos"
+        };
+
+
+        public NavigationService Nav
+        {
+            get
+            {
+                return (NavigationService)ServiceLocator.Current
+                    .GetInstance<INavigationService>();
+            }
+        }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -36,24 +56,23 @@ namespace TCCBruno
             mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             mLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
-            mRightDrawer = FindViewById<ListView>(Resource.Id.right_drawer);
+            //mRightDrawer = FindViewById<ListView>(Resource.Id.right_drawer);
 
             mLeftDrawer.Tag = 0;
-            mRightDrawer.Tag = 1;
+            //mRightDrawer.Tag = 1;
 
             SetSupportActionBar(mToolbar);
 
-            mLeftDataSet = new List<string>();
-            mLeftDataSet.Add("Left Item 1");
-            mLeftDataSet.Add("Left Item 2");
-            mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
+            mLeftAdapter = new LeftMenuListAdapter(this, _instrutorMenuItems);
             mLeftDrawer.Adapter = mLeftAdapter;
 
-            mRightDataSet = new List<string>();
-            mRightDataSet.Add("Right Item 1");
-            mRightDataSet.Add("Right Item 2");
-            mRightAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mRightDataSet);
-            mRightDrawer.Adapter = mRightAdapter;
+            mLeftDrawer.ItemClick += LeftDrawer_ClickListener;
+
+            //mRightDataSet = new List<string>();
+            //mRightDataSet.Add("Right Item 1");
+            //mRightDataSet.Add("Right Item 2");
+            //mRightAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mRightDataSet);
+            //mRightDrawer.Adapter = mRightAdapter;
 
             mDrawerToggle = new MyActionBarDrawerToggle(
                 this,                           //Host Activity
@@ -85,6 +104,14 @@ namespace TCCBruno
                 //This is the first the time the activity is ran
                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
             }
+
+            //Retira o id do usuario logado
+            //_instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
+        }
+
+        private void LeftDrawer_ClickListener(object sender, AdapterView.ItemClickEventArgs e)
+        {
+
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -95,29 +122,29 @@ namespace TCCBruno
                 case Android.Resource.Id.Home:
                     //The hamburger icon was clicked which means the drawer toggle will handle the event
                     //all we need to do is ensure the right drawer is closed so the don't overlap
-                    mDrawerLayout.CloseDrawer(mRightDrawer);
+                    //mDrawerLayout.CloseDrawer(mRightDrawer);
                     mDrawerToggle.OnOptionsItemSelected(item);
                     return true;
 
-                case Resource.Id.action_refresh:
-                    //Refresh
-                    return true;
+                //case Resource.Id.action_refresh:
+                //    //Refresh
+                //    return true;
 
-                case Resource.Id.action_help:
-                    if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
-                    {
-                        //Right Drawer is already open, close it
-                        mDrawerLayout.CloseDrawer(mRightDrawer);
-                    }
+                //case Resource.Id.action_help:
+                //    if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
+                //    {
+                //        //Right Drawer is already open, close it
+                //        mDrawerLayout.CloseDrawer(mRightDrawer);
+                //    }
 
-                    else
-                    {
-                        //Right Drawer is closed, open it and just in case close left drawer
-                        mDrawerLayout.OpenDrawer(mRightDrawer);
-                        mDrawerLayout.CloseDrawer(mLeftDrawer);
-                    }
+                //    else
+                //    {
+                //        //Right Drawer is closed, open it and just in case close left drawer
+                //        mDrawerLayout.OpenDrawer(mRightDrawer);
+                //        mDrawerLayout.CloseDrawer(mLeftDrawer);
+                //    }
 
-                    return true;
+                //    return true;
 
                 default:
                     return base.OnOptionsItemSelected(item);

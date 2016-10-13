@@ -26,6 +26,6 @@
 
 
   <string name="app_name">DrawerLayout_V7_Tutorial</string>
-  <string name="openDrawer">Drawer Open</string>
-  <string name="closeDrawer">Drawer Closed</string>
+  <string name="openDrawer">Menu</string>
+  <string name="closeDrawer">Personal Academia</string>
 </resources>

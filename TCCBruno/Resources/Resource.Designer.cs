@@ -1138,6 +1138,12 @@ namespace TCCBruno
 			// aapt resource value: 0x7f020039
 			public const int logoAcademia = 2130837561;
 			
+			// aapt resource value: 0x7f02003a
+			public const int treinos = 2130837562;
+			
+			// aapt resource value: 0x7f02003b
+			public const int user_menu = 2130837563;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -1166,17 +1172,17 @@ namespace TCCBruno
 			// aapt resource value: 0x7f080062
 			public const int BTN_DataInicio = 2131230818;
 			
-			// aapt resource value: 0x7f080077
-			public const int BTN_Entrar = 2131230839;
+			// aapt resource value: 0x7f080076
+			public const int BTN_Entrar = 2131230838;
 			
-			// aapt resource value: 0x7f08007c
-			public const int BTN_NovoAluno = 2131230844;
+			// aapt resource value: 0x7f08007b
+			public const int BTN_NovoAluno = 2131230843;
 			
 			// aapt resource value: 0x7f08006e
 			public const int BTN_NovoExercicio = 2131230830;
 			
-			// aapt resource value: 0x7f08007e
-			public const int BTN_NovoTreino = 2131230846;
+			// aapt resource value: 0x7f08007d
+			public const int BTN_NovoTreino = 2131230845;
 			
 			// aapt resource value: 0x7f080061
 			public const int BTN_SalvarExecucaoExercicio = 2131230817;
@@ -1262,20 +1268,20 @@ namespace TCCBruno
 			// aapt resource value: 0x7f08006d
 			public const int LV_ExerciciosExecucao = 2131230829;
 			
-			// aapt resource value: 0x7f08007b
-			public const int LV_MeusAlunos = 2131230843;
+			// aapt resource value: 0x7f08007a
+			public const int LV_MeusAlunos = 2131230842;
+			
+			// aapt resource value: 0x7f080077
+			public const int LV_Text = 2131230839;
 			
 			// aapt resource value: 0x7f080078
-			public const int LV_Text = 2131230840;
+			public const int LV_Text1 = 2131230840;
 			
 			// aapt resource value: 0x7f080079
-			public const int LV_Text1 = 2131230841;
+			public const int LV_Text2 = 2131230841;
 			
-			// aapt resource value: 0x7f08007a
-			public const int LV_Text2 = 2131230842;
-			
-			// aapt resource value: 0x7f08007d
-			public const int LV_Treinos = 2131230845;
+			// aapt resource value: 0x7f08007c
+			public const int LV_Treinos = 2131230844;
 			
 			// aapt resource value: 0x7f080057
 			public const int SPN_CategoriaExercicio = 2131230807;
@@ -1328,9 +1334,6 @@ namespace TCCBruno
 			// aapt resource value: 0x7f080032
 			public const int action_context_bar = 2131230770;
 			
-			// aapt resource value: 0x7f080080
-			public const int action_help = 2131230848;
-			
 			// aapt resource value: 0x7f080002
 			public const int action_menu_divider = 2131230722;
 			
@@ -1345,9 +1348,6 @@ namespace TCCBruno
 			
 			// aapt resource value: 0x7f080020
 			public const int action_mode_close_button = 2131230752;
-			
-			// aapt resource value: 0x7f08007f
-			public const int action_refresh = 2131230847;
 			
 			// aapt resource value: 0x7f080021
 			public const int activity_chooser_view_content = 2131230753;
@@ -1382,11 +1382,11 @@ namespace TCCBruno
 			// aapt resource value: 0x7f08001c
 			public const int dropdown = 2131230748;
 			
-			// aapt resource value: 0x7f080076
-			public const int ediText_Senha = 2131230838;
-			
 			// aapt resource value: 0x7f080075
-			public const int editText_Email = 2131230837;
+			public const int ediText_Senha = 2131230837;
+			
+			// aapt resource value: 0x7f080074
+			public const int editText_Email = 2131230836;
 			
 			// aapt resource value: 0x7f080033
 			public const int edit_query = 2131230771;
@@ -1415,14 +1415,20 @@ namespace TCCBruno
 			// aapt resource value: 0x7f080023
 			public const int image = 2131230755;
 			
+			// aapt resource value: 0x7f08007f
+			public const int imgDesc = 2131230847;
+			
+			// aapt resource value: 0x7f08007e
+			public const int imgIcon = 2131230846;
+			
 			// aapt resource value: 0x7f080072
 			public const int left_drawer = 2131230834;
 			
 			// aapt resource value: 0x7f080056
 			public const int linearLayout1 = 2131230806;
 			
-			// aapt resource value: 0x7f080074
-			public const int linearLayoutloginPage = 2131230836;
+			// aapt resource value: 0x7f080073
+			public const int linearLayoutloginPage = 2131230835;
 			
 			// aapt resource value: 0x7f080009
 			public const int listMode = 2131230729;
@@ -1450,9 +1456,6 @@ namespace TCCBruno
 			
 			// aapt resource value: 0x7f08002b
 			public const int radio = 2131230763;
-			
-			// aapt resource value: 0x7f080073
-			public const int right_drawer = 2131230835;
 			
 			// aapt resource value: 0x7f080035
 			public const int search_badge = 2131230773;
@@ -1699,6 +1702,9 @@ namespace TCCBruno
 			
 			// aapt resource value: 0x7f0d0000
 			public const int action_menu = 2131558400;
+			
+			// aapt resource value: 0x7f0d0001
+			public const int list_single = 2131558401;
 			
 			static Menu()
 			{

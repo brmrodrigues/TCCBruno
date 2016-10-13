@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\LeftMenuListAdapter.cs" />
     <Compile Include="Adapters\TreinoTipoListAdapter.cs" />
     <Compile Include="Adapters\ProtocoloAvFisicaListAdapter.cs" />
     <Compile Include="Adapters\Execucao_ExerciciosListAdapter.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="DAO\Treino_TipoDAO.cs" />
     <Compile Include="DatePickerFragment.cs" />
     <Compile Include="Execucao_ExerciciosActivity.cs" />
+    <Compile Include="IActionBarActivity.cs" />
     <Compile Include="Extension\Enumeration.cs" />
     <Compile Include="Extension\NumericExtensions.cs" />
     <Compile Include="Extension\JavaObjectConverter.cs" />
@@ -236,6 +238,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\user_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\list_single.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\treinos.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
