@@ -15,16 +15,13 @@ namespace TCCBruno.Adapters
     public class LeftMenuListAdapter : BaseAdapter<string>
     {
         string[] _items;
+        int[] _itemsImageId;
         Activity _context;
-        int[] imageId =
-        {
-            Resource.Drawable.user_menu,
-            Resource.Drawable.treinos
-        };
 
-        public LeftMenuListAdapter(Activity context, string[] items) : base()
+        public LeftMenuListAdapter(Activity context, string[] items, int[] itemsImageId) : base()
         {
             _items = items;
+            _itemsImageId = itemsImageId;
             _context = context;
         }
 
@@ -49,7 +46,7 @@ namespace TCCBruno.Adapters
             if (view == null)
                 view = _context.LayoutInflater.Inflate(Resource.Menu.list_single, null);
             view.FindViewById<TextView>(Resource.Id.imgDesc).Text = _items[position];
-            view.FindViewById<ImageView>(Resource.Id.imgIcon).SetImageResource(imageId[position]);
+            view.FindViewById<ImageView>(Resource.Id.imgIcon).SetImageResource(_itemsImageId[position]);
 
 
             return view;

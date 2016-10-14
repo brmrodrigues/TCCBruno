@@ -113,6 +113,7 @@
     <Compile Include="CadastroTreinoActivity.cs" />
     <Compile Include="CadastroTreinoTipoActivity.cs" />
     <Compile Include="CheckInActivity.cs" />
+    <Compile Include="DAO\InstrutorDAO.cs" />
     <Compile Include="DAO\CategoriaExercicioDAO.cs" />
     <Compile Include="DAO\Execucao_ExercicioDAO.cs" />
     <Compile Include="DAO\ExercicioDAO.cs" />
@@ -126,6 +127,8 @@
     <Compile Include="Extension\NumericExtensions.cs" />
     <Compile Include="Extension\JavaObjectConverter.cs" />
     <Compile Include="HomeActivity.cs" />
+    <Compile Include="LogOutFragment.cs" />
+    <Compile Include="Model\Instrutor.cs" />
     <Compile Include="MyActionBarDrawerToggle.cs" />
     <Compile Include="Model\CheckIn.cs" />
     <Compile Include="Model\Execucao_Exercicio.cs" />
@@ -185,6 +188,9 @@
     <AndroidResource Include="Resources\layout\HomePage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\LogOutPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\LoginPage.axml">
@@ -240,13 +246,22 @@
     <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\user_menu.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\menu\list_single.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\treinos.png" />
+    <AndroidResource Include="Resources\drawable\ic_treinos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_meusAlunos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_logOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\MenuCustomSelector.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

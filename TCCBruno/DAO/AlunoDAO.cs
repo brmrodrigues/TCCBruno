@@ -140,5 +140,24 @@ namespace TCCBruno.DAO
                 }
             }
         }
+
+        public string GetNomeAluno(int alunoId)
+        {
+
+            string queryString = "SELECT P.nome_pessoa" +
+                                 " FROM Pessoa as P" +
+                                 " INNER JOIN Aluno as A on (P.pessoa_id = A.pessoa_id)" +
+                                 " WHERE A.aluno_id = @paluno_id";
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName="@paluno_id", SqlDbType = SqlDbType.Int, Value = alunoId }
+            };
+
+            var aluno = DBConnection.SelectQuery<Pessoa>(queryString, parametersList);
+
+            //Return First Or Default
+            return aluno[0].nome_pessoa;
+
+        }
     }
 }

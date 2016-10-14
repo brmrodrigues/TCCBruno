@@ -17,7 +17,7 @@ using TCCBruno.DAO;
 namespace TCCBruno
 {
     [Activity(Label = "Meus Alunos")]
-    public class MeusAlunosActivity : ActivityBase
+    public class MeusAlunosActivity : Android.Support.V4.App.Fragment
     {
 
         ListView _listViewAlunos;
@@ -32,19 +32,24 @@ namespace TCCBruno
             }
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        public MeusAlunosActivity(int instrutorId)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.MeusAlunosPage);
-
-            _listViewAlunos = FindViewById<ListView>(Resource.Id.LV_MeusAlunos);
-            FindViewById<Button>(Resource.Id.BTN_NovoAluno).Click += BTN_NovoAluno_Click;
-            //Instancia evento de Click da List View
-            _listViewAlunos.ItemClick += LV_MeusAlunos_ItemClick;
-            //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
-            _instrutorId = Nav.GetAndRemoveParameter<int>(Intent);
-            LoadAlunos();
+            _instrutorId = instrutorId;
         }
+
+        //protected override void OnCreate(Bundle savedInstanceState)
+        //{
+        //    base.OnCreate(savedInstanceState);
+        //    SetContentView(Resource.Layout.MeusAlunosPage);
+
+        //    _listViewAlunos = FindViewById<ListView>(Resource.Id.LV_MeusAlunos);
+        //    FindViewById<Button>(Resource.Id.BTN_NovoAluno).Click += BTN_NovoAluno_Click;
+        //    //Instancia evento de Click da List View
+        //    _listViewAlunos.ItemClick += LV_MeusAlunos_ItemClick;
+        //    //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
+        //    _instrutorId = Nav.GetAndRemoveParameter<int>(Intent);
+        //    LoadAlunos();
+        //}
 
         private void BTN_NovoAluno_Click(object sender, EventArgs e)
         {
@@ -57,11 +62,11 @@ namespace TCCBruno
             var pessoasList = alunoDAO.LoadAlunos(_instrutorId);
             if (pessoasList == null)
             {
-                Validation.DisplayAlertMessage("Falha ao carregar Alunos", this);
+                Validation.DisplayAlertMessage("Falha ao carregar Alunos", this.Activity);
                 return;
             }
             //Preence ListView com os Alunos do Instrutor logado
-            var listAdapter = new MeusAlunosPageAdapter(this, pessoasList);
+            var listAdapter = new MeusAlunosPageAdapter(this.Activity, pessoasList);
             _listViewAlunos.Adapter = listAdapter;
         }
 
@@ -74,7 +79,23 @@ namespace TCCBruno
             Nav.NavigateTo("TreinosPage", instrutorAlunoDict);
         }
 
-        protected override void OnResume()
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            View view = inflater.Inflate(Resource.Layout.MeusAlunosPage, container, false);
+
+            _listViewAlunos = view.FindViewById<ListView>(Resource.Id.LV_MeusAlunos);
+            view.FindViewById<Button>(Resource.Id.BTN_NovoAluno).Click += BTN_NovoAluno_Click;
+            //Instancia evento de Click da List View
+            _listViewAlunos.ItemClick += LV_MeusAlunos_ItemClick;
+
+            //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
+            //_instrutorId = Nav.GetAndRemoveParameter<int>(this.Activity.Intent);
+            LoadAlunos();
+
+            return view;
+        }
+
+        public override void OnResume()
         {
             base.OnResume();
             LoadAlunos();

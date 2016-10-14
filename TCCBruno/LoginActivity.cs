@@ -29,6 +29,7 @@ namespace TCCBruno
         public const string _cadastroExecucao_ExercicioPageKey = "CadastroExecucao_ExercicioPage";
         public const string _cadastroTreinoTipoPageKey = "CadastroTreinoTipoPage";
         public const string _checkInPageKey = "CheckInPage";
+        public const string _homePageKey = "HomePage";
 
         private static bool _initialized; //flag utilizada na inicialização do ServiceLocator
 
@@ -65,6 +66,7 @@ namespace TCCBruno
                 nav.Configure(_execucaoExerciciosPageKey, typeof(Execucao_ExerciciosActivity));
                 nav.Configure(_cadastroTreinoTipoPageKey, typeof(CadastroTreinoTipoActivity));
                 nav.Configure(_checkInPageKey, typeof(CheckInActivity));
+                nav.Configure(_homePageKey, typeof(HomeActivity));
 
                 SimpleIoc.Default.Register<INavigationService>(() => nav);
             }
@@ -101,19 +103,36 @@ namespace TCCBruno
                     var nav = ServiceLocator.Current.GetInstance<INavigationService>();
                     //TODO: Fazer verificação se usuário logado é Aluno ou Instrutor: 
                     //direcioná -lo para sua tela correspondente.
-                    if (!tipoPessoa) //Usuário é um ALUNO
-                    {
-                        Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
-                        _instrutorAlunoDict.Add("aluno_id", _usuarioId);
-                        //nav.NavigateTo(_treinosPageKey, _instrutorAlunoDict);
 
-                        //Apenas para testar GPS:
-                        nav.NavigateTo(_checkInPageKey, _usuarioId);
-                    }
-                    else //Usuário é um INSTRUTOR
+
+                    //if (!tipoPessoa) //Usuário é um ALUNO
+                    //{
+                    //    Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
+                    //    _instrutorAlunoDict.Add("aluno_id", _usuarioId);
+                    //    //nav.NavigateTo(_treinosPageKey, _instrutorAlunoDict);
+
+                    //    //Apenas para testar GPS:
+                    //    //nav.NavigateTo(_checkInPageKey, _usuarioId);
+                    //    nav.NavigateTo(_homePageKey, _instrutorAlunoDict);
+                    //}
+                    //else //Usuário é um INSTRUTOR
+                    //{
+                    //    nav.NavigateTo(_meusAlunosPageKey, _usuarioId);
+                    //}
+
+                    Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
+
+                    if (!tipoPessoa)
                     {
-                        nav.NavigateTo(_meusAlunosPageKey, _usuarioId);
+                        _instrutorAlunoDict.Add("aluno_id", _usuarioId);
                     }
+                    else
+                    {
+                        _instrutorAlunoDict.Add("instrutor_id", _usuarioId);
+                    }
+
+                    nav.NavigateTo(_homePageKey, _instrutorAlunoDict);
+
                     //nav.NavigateTo(_cadastroAlunoPageKey, _usuarioId); //Instrutor
                     //nav.NavigateTo(_meusAlunosPageKey, _usuarioId); //Instrutor
                     break;

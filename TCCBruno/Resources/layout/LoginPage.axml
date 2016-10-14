@@ -24,7 +24,7 @@
         android:inputType="textEmailAddress"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="bruno"
+        android:text="vander"
         android:id="@+id/editText_Email" />
     <TextView
         android:text="Senha"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content" />
     <EditText
         android:inputType="textPassword"
-        android:text="123"
+        android:text="1234"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ediText_Senha" />

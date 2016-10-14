@@ -13,8 +13,8 @@
      android:id="@+id/LV_Text1"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:textColor="#FF7F3300"
-     android:textSize="20dip"
+     android:textColor="#00A8C6"
+     android:textSize="22dip"
      android:textStyle="italic"
          />
     <TextView
@@ -22,7 +22,7 @@
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:textSize="14dip"
-     android:textColor="#FF267F00"
+     android:textColor="#8FBE00"
      android:paddingLeft="100dip"
          />
   </LinearLayout>

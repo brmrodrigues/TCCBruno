@@ -7,35 +7,58 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using SupportFragment = Android.Support.V4.App.Fragment;
 using Android.Support.V7.App;
 using Android.Support.V4.Widget;
 using System.Collections.Generic;
 using GalaSoft.MvvmLight.Views;
 using TCCBruno.Adapters;
 using Microsoft.Practices.ServiceLocation;
+using TCCBruno.DAO;
 
 namespace TCCBruno
 {
-    [Activity(Label = "DrawerLayout_V7_Tutorial", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/MyTheme")]
+    [Activity(Label = "DrawerLayout_V7_Tutorial", MainLauncher = false, Icon = "@drawable/icon", Theme = "@style/MyTheme")]
     public class HomeActivity : ActionBarActivity
     {
         private SupportToolbar mToolbar;
         private MyActionBarDrawerToggle mDrawerToggle;
         private DrawerLayout mDrawerLayout;
         private ListView mLeftDrawer;
-        //private ListView mRightDrawer;
         private LeftMenuListAdapter mLeftAdapter;
-        //private ArrayAdapter mRightAdapter;
-        //private List<string> mLeftDataSet;
-        //private List<string> mRightDataSet;
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
+        private SupportFragment _currentFragment;
+        private MeusAlunosActivity _meusAlunosFragment;
+        private LogOutFragment _logOutFragment;
+        private Stack<SupportFragment> _stackFragment;
 
         private string[] _instrutorMenuItems =
         {
+            "Nome",
             "Meus Alunos",
-            "Treinos"
+            "Sair"
         };
 
+        private int[] _instrutorMenuImageIds =
+        {
+            Resource.Drawable.ic_user,
+            Resource.Drawable.ic_meusAlunos,
+            Resource.Drawable.ic_logOut
+        };
+
+        private string[] _alunoMenuItems =
+        {
+            "Nome",
+            "Treinos",
+            "Sair"
+        };
+
+        private int[] _alunoMenuImageIds =
+        {
+            Resource.Drawable.ic_user,
+            Resource.Drawable.ic_treinos,
+            Resource.Drawable.ic_logOut
+        };
 
         public NavigationService Nav
         {
@@ -61,18 +84,56 @@ namespace TCCBruno
             mLeftDrawer.Tag = 0;
             //mRightDrawer.Tag = 1;
 
+            mLeftDrawer.ItemClick += LeftDrawer_ItemClick;
+
             SetSupportActionBar(mToolbar);
 
-            mLeftAdapter = new LeftMenuListAdapter(this, _instrutorMenuItems);
+            //Retira o id do usuario logado
+            _instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
+
+
+            //mLeftAdapter = _instrutorAlunoDict.ContainsKey("aluno_id") ? new LeftMenuListAdapter(this, _alunoMenuItems) :
+            //                                                                new LeftMenuListAdapter(this, _instrutorMenuItems);
+
+            _stackFragment = new Stack<SupportFragment>();
+
+            if (_instrutorAlunoDict.ContainsKey("aluno_id"))
+            {
+                _alunoMenuItems[0] = GetNomeAluno(_instrutorAlunoDict["aluno_id"]);
+                mLeftAdapter = new LeftMenuListAdapter(this, _alunoMenuItems, _alunoMenuImageIds);
+
+                _logOutFragment = new LogOutFragment();
+
+                //Uso de FragmentLayout dentro do FragContainer
+                var transaction = SupportFragmentManager.BeginTransaction();
+                //O último Fragment adicionado será o primeiro a ser exibido (Stack)
+                transaction.Add(Resource.Id.fragmentContainer, _logOutFragment, "LogOutFragment"); //Container, Content Activity, Tag
+                //transaction.Hide(_logOutFragment);
+                transaction.Commit();
+                _currentFragment = _logOutFragment;
+
+            }
+
+            else
+            {
+                _instrutorMenuItems[0] = GetNomeInstrutor(_instrutorAlunoDict["instrutor_id"]);
+                mLeftAdapter = new LeftMenuListAdapter(this, _instrutorMenuItems, _instrutorMenuImageIds);
+
+                _meusAlunosFragment = new MeusAlunosActivity(_instrutorAlunoDict["instrutor_id"]);
+                _logOutFragment = new LogOutFragment();
+
+                //Uso de FragmentLayout dentro do FragContainer
+                var transaction = SupportFragmentManager.BeginTransaction();
+                //O último Fragment adicionado será o primeiro a ser exibido (Stack)
+                transaction.Add(Resource.Id.fragmentContainer, _logOutFragment, "LogOutFragment"); //Container, Content Activity, Tag
+                transaction.Hide(_logOutFragment);
+                transaction.Add(Resource.Id.fragmentContainer, _meusAlunosFragment, "MeusAlunosFragment"); //Container, Content Activity, Tag
+                transaction.Commit();
+                _currentFragment = _meusAlunosFragment;
+            }
+
             mLeftDrawer.Adapter = mLeftAdapter;
 
-            mLeftDrawer.ItemClick += LeftDrawer_ClickListener;
-
-            //mRightDataSet = new List<string>();
-            //mRightDataSet.Add("Right Item 1");
-            //mRightDataSet.Add("Right Item 2");
-            //mRightAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mRightDataSet);
-            //mRightDrawer.Adapter = mRightAdapter;
 
             mDrawerToggle = new MyActionBarDrawerToggle(
                 this,                           //Host Activity
@@ -105,13 +166,82 @@ namespace TCCBruno
                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
             }
 
-            //Retira o id do usuario logado
-            //_instrutorAlunoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
         }
 
-        private void LeftDrawer_ClickListener(object sender, AdapterView.ItemClickEventArgs e)
+        private string GetNomeAluno(int alunoId)
         {
+            AlunoDAO alunoDAO = new AlunoDAO();
 
+            return alunoDAO.GetNomeAluno(alunoId);
+        }
+
+        private string GetNomeInstrutor(int instrutorId)
+        {
+            InstrutorDAO instrutorDAO = new InstrutorDAO();
+
+            return instrutorDAO.GetNomeInstrutor(instrutorId);
+        }
+
+        private void LeftDrawer_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            if (_instrutorAlunoDict.ContainsKey("aluno_id"))
+                switch (e.Position)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        mDrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
+                        Nav.NavigateTo(LoginActivity._treinosPageKey, _instrutorAlunoDict);
+                        break;
+                    default:
+                        break;
+                }
+            else
+            {
+                switch (e.Position)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        ShowFragment(_meusAlunosFragment);
+                        mDrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
+                        break;
+                    case 2:
+                        ShowFragment(_logOutFragment);
+                        mDrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }
+
+        private void ShowFragment(SupportFragment fragment)
+        {
+            var trans = SupportFragmentManager.BeginTransaction();
+
+            trans.Hide(_currentFragment);
+            trans.Show(fragment);
+            trans.AddToBackStack(null); // Allow to get back to the previous fragment on GoBack()
+            trans.Commit();
+
+            _stackFragment.Push(_currentFragment);
+            _currentFragment = fragment;
+        }
+
+        public override void OnBackPressed()
+        {
+            if (SupportFragmentManager.BackStackEntryCount > 0)
+            {
+                SupportFragmentManager.PopBackStack();
+                _currentFragment = _stackFragment.Pop();
+            }
+            else
+            {
+                base.OnBackPressed();
+
+            }
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -125,26 +255,6 @@ namespace TCCBruno
                     //mDrawerLayout.CloseDrawer(mRightDrawer);
                     mDrawerToggle.OnOptionsItemSelected(item);
                     return true;
-
-                //case Resource.Id.action_refresh:
-                //    //Refresh
-                //    return true;
-
-                //case Resource.Id.action_help:
-                //    if (mDrawerLayout.IsDrawerOpen(mRightDrawer))
-                //    {
-                //        //Right Drawer is already open, close it
-                //        mDrawerLayout.CloseDrawer(mRightDrawer);
-                //    }
-
-                //    else
-                //    {
-                //        //Right Drawer is closed, open it and just in case close left drawer
-                //        mDrawerLayout.OpenDrawer(mRightDrawer);
-                //        mDrawerLayout.CloseDrawer(mLeftDrawer);
-                //    }
-
-                //    return true;
 
                 default:
                     return base.OnOptionsItemSelected(item);
