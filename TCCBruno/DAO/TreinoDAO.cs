@@ -46,5 +46,17 @@ namespace TCCBruno.DAO
 
             return DBConnection.InsertQuery(queryString, parametersList);
         }
+
+        public bool RemoveTreino(int treinoId)
+        {
+            string queryString = "DELETE FROM Treino" +
+                                            " WHERE [treino_id] = @ptreino_id";
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName="@ptreino_id", SqlDbType = SqlDbType.Int, Value = treinoId }
+            };
+
+            return DBConnection.RemoveQuery(queryString, parametersList);
+        }
     }
 }

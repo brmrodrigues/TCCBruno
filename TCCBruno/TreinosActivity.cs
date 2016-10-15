@@ -138,6 +138,26 @@ namespace TCCBruno
             //_treinosListView.Adapter = listAdapter;
         }
 
+        private void RemoveSelectedTreino()
+        {
+            if (_treinoSelectedId < 0)
+                Validation.DisplayAlertMessage("Falha ao selecionar Treino. Tente novamente", this);
+
+            TreinoDAO treinoDAO = new TreinoDAO();
+            if (!treinoDAO.RemoveTreino(_treinoSelectedId))
+                Validation.DisplayAlertMessage("Não foi possível remover o Treino selecionado", this);
+        }
+
+        private void RemoveSelectedSubTreino()
+        {
+            if (_treinoTipoSelectedId < 0)
+                Validation.DisplayAlertMessage("Falha ao selecionar SubTreino. Tente novamente", this);
+
+            Treino_TipoDAO treinoTipoDAO = new Treino_TipoDAO();
+            if (!treinoTipoDAO.RemoveTreinoTipo(_treinoTipoSelectedId))
+                Validation.DisplayAlertMessage("Não foi possível remover o SubTreino selecionado", this);
+        }
+
         private void BTN_NovoTreino_Click(object sender, EventArgs e)
         {
             Nav.NavigateTo(LoginActivity._cadastroTreinoPageKey, _instrutorAlunoDict);
@@ -169,7 +189,7 @@ namespace TCCBruno
                     break;
                 case DIALOG_TREINO_TIPO:
                     builder.SetTitle("Sub-Treino " + args.GetString("0"));
-                    builder.SetSingleChoiceItems(Resource.Array.subTreinoItemLongClickList, 0, (s, e) => { _treinoTipoSelectedId = e.Which; });
+                    builder.SetSingleChoiceItems(Resource.Array.subTreinoItemLongClickList, 0, (s, e) => { _treinoTipo_SingleChoiceItemSelected = e.Which; });
                     builder.SetPositiveButton("OK", TreinoTipo_SingleChoiceOKClick);
                     builder.SetNegativeButton("Cancelar", (s, e) => { });
                     break;
@@ -199,7 +219,8 @@ namespace TCCBruno
                     break;
 
                 case 2: //Excluir Treino
-
+                    RemoveSelectedTreino();
+                    LoadTreinos();
                     break;
             }
         }
@@ -219,7 +240,8 @@ namespace TCCBruno
 
                     break; //Remover SubTreino
                 case 2:
-
+                    RemoveSelectedSubTreino();
+                    LoadTreinos();
                     break;
 
             }

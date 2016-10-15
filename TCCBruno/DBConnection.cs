@@ -100,6 +100,43 @@ namespace TCCBruno
             return true;
         }
 
+        public static bool RemoveQuery(string queryString, List<SqlParameter> parametersList)
+        {
+            SqlConnection connection;
+            using (connection = new SqlConnection(ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand sqlCommand = new SqlCommand(queryString, connection);
+                    sqlCommand.Parameters.AddRange(parametersList.ToArray());
+                    sqlCommand.CommandType = CommandType.Text;
+                    sqlCommand.ExecuteNonQuery();
+                }
+                catch (InvalidOperationException invalidException)
+                {
+                    Console.WriteLine(invalidException.Message);
+                    return false;
+                }
+                catch (SqlException sqlException)
+                {
+                    Console.WriteLine(sqlException.Message);
+                    return false;
+                }
+                catch (ArgumentException argumentException)
+                {
+                    Console.WriteLine(argumentException.Message);
+                    return false;
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
         /// <summary>
         /// Método que retorna Lista de Objetos especificados pelo caller do reader
