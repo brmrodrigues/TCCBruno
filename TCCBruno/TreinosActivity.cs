@@ -67,7 +67,7 @@ namespace TCCBruno
 
         private void LV_Treinos_ChildClick(object sender, ExpandableListView.ChildClickEventArgs e)
         {
-            Console.WriteLine();
+            //Console.WriteLine();
         }
 
         private void LV_Treinos_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
@@ -141,7 +141,10 @@ namespace TCCBruno
         private void RemoveSelectedTreino()
         {
             if (_treinoSelectedId < 0)
+            {
                 Validation.DisplayAlertMessage("Falha ao selecionar Treino. Tente novamente", this);
+                return;
+            }
 
             TreinoDAO treinoDAO = new TreinoDAO();
             if (!treinoDAO.RemoveTreino(_treinoSelectedId))
@@ -151,7 +154,10 @@ namespace TCCBruno
         private void RemoveSelectedSubTreino()
         {
             if (_treinoTipoSelectedId < 0)
+            {
                 Validation.DisplayAlertMessage("Falha ao selecionar SubTreino. Tente novamente", this);
+                return;
+            }
 
             Treino_TipoDAO treinoTipoDAO = new Treino_TipoDAO();
             if (!treinoTipoDAO.RemoveTreinoTipo(_treinoTipoSelectedId))

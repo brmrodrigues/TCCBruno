@@ -71,7 +71,7 @@ namespace TCCBruno.DAO
                 new SqlParameter() {ParameterName="@pinstrutor_id", SqlDbType = SqlDbType.Int, Value = newAluno.instrutor_id },
             };
 
-            return DBConnection.InsertQuery(queryString, parametersList);
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
             //    SqlCommand sqlCommand = new SqlCommand(queryString, connection);
             //    sqlCommand.Parameters.Add("@ppessoa_id", SqlDbType.Int).Value = newAluno.pessoa_id;
             //    sqlCommand.Parameters.Add("@pinstrutor_id", SqlDbType.Int).Value = newAluno.instrutor_id;
@@ -98,7 +98,7 @@ namespace TCCBruno.DAO
             SqlConnection connection;
             using (connection = new SqlConnection(DBConnection.ConnectionString))
             {
-                string queryString = "SELECT A.[aluno_id], A.[instrutor_id], P.[nome_pessoa], P.[usuario], P.[status]" +
+                string queryString = "SELECT A.[aluno_id], A.[instrutor_id], P.[pessoa_id], P.[nome_pessoa], P.[usuario], P.[status]" +
                                         " FROM Aluno AS A" +
                                         " INNER JOIN Pessoa AS P ON (P.[pessoa_id] = A.[pessoa_id])" +
                                         " WHERE A.[instrutor_id] = " + instrutorId.ToString();
@@ -117,6 +117,7 @@ namespace TCCBruno.DAO
                             instrutor_id = (int)reader["instrutor_id"],
                             Pessoa = new Pessoa
                             {
+                                pessoa_id = (int)reader["pessoa_id"],
                                 nome_pessoa = reader["nome_pessoa"].ToString(),
                                 usuario = reader["usuario"].ToString(),
                                 status = (bool)reader["status"]
@@ -157,7 +158,33 @@ namespace TCCBruno.DAO
 
             //Return First Or Default
             return aluno[0].nome_pessoa;
-
         }
+
+        public bool ActivateDeactivateAluno(int pessoaId, bool alunoStatus)
+        {
+            string queryString = "UPDATE Pessoa" +
+                                    " SET status = @pnewStatus" +
+                                    " WHERE [pessoa_id] = @ppessoa_id";
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName="@pnewStatus", SqlDbType = SqlDbType.Bit, Value = !alunoStatus },
+                new SqlParameter() {ParameterName="@ppessoa_id", SqlDbType = SqlDbType.Int, Value = pessoaId }
+            };
+
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
+        }
+
+        public bool RemoveAluno(int pessoaId)
+        {
+            string queryString = "DELETE FROM Pessoa" +
+                                          " WHERE [pessoa_id] = @ppessoa_id";
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName="@ppessoa_id", SqlDbType = SqlDbType.Int, Value = pessoaId }
+            };
+
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
+        }
+
     }
 }

@@ -44,7 +44,7 @@ namespace TCCBruno.DAO
                 new SqlParameter() {ParameterName="@pdata_checkin", SqlDbType = SqlDbType.DateTime, Value = checkin.data_checkin }
             };
 
-            return DBConnection.InsertQuery(queryString, parametersList);
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
         }
     }
 }

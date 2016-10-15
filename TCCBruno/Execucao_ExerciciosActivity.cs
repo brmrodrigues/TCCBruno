@@ -23,8 +23,11 @@ namespace TCCBruno
         //private int _instrutorId;
         private ListView _execucaoExerciciosListView;
         private Button _novoExercicioButton;
+        private Execucao_ExerciciosListAdapter _execucaoExercicioListAdapter;
         //private ListView _treinosListView;
         Dictionary<string, int> _alunoTreinoTipoDict = new Dictionary<string, int>();
+        private int _execucaoExercicio_SingleChoiceItemSelected = 0; //Primeira opção pré-selecionada
+        private int _execucaoExercicioSelectedId = -1;
         //private int _treinoTipoId;
 
         public NavigationService Nav
@@ -47,6 +50,7 @@ namespace TCCBruno
 
             //Declare View Event Handlers
             _novoExercicioButton.Click += BTN_NovoExercicio_Click;
+            _execucaoExerciciosListView.ItemLongClick += LV_ExecucaoExercicios_ItemLongClick;
 
             //Get parameter from MVVMLight Navigator
             _alunoTreinoTipoDict = Nav.GetAndRemoveParameter<Dictionary<string, int>>(Intent);
@@ -55,6 +59,50 @@ namespace TCCBruno
                 _novoExercicioButton.Visibility = ViewStates.Invisible;
             }
             LoadExecucaoExercicios();
+        }
+
+        private void LV_ExecucaoExercicios_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+            if (_alunoTreinoTipoDict.ContainsKey("aluno_id")) //Operação permitida apenas para Instrutor
+                return;
+
+            Dialog dialog = null;
+
+            _execucaoExercicioSelectedId = (int)_execucaoExercicioListAdapter.GetItemId(e.Position);
+            var execucaoExercicioNome = _execucaoExercicioListAdapter.GetNomeExercicio(e.Position);
+            var args = new Bundle();
+            args.PutString("0", execucaoExercicioNome);
+            dialog = OnCreateDialog(0, args);
+            dialog.Show();
+        }
+
+        protected override Dialog OnCreateDialog(int dialogType, Bundle args)
+        {
+            var builder = new AlertDialog.Builder(this);
+            builder.SetTitle(args.GetString("0"));
+            builder.SetSingleChoiceItems(Resource.Array.execucaoExercicioItemLongClickList, 0, (s, e) => { _execucaoExercicio_SingleChoiceItemSelected = e.Which; });
+            builder.SetPositiveButton("OK", ExecucaoExercicios_SingleChoiceOKClick);
+            builder.SetNegativeButton("Cancelar", (s, e) => { });
+
+            return builder.Create();
+        }
+
+        private void ExecucaoExercicios_SingleChoiceOKClick(object sender, DialogClickEventArgs e)
+        {
+            switch (_execucaoExercicio_SingleChoiceItemSelected)
+            {
+                default:
+                    break;
+
+                case 0: //Alterar ExecucaoExercicio
+
+                    break;
+
+                case 1: //Remover ExecucaoExercicio
+                    RemoveSelectedExecucaoExercicio();
+                    LoadExecucaoExercicios();
+                    break;
+            }
         }
 
         private void BTN_NovoExercicio_Click(object sender, EventArgs e)
@@ -79,13 +127,25 @@ namespace TCCBruno
             }
 
             //Preenche ListView
-            var listAdapter = new Execucao_ExerciciosListAdapter(this, execucaoExerciciosList);
-            _execucaoExerciciosListView.Adapter = listAdapter;
+            _execucaoExercicioListAdapter = new Execucao_ExerciciosListAdapter(this, execucaoExerciciosList);
+            _execucaoExerciciosListView.Adapter = _execucaoExercicioListAdapter;
 
             //var listAdapter = new TreinosAdapter(this, treinosList);
             //_treinosListView.Adapter = listAdapter;
         }
 
+        private void RemoveSelectedExecucaoExercicio()
+        {
+            if (_execucaoExercicioSelectedId < 0)
+            {
+                Validation.DisplayAlertMessage("Falha ao selecionar Exercício. Tente novamente", this);
+                return;
+            }
+            Execucao_ExercicioDAO execExercicioDAO = new Execucao_ExercicioDAO();
+            if (!execExercicioDAO.RemoveSelectedExercicio(_execucaoExercicioSelectedId))
+                Validation.DisplayAlertMessage("Não foi possível remover o Exercício selecionado", this);
+
+        }
 
         /// <summary>
         /// Ao voltar a esta tela, carrega os treinos novamente do BD

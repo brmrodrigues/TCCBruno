@@ -36,7 +36,7 @@ namespace TCCBruno.Adapters
 
         public override long GetItemId(int position)
         {
-            return _items[position].exercicio_id;
+            return _items[position].execucao_exercicio_id;
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -53,9 +53,14 @@ namespace TCCBruno.Adapters
                                                                      "  Repetições: " + _items[position].repeticoes.ToString() +
                                                                      "\nCarga: " + _items[position].carga.ToString() + " Kg" +
                                                                      "  Intervalo: " + _items[position].duracao_descanso.ToString() + " s";
-            view.FindViewById<Switch>(Resource.Id.SW_ExecucaoExercicio).Checked = false;
+            //view.FindViewById<Switch>(Resource.Id.SW_ExecucaoExercicio).Checked = false;
 
             return view;
+        }
+
+        public string GetNomeExercicio(int position)
+        {
+            return _items[position].Exercicio.nome_exercicio;
         }
     }
 }

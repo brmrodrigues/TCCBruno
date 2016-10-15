@@ -44,6 +44,12 @@ namespace TCCBruno
                     .GetInstance<INavigationService>();
             }
         }
+
+        public CheckInActivity()
+        {
+
+        }
+
         #region Implementação de ILocationListener #######################################################
         public void OnLocationChanged(Location location)
         {

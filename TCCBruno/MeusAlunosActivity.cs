@@ -19,9 +19,13 @@ namespace TCCBruno
     [Activity(Label = "Meus Alunos")]
     public class MeusAlunosActivity : Android.Support.V4.App.Fragment
     {
-
+        MeusAlunosPageAdapter _meusAlunosListAdapter;
         ListView _listViewAlunos;
-        int _instrutorId;
+        private int _instrutorId;
+        private int _pessoaSelectedId = -1;
+        private bool _alunoStatusSelected;
+        private int _meusAlunos_SingleChoiceItemSelected = 0; //Primeira opção pré-selecionada
+
 
         public NavigationService Nav
         {
@@ -30,6 +34,11 @@ namespace TCCBruno
                 return (NavigationService)ServiceLocator.Current
                     .GetInstance<INavigationService>();
             }
+        }
+
+        public MeusAlunosActivity()
+        {
+
         }
 
         public MeusAlunosActivity(int instrutorId)
@@ -56,18 +65,21 @@ namespace TCCBruno
             Nav.NavigateTo(LoginActivity._cadastroAlunoPageKey, _instrutorId);
         }
 
-        private void LoadAlunos()
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            AlunoDAO alunoDAO = new AlunoDAO();
-            var pessoasList = alunoDAO.LoadAlunos(_instrutorId);
-            if (pessoasList == null)
-            {
-                Validation.DisplayAlertMessage("Falha ao carregar Alunos", this.Activity);
-                return;
-            }
-            //Preence ListView com os Alunos do Instrutor logado
-            var listAdapter = new MeusAlunosPageAdapter(this.Activity, pessoasList);
-            _listViewAlunos.Adapter = listAdapter;
+            View view = inflater.Inflate(Resource.Layout.MeusAlunosPage, container, false);
+
+            _listViewAlunos = view.FindViewById<ListView>(Resource.Id.LV_MeusAlunos);
+            view.FindViewById<Button>(Resource.Id.BTN_NovoAluno).Click += BTN_NovoAluno_Click;
+            //Instancia evento de Click da List View
+            _listViewAlunos.ItemClick += LV_MeusAlunos_ItemClick;
+            _listViewAlunos.ItemLongClick += LV_MeusAlunos_ItemLongClick;
+
+            //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
+            //_instrutorId = Nav.GetAndRemoveParameter<int>(this.Activity.Intent);
+            LoadAlunos();
+
+            return view;
         }
 
         private void LV_MeusAlunos_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -79,20 +91,82 @@ namespace TCCBruno
             Nav.NavigateTo("TreinosPage", instrutorAlunoDict);
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        private void LV_MeusAlunos_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
         {
-            View view = inflater.Inflate(Resource.Layout.MeusAlunosPage, container, false);
+            Dialog dialog = null;
 
-            _listViewAlunos = view.FindViewById<ListView>(Resource.Id.LV_MeusAlunos);
-            view.FindViewById<Button>(Resource.Id.BTN_NovoAluno).Click += BTN_NovoAluno_Click;
-            //Instancia evento de Click da List View
-            _listViewAlunos.ItemClick += LV_MeusAlunos_ItemClick;
+            _alunoStatusSelected = _meusAlunosListAdapter.GetAlunoStatus(e.Position);
+            _pessoaSelectedId = _meusAlunosListAdapter.GetPessoaId(e.Position);
 
-            //Recebe o Id do usuário (instrutor) logado no sistema por passagem de parâmetro da tela anterior
-            //_instrutorId = Nav.GetAndRemoveParameter<int>(this.Activity.Intent);
-            LoadAlunos();
+            if (_pessoaSelectedId < 0)
+            {
+                Validation.DisplayAlertMessage("Falha ao selecionar Aluno. Tente novamente", this.Activity);
+                return;
+            }
 
-            return view;
+            var nomeAluno = _meusAlunosListAdapter.GetNomeAluno(e.Position);
+            var args = new Bundle();
+            args.PutString("0", nomeAluno);
+            dialog = OnCreateDialog(0, args);
+            dialog.Show();
+        }
+
+        private Dialog OnCreateDialog(int dialogType, Bundle args)
+        {
+            var builder = new AlertDialog.Builder(this.Activity);
+            builder.SetTitle(args.GetString("0"));
+            builder.SetSingleChoiceItems(Resource.Array.meusAlunosItemLongClickList, 0, (s, e) => { _meusAlunos_SingleChoiceItemSelected = e.Which; });
+            builder.SetPositiveButton("OK", MeusAlunos_SingleChoiceOKClick);
+            builder.SetNegativeButton("Cancelar", (s, e) => { });
+
+            return builder.Create();
+        }
+
+        private void MeusAlunos_SingleChoiceOKClick(object sender, DialogClickEventArgs e)
+        {
+            switch (_meusAlunos_SingleChoiceItemSelected)
+            {
+                default:
+                    break;
+
+                case 0: //Ativar Aluno
+                    ActivateDeactivateSelectedAluno();
+                    LoadAlunos();
+                    break;
+
+                case 1: //Remover Aluno do Sistema
+                    RemoveSelectedAluno();
+                    LoadAlunos();
+                    break;
+            }
+        }
+
+        private void LoadAlunos()
+        {
+            AlunoDAO alunoDAO = new AlunoDAO();
+            var pessoasList = alunoDAO.LoadAlunos(_instrutorId);
+            if (pessoasList == null)
+            {
+                Validation.DisplayAlertMessage("Falha ao carregar Alunos", this.Activity);
+                return;
+            }
+            //Preence ListView com os Alunos do Instrutor logado
+            _meusAlunosListAdapter = new MeusAlunosPageAdapter(this.Activity, pessoasList);
+            _listViewAlunos.Adapter = _meusAlunosListAdapter;
+        }
+
+        private void ActivateDeactivateSelectedAluno()
+        {
+            AlunoDAO alunoDAO = new AlunoDAO();
+            if (!alunoDAO.ActivateDeactivateAluno(_pessoaSelectedId, _alunoStatusSelected))
+                Validation.DisplayAlertMessage("Não foi possível ativar/desativar o Aluno selecionado", this.Activity);
+        }
+
+        private void RemoveSelectedAluno()
+        {
+            AlunoDAO alunoDAO = new AlunoDAO();
+            if (!alunoDAO.RemoveAluno(_pessoaSelectedId))
+                Validation.DisplayAlertMessage("Não foi possível remover o Aluno selecionado", this.Activity);
         }
 
         public override void OnResume()

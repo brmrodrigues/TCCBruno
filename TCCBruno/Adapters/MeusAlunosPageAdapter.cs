@@ -51,5 +51,21 @@ namespace TCCBruno.Adapters
 
             return view;
         }
+
+        public string GetNomeAluno(int position)
+        {
+            return _items[position].Pessoa.nome_pessoa;
+        }
+
+        public bool GetAlunoStatus(int position)
+        {
+            return _items[position].Pessoa.status;
+        }
+
+        public int GetPessoaId(int position)
+        {
+            return _items[position].Pessoa.pessoa_id;
+        }
+
     }
 }

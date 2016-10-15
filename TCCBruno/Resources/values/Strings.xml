@@ -24,6 +24,18 @@
     <item>Remover Treino</item>
   </string-array>
 
+  <!--Lista de escolhas para Long Click de ExecucaoExercicio-->
+  <string-array name="execucaoExercicioItemLongClickList">
+    <item>Alterar Exercício</item>
+    <item>Remover Exercício</item>
+  </string-array>
+
+  <!--Lista de escolhas para Long Click de MeusAlunos-->
+  <string-array name="meusAlunosItemLongClickList">
+    <item>Ativar/Desativar Aluno</item>
+    <item>Remover Aluno</item>
+  </string-array>
+
 
   <string name="app_name">DrawerLayout_V7_Tutorial</string>
   <string name="openDrawer">Menu</string>

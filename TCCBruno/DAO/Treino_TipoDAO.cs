@@ -32,7 +32,7 @@ namespace TCCBruno.DAO
 
             };
 
-            if (DBConnection.InsertQuery(queryString, parametersList))
+            if (DBConnection.ExecuteNonQuery(queryString, parametersList))
             {
                 return true;
             }
@@ -85,7 +85,7 @@ namespace TCCBruno.DAO
                 new SqlParameter() {ParameterName="@ptreino_tipo_id", SqlDbType = SqlDbType.Int, Value = treinoTipoId }
             };
 
-            return DBConnection.RemoveQuery(queryString, parametersList);
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
         }
     }
 }

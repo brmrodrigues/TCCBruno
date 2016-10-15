@@ -62,6 +62,12 @@ namespace TCCBruno
 		public partial class Array
 		{
 			
+			// aapt resource value: 0x7f0c0003
+			public const int execucaoExercicioItemLongClickList = 2131492867;
+			
+			// aapt resource value: 0x7f0c0004
+			public const int meusAlunosItemLongClickList = 2131492868;
+			
 			// aapt resource value: 0x7f0c0001
 			public const int subTreinoItemLongClickList = 2131492865;
 			

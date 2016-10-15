@@ -32,7 +32,7 @@ namespace TCCBruno.DAO
                 new SqlParameter() {ParameterName="@pduracao_descanso", SqlDbType = SqlDbType.SmallInt, Value = execucaoExercicio.duracao_descanso }
             };
 
-            return DBConnection.InsertQuery(queryString, parametersList);
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
         }
 
         public List<Execucao_Exercicio> LoadExecucaoExercicios(int treinoTipoId)
@@ -50,5 +50,16 @@ namespace TCCBruno.DAO
             return DBConnection.SelectQuery<Execucao_Exercicio>(queryString, parametersList);
         }
 
+        public bool RemoveSelectedExercicio(int execExercicioId)
+        {
+            string queryString = "DELETE FROM Execucao_Exercicio" +
+                                           " WHERE [execucao_exercicio_id] = @pexecucao_exercicio_id";
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName="@pexecucao_exercicio_id", SqlDbType = SqlDbType.Int, Value = execExercicioId }
+            };
+
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
+        }
     }
 }

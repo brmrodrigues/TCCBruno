@@ -44,7 +44,7 @@ namespace TCCBruno.DAO
                 new SqlParameter() {ParameterName="@pdata_fim", SqlDbType = SqlDbType.DateTime, Value = treino.data_fim }
             };
 
-            return DBConnection.InsertQuery(queryString, parametersList);
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
         }
 
         public bool RemoveTreino(int treinoId)
@@ -56,7 +56,7 @@ namespace TCCBruno.DAO
                 new SqlParameter() {ParameterName="@ptreino_id", SqlDbType = SqlDbType.Int, Value = treinoId }
             };
 
-            return DBConnection.RemoveQuery(queryString, parametersList);
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
         }
     }
 }
