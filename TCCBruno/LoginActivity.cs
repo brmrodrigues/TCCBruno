@@ -30,6 +30,7 @@ namespace TCCBruno
         public const string _cadastroTreinoTipoPageKey = "CadastroTreinoTipoPage";
         public const string _checkInPageKey = "CheckInPage";
         public const string _homePageKey = "HomePage";
+        public const string _loginPageKey = "LoginPage";
 
         private static bool _initialized; //flag utilizada na inicialização do ServiceLocator
 
@@ -67,6 +68,7 @@ namespace TCCBruno
                 nav.Configure(_cadastroTreinoTipoPageKey, typeof(CadastroTreinoTipoActivity));
                 nav.Configure(_checkInPageKey, typeof(CheckInActivity));
                 nav.Configure(_homePageKey, typeof(HomeActivity));
+                nav.Configure(_loginPageKey, typeof(LoginActivity));
 
                 SimpleIoc.Default.Register<INavigationService>(() => nav);
             }
@@ -253,8 +255,14 @@ namespace TCCBruno
                     Console.WriteLine(ex.Message);
                 }
             }
+        }
 
+        protected override void OnResume()
+        {
+            //Limpar a Activity anterior
+            //this.Intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
 
+            base.OnResume();
         }
     }
 }

@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minWidth="25px"
-    android:minHeight="25px">
+    android:minHeight="25px"
+    android:background="@drawable/back_gradient_color">
+
 <!-- Exercícios da Categoria selecionada-->
     <LinearLayout
         android:orientation="horizontal"
@@ -23,11 +25,13 @@
             android:id="@+id/SPN_TreinoTipo"
             android:layout_marginLeft="50.0dp" />
     </LinearLayout>
-    <Button
-        android:text="Check-in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/BTN_CheckIn"
-        android:layout_marginTop="30.0dp"
-        android:visibility="invisible" />
+  <Button
+      android:text="Check-in"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/BTN_CheckIn"
+      android:layout_marginTop="30.0dp"
+      android:visibility="invisible" />
+        <!--android:background="@drawable/button_background"
+        style="@style/button_text"/>-->
 </LinearLayout>

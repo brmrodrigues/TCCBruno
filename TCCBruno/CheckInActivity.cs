@@ -22,7 +22,7 @@ using TCCBruno.Model;
 namespace TCCBruno
 {
     [Activity(Label = "Realizar Check-in")]
-    public class CheckInActivity : Activity, ILocationListener
+    public class CheckInActivity : Android.Support.V4.App.Fragment, ILocationListener
     {
         private int _alunoId;
         Location _currentLocation;
@@ -67,23 +67,47 @@ namespace TCCBruno
         }
         #endregion ########################################################################################
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        public CheckInActivity(int alunoId)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.CheckInPage);
+            _alunoId = alunoId;
+        }
+
+        //protected override void OnCreate(Bundle savedInstanceState)
+        //{
+        //    base.OnCreate(savedInstanceState);
+        //    SetContentView(Resource.Layout.CheckInPage);
+
+        //    //Get View Controls
+        //    _checkInButton = FindViewById<Button>(Resource.Id.BTN_CheckIn);
+        //    _treinoTipoSpinner = FindViewById<Spinner>(Resource.Id.SPN_TreinoTipo);
+
+        //    //Controls Event Handlers
+        //    _checkInButton.Click += BTN_CheckIn_Click;
+
+        //    _alunoId = Nav.GetAndRemoveParameter<int>(Intent);
+
+        //    LoadTreinoTiposAtual();
+
+        //    InitializeLocationManager();
+        //}
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            View view = inflater.Inflate(Resource.Layout.CheckInPage, container, false);
 
             //Get View Controls
-            _checkInButton = FindViewById<Button>(Resource.Id.BTN_CheckIn);
-            _treinoTipoSpinner = FindViewById<Spinner>(Resource.Id.SPN_TreinoTipo);
+            _checkInButton = view.FindViewById<Button>(Resource.Id.BTN_CheckIn);
+            _treinoTipoSpinner = view.FindViewById<Spinner>(Resource.Id.SPN_TreinoTipo);
 
             //Controls Event Handlers
             _checkInButton.Click += BTN_CheckIn_Click;
 
-            _alunoId = Nav.GetAndRemoveParameter<int>(Intent);
-
+            //Carregar os Subtreinos dentro do período de Treino da data atual
             LoadTreinoTiposAtual();
 
             InitializeLocationManager();
+
+            return view;
         }
 
         private void LoadTreinoTiposAtual()
@@ -91,7 +115,7 @@ namespace TCCBruno
             Treino_TipoDAO treinoTipoDAO = new Treino_TipoDAO();
 
             var treinosTipoList = treinoTipoDAO.LoadTreino_TiposAtual(_alunoId);
-            _treinoTipoSpinner.Adapter = new TreinoTipoListAdapter(this, treinosTipoList);
+            _treinoTipoSpinner.Adapter = new TreinoTipoListAdapter(this.Activity, treinosTipoList);
 
         }
 
@@ -117,14 +141,14 @@ namespace TCCBruno
         {
             if (_currentLocation == null)
             {
-                Validation.DisplayAlertMessage("Não foi possível determinar a sua localização. Ative o GPS ou tente novamente em alguns minutos", this);
+                Validation.DisplayAlertMessage("Não foi possível determinar a sua localização. Ative o GPS ou tente novamente em alguns minutos", this.Activity);
             }
             else //Verificar se o Aluno está em uma região próxima das coordenadas da academia
             {
                 if (DoCheckIn())
-                    Validation.DisplayAlertMessage("Check-in realizado com sucesso!", this);
+                    Validation.DisplayAlertMessage("Check-in realizado com sucesso!", this.Activity);
                 else
-                    Validation.DisplayAlertMessage("Falha ao realizar o checkin", this);
+                    Validation.DisplayAlertMessage("Falha ao realizar o checkin", this.Activity);
             }
 
             //Address address = await ReverseGeocodeCurrentLocation();
@@ -176,7 +200,7 @@ namespace TCCBruno
 
         private void InitializeLocationManager()
         {
-            _locationManager = (LocationManager)GetSystemService(LocationService);
+            _locationManager = (LocationManager)this.Activity.GetSystemService(Context.LocationService);
 
             Criteria criteriaLocationService = new Criteria
             {
@@ -191,7 +215,7 @@ namespace TCCBruno
             Log.Debug("CheckInActivity", "Usando locationProvider: " + _locationProvider);
         }
 
-        protected override void OnResume()
+        public override void OnResume()
         {
             base.OnResume();
             if (_locationProvider != string.Empty)
@@ -201,7 +225,7 @@ namespace TCCBruno
         /// <summary>
         /// Economizar a bateria desligando as atualizações de localização quando a Activity for para background
         /// </summary>
-        protected override void OnPause()
+        public override void OnPause()
         {
             base.OnPause();
             _locationManager.RemoveUpdates(this);

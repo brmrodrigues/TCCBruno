@@ -43,7 +43,7 @@ namespace TCCBruno.Adapters
         {
             View view = convertView;
             if (view == null)
-                view = _context.LayoutInflater.Inflate(Resource.Layout.MeusAlunosCustomLV, null);
+                view = _context.LayoutInflater.Inflate(Resource.Layout.CategoriaCustomLV, null);
             view.FindViewById<TextView>(Resource.Id.LV_Text1).Text = _items[position].nome_categoria_exercicio;
 
             return view;

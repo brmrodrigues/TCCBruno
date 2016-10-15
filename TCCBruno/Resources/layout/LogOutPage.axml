@@ -3,14 +3,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/linearLayoutloginPage">
-  
+    android:id="@+id/linearLayoutloginPage"
+    android:background="@drawable/back_gradient_color">
+
+
   <TextView
       android:text="Tem certeza que deseja sair?"
       android:gravity="center"
       android:layout_width="match_parent"
       android:layout_height="50.0dp" />
-  
+
   <Button
       android:text="Sair"
       android:layout_width="wrap_content"
@@ -20,4 +22,6 @@
       android:layout_marginTop="40.0dp"
       android:paddingRight="30.0dp"
       android:paddingLeft="30.0dp" />
+      <!--android:background="@drawable/button_background"
+      style="@style/button_text"/>-->
 </LinearLayout>

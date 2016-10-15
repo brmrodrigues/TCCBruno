@@ -2,7 +2,8 @@
 <ScrollView xmlns:tl="http://schemas.android.com/apk/res/android"
     tl:layout_width="match_parent"
     tl:layout_height="match_parent"
-    tl:fillViewport="true">
+    tl:fillViewport="true"
+    tl:background="@drawable/back_gradient_color">
     <TableLayout
         tl:minWidth="25px"
         tl:minHeight="25px"

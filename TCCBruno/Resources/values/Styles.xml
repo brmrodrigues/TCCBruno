@@ -9,16 +9,26 @@
     <item name="android:inputType">numberDecimal</item>
   </style>
 
-
+  <!--HomePage Custom Action Bar Style-->
   <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="colorPrimary">#5AAC56</item>
+    <item name="colorPrimary">@drawable/back_gradient_color</item>
     <item name="drawerArrowStyle">@style/MyDrawerArrowStyle</item>
   </style>
-
+  <!--HomePage Custom Arrow Style-->
   <style name="MyDrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
     <item name="color">#F5F5F5</item>
     <item name="spinBars">true</item>
   </style>
-  
-  
+
+
+  <!--Custom Button Style-->
+  <style name="button_text" parent="@android:style/Widget.Button">
+    <item name="android:textColor" >#FFFFFF</item>
+    <item name="android:gravity" >center</item>
+    <item name="android:shadowColor" >#000000</item>
+    <item name="android:shadowDx" >1</item>
+    <item name="android:shadowDy" >1</item>
+    <item name="android:shadowRadius" >2</item>
+  </style>
+
 </resources>

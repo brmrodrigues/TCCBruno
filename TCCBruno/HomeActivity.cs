@@ -18,7 +18,7 @@ using TCCBruno.DAO;
 
 namespace TCCBruno
 {
-    [Activity(Label = "DrawerLayout_V7_Tutorial", MainLauncher = false, Icon = "@drawable/icon", Theme = "@style/MyTheme")]
+    [Activity(Label = "Personal Academia", MainLauncher = false, Icon = "@drawable/icon", Theme = "@style/MyTheme")]
     public class HomeActivity : ActionBarActivity
     {
         private SupportToolbar mToolbar;
@@ -29,6 +29,7 @@ namespace TCCBruno
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
         private SupportFragment _currentFragment;
         private MeusAlunosActivity _meusAlunosFragment;
+        private CheckInActivity _checkInFragment;
         private LogOutFragment _logOutFragment;
         private Stack<SupportFragment> _stackFragment;
 
@@ -50,6 +51,7 @@ namespace TCCBruno
         {
             "Nome",
             "Treinos",
+            "Check-in",
             "Sair"
         };
 
@@ -57,6 +59,7 @@ namespace TCCBruno
         {
             Resource.Drawable.ic_user,
             Resource.Drawable.ic_treinos,
+            Resource.Drawable.ic_checkIn,
             Resource.Drawable.ic_logOut
         };
 
@@ -103,14 +106,18 @@ namespace TCCBruno
                 mLeftAdapter = new LeftMenuListAdapter(this, _alunoMenuItems, _alunoMenuImageIds);
 
                 _logOutFragment = new LogOutFragment();
+                _checkInFragment = new CheckInActivity(_instrutorAlunoDict["aluno_id"]);
 
                 //Uso de FragmentLayout dentro do FragContainer
                 var transaction = SupportFragmentManager.BeginTransaction();
                 //O último Fragment adicionado será o primeiro a ser exibido (Stack)
                 transaction.Add(Resource.Id.fragmentContainer, _logOutFragment, "LogOutFragment"); //Container, Content Activity, Tag
-                //transaction.Hide(_logOutFragment);
+                transaction.Hide(_logOutFragment);
+                transaction.Add(Resource.Id.fragmentContainer, _checkInFragment, "CheckInFragment"); //Container, Content Activity, Tag
+                //transaction.Hide(_checkInFragment);
+
                 transaction.Commit();
-                _currentFragment = _logOutFragment;
+                _currentFragment = _checkInFragment;
 
             }
 
@@ -192,6 +199,15 @@ namespace TCCBruno
                     case 1:
                         mDrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
                         Nav.NavigateTo(LoginActivity._treinosPageKey, _instrutorAlunoDict);
+                        break;
+                    case 2:
+                        ShowFragment(_checkInFragment);
+                        mDrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
+                        //Nav.NavigateTo(LoginActivity._checkInPageKey, _instrutorAlunoDict["aluno_id"]);
+                        break;
+                    case 3:
+                        ShowFragment(_logOutFragment);
+                        mDrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
                         break;
                     default:
                         break;
@@ -293,6 +309,7 @@ namespace TCCBruno
             base.OnConfigurationChanged(newConfig);
             mDrawerToggle.OnConfigurationChanged(newConfig);
         }
+
     }
 }
 
