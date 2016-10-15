@@ -19,7 +19,7 @@ using TCCBruno.Extension;
 
 namespace TCCBruno
 {
-    [Activity(Label = "CadastrarAvFisica")]
+    [Activity(Label = "Cadastro de Avaliação Física", Icon = "@drawable/logoAcademia")]
     public class CadastroAvFisicaActivity : ActivityBase
     {
         private readonly int[,] mBraco = new int[6, 4] { { 18, 23, 29, 39 }, { 16, 22, 29, 36 }, { 11, 17, 22, 30 }, { 9, 13, 17, 22 }, { 6, 10, 13, 21 }, { 4, 8, 11, 18 } };

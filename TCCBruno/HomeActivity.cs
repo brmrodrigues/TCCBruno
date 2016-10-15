@@ -18,7 +18,7 @@ using TCCBruno.DAO;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Personal Academia", MainLauncher = false, Icon = "@drawable/icon", Theme = "@style/MyTheme")]
+    [Activity(Label = "Personal Academia", MainLauncher = false, Icon = "@drawable/logoAcademia", Theme = "@style/MyTheme")]
     public class HomeActivity : ActionBarActivity
     {
         private SupportToolbar mToolbar;

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:background="@drawable/CustomSelector"
+   android:padding="8dp">
+  <LinearLayout android:id="@+id/LV_Text"
+     android:orientation="vertical"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:paddingLeft="10dip">
+    <TextView
+     android:id="@+id/LV_Text1"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:textColor="#315751"
+     android:textSize="22dip"
+     android:textStyle="bold"/>
+    <LinearLayout android:id="@+id/LV_TextChild"
+     android:orientation="horizontal"
+     android:layout_width="wrap_content"
+     android:layout_height="48.0dp">
+      <Switch
+              android:id="@+id/SW_ExecucaoExercicio"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:checked="false"
+              android:textOn="\u2713"
+              android:textOff=""
+              />
+      <TextView
+       android:id="@+id/LV_Text2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:textSize="13dip"
+       android:textColor="#8FBE00"
+       android:paddingLeft="20dip"/>
+
+    </LinearLayout>
+  </LinearLayout>
+</RelativeLayout >

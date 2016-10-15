@@ -47,12 +47,13 @@ namespace TCCBruno.Adapters
 
             View view = convertView;
             if (view == null)
-                view = _context.LayoutInflater.Inflate(Resource.Layout.MeusAlunosCustomLV, null);
+                view = _context.LayoutInflater.Inflate(Resource.Layout.ExecucaoExercicioCustomLV, null);
             view.FindViewById<TextView>(Resource.Id.LV_Text1).Text = _items[position].Exercicio.nome_exercicio;
             view.FindViewById<TextView>(Resource.Id.LV_Text2).Text = "Séries: " + _items[position].series.ToString() +
                                                                      "  Repetições: " + _items[position].repeticoes.ToString() +
-                                                                     "  Carga: " + _items[position].carga.ToString() +
-                                                                     "  Intervalo: " + _items[position].duracao_descanso.ToString() + "s";
+                                                                     "\nCarga: " + _items[position].carga.ToString() + " Kg" +
+                                                                     "  Intervalo: " + _items[position].duracao_descanso.ToString() + " s";
+            view.FindViewById<Switch>(Resource.Id.SW_ExecucaoExercicio).Checked = false;
 
             return view;
         }

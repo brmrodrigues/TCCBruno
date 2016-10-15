@@ -16,7 +16,7 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Cadastro de Alunos")]
+    [Activity(Label = "Cadastro de Novo Aluno", Icon = "@drawable/logoAcademia")]
     public class CadastroAlunoActivity : ActivityBase
     {
         private GridLayout _gridLayout;

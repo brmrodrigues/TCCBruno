@@ -21,7 +21,7 @@ using TCCBruno.Model;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Realizar Check-in")]
+    [Activity(Label = "Realizar Check-in", Icon = "@drawable/logoAcademia")]
     public class CheckInActivity : Android.Support.V4.App.Fragment, ILocationListener
     {
         private int _alunoId;

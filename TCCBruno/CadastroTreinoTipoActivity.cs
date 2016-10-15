@@ -17,7 +17,7 @@ using TCCBruno.DAO;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Cadastro de SubTreino")]
+    [Activity(Label = "Cadastro de SubTreino", Icon = "@drawable/logoAcademia")]
     public class CadastroTreinoTipoActivity : ActivityBase
     {
         private Spinner _spnDuracaoTreinoTipo;

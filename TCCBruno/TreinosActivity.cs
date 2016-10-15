@@ -17,7 +17,7 @@ using TCCBruno.Adapters;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Treinos")]
+    [Activity(Label = "Treinos", Icon = "@drawable/logoAcademia")]
     public class TreinosActivity : ActivityBase
     {
         private ExpandableListView _treinosListView;

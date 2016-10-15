@@ -16,7 +16,7 @@ using TCCBruno.Model;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Cadastro de Treino")]
+    [Activity(Label = "Cadastro de Treino", Icon = "@drawable/logoAcademia")]
     public class CadastroTreinoActivity : Activity
     {
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();

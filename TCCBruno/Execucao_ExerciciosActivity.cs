@@ -16,7 +16,7 @@ using TCCBruno.Adapters;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Exercícios")]
+    [Activity(Label = "Exercícios", Icon = "@drawable/logoAcademia")]
     public class Execucao_ExerciciosActivity : ActivityBase
     {
         //private GridLayout _gridLayout;

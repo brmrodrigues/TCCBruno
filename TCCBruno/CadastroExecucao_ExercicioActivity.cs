@@ -18,7 +18,7 @@ using TCCBruno.Extension;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Cadastro de Exercícios")]
+    [Activity(Label = "Cadastro de Exercício", Icon = "@drawable/logoAcademia")]
     public class CadastroExecucao_ExercicioActivity : ActivityBase
     {
         private int _treinoTipoId;
