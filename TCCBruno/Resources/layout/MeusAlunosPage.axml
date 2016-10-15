@@ -17,7 +17,8 @@
       android:text="Novo Aluno"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/BTN_NovoAluno"/>
-      <!--android:background="@drawable/button_background"
-      style="@style/button_text"/>-->
+      android:id="@+id/BTN_NovoAluno"
+      android:layout_gravity="center"
+      android:background="@drawable/button_background"
+      style="@style/button_text"/>
 </LinearLayout>

@@ -48,7 +48,7 @@
       android:layout_gravity="center"
       android:layout_marginTop="100.0dp"
       android:paddingRight="30.0dp"
-      android:paddingLeft="30.0dp" />
-        <!--android:background="@drawable/button_background"
-        style="@style/button_text"/>-->
+      android:paddingLeft="30.0dp" 
+      android:background="@drawable/button_background"
+      style="@style/button_text"/>
 </LinearLayout>

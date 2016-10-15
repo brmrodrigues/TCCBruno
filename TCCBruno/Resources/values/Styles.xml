@@ -11,7 +11,7 @@
 
   <!--HomePage Custom Action Bar Style-->
   <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="colorPrimary">@drawable/back_gradient_color</item>
+    <item name="colorPrimary">#05211D</item>
     <item name="drawerArrowStyle">@style/MyDrawerArrowStyle</item>
   </style>
   <!--HomePage Custom Arrow Style-->

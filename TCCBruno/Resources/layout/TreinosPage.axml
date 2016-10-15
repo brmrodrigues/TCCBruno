@@ -15,7 +15,7 @@
       android:text="Novo Treino"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/BTN_NovoTreino"/>
-        <!--android:background="@drawable/button_background"
-        style="@style/button_text"/>-->
+      android:id="@+id/BTN_NovoTreino"
+      android:background="@drawable/button_background"
+      style="@style/button_text"/>
 </LinearLayout>

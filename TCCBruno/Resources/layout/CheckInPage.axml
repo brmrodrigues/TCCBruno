@@ -31,7 +31,7 @@
       android:layout_height="wrap_content"
       android:id="@+id/BTN_CheckIn"
       android:layout_marginTop="30.0dp"
-      android:visibility="invisible" />
-        <!--android:background="@drawable/button_background"
-        style="@style/button_text"/>-->
+      android:visibility="invisible" 
+      android:background="@drawable/button_background"
+      style="@style/button_text"/>
 </LinearLayout>
