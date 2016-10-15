@@ -72,6 +72,11 @@ namespace TCCBruno
             }
         }
 
+        public HomeActivity()
+        {
+
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);

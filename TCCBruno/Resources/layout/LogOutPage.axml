@@ -11,7 +11,8 @@
       android:text="Tem certeza que deseja sair?"
       android:gravity="center"
       android:layout_width="match_parent"
-      android:layout_height="50.0dp" />
+      android:layout_height="50.0dp"
+      android:textColor="#FFFFFF"/>
 
   <Button
       android:text="Sair"

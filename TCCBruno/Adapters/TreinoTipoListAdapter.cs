@@ -43,8 +43,8 @@ namespace TCCBruno.Adapters
         {
             View view = convertView;
             if (view == null)
-                view = _context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
-            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = _items[position].treino_tipo_nome;
+                view = _context.LayoutInflater.Inflate(Resource.Layout.CategoriaCustomLV, null);
+            view.FindViewById<TextView>(Resource.Id.LV_Text1).Text = _items[position].treino_tipo_nome;
 
             return view;
         }
