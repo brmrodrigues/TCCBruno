@@ -22,7 +22,6 @@ namespace TCCBruno.Adapters
         {
             _items = new List<string>();
             _items.Add("GUEDES 3DC");
-            _items.Add("POLLOCK 3DC");
             _items.Add("JACKSON & POLLOCK 3DC");
             _items.Add("JACKSON & POLLOCK 7DC");
             _context = context;

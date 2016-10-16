@@ -8,14 +8,14 @@ namespace AvFisica
 {
     public class Enumeration
     {
-        public enum TipoClassificacao
+        public enum TipoClassExercicio
         {
             ABDOMINAL,
             BRACO,
             GERAL
         }
 
-        public enum ResultadoClassificacao
+        public enum ResultadoClassExercicio
         {
             RUIM,
             ABAIXO_DA_MEDIA, 

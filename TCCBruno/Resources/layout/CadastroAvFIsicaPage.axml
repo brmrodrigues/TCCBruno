@@ -4,270 +4,934 @@
     tl:layout_height="match_parent"
     tl:fillViewport="true"
     tl:background="@drawable/back_gradient_color">
-    <TableLayout
-        tl:minWidth="25px"
-        tl:minHeight="25px"
-        tl:layout_width="match_parent"
-        tl:layout_height="match_parent"
-        tl:id="@+id/tableLayout1">
+  <TableLayout
+      tl:minWidth="25px"
+      tl:minHeight="25px"
+      tl:layout_width="match_parent"
+      tl:layout_height="match_parent"
+      tl:id="@+id/tableLayout1">
     <!--Protocolo-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Protocolo:" />
-            <Spinner
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="206.3dp"
-                tl:id="@+id/SPN_ProtocoloAvFis" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Protocolo:" />
+      <Spinner
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="206.3dp"
+          tl:id="@+id/SPN_ProtocoloAvFis" />
+    </TableRow>
     <!--Aluno a ser avaliado-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Aluno:"
-                tl:padding="3dip" />
-            <Spinner
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:id="@+id/SPN_MeusAlunosAvFisica" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Aluno:"
+          tl:padding="3dip" />
+      <Spinner
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/SPN_MeusAlunosAvFisica" />
+    </TableRow>
     <!--Idade-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Idade (anos):"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_Idade" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Idade (anos):"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Idade"
+          tl:text="27.4" />
+    </TableRow>
+    <!--Sexo-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Sexo:"
+          tl:padding="3dip" />
+      <RadioGroup
+          tl:layout_width="fill_parent"
+          tl:layout_height="wrap_content"
+          tl:orientation="horizontal">
+        <RadioButton
+            tl:id="@+id/RB_Masculino"
+            tl:layout_width="wrap_content"
+            tl:layout_height="wrap_content"
+            tl:text="M"
+            tl:checked="true" />
+        <RadioButton
+            tl:id="@+id/RB_Feminino"
+            tl:layout_width="wrap_content"
+            tl:layout_height="wrap_content"
+            tl:text="F" />
+      </RadioGroup>
+    </TableRow>
     <!--Peso-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Peso (kg):"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_Peso" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Peso (kg):"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Peso"
+          tl:text="86.1" />
+    </TableRow>
+    <!--Estatura-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Estatura (cm):"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Estatura"
+          tl:text="182.5" />
+    </TableRow>
+    <!--PA-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Pressão Arterial:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_PressaoArterial"
+          tl:text="120" />
+    </TableRow>
+    <!--###################################################################-->
+    <!--Perímetros-->
+    <TableRow
+        tl:layout_marginTop="15dip">
+      <TextView
+          tl:layout_column="1"
+          tl:layout_span="2"
+          tl:layout_width="fill_parent"
+          tl:layout_height="wrap_content"
+          tl:gravity="center_horizontal"
+          tl:text="Perímetros (cm)"
+          tl:textSize="20.0dp"
+          tl:textColor="#FFFFFF" />
+    </TableRow>
+    <!--Tórax-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Tórax:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Torax"
+          tl:text="101.0" />
+    </TableRow>
+    <!--Cintura-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Cintura:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Cintura"
+          tl:text="82.0" />
+    </TableRow>
+    <!--Abdome-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Abdome:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Abdome"
+          tl:text="82.5" />
+    </TableRow>
+    <!--Braco D.-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Braço Dir.:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_BracoDir"
+          tl:text="39.0" />
+    </TableRow>
+    <!--Braco E.-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Braço Esq.:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_BracoEsq"
+          tl:text="40.0" />
+    </TableRow>
+    <!--Antebr. D.-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Antebr Dir.:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_AntebrDir"
+          tl:text="31.0" />
+    </TableRow>
+    <!--Antebr. E.-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Antebr Esq.:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_AntebrEsq"
+          tl:text="30.0" />
+    </TableRow>
+    <!--Quadril-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Quadril:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Quadril"
+          tl:text="99.0" />
+    </TableRow>
+    <!--Coxa D.-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Coxa Dir.:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:id="@+id/EDT_CoxaDir"
+          tl:text="p58m56" />
+    </TableRow>
+    <!--Coxa E.-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Coxa Esq.:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:id="@+id/EDT_CoxaEsq"
+          tl:text="p58,5m56,5" />
+    </TableRow>
+    <!--Perna D.-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Perna Dir.:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_PernaDir"
+          tl:text="40.0" />
+    </TableRow>
+    <!--Perna E.-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Perna Esq.:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_PernaEsq"
+          tl:text="40.5" />
+    </TableRow>
+    <!--Ombro-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Ombro:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Ombro"
+          tl:text="128" />
+    </TableRow>
+    <!--###################################################################-->
+    <!--Dobras Cutâneas-->
+    <TableRow
+        tl:layout_marginTop="15dip">
+      <TextView
+          tl:layout_column="1"
+          tl:layout_span="2"
+          tl:layout_width="fill_parent"
+          tl:layout_height="wrap_content"
+          tl:gravity="center_horizontal"
+          tl:text="Dobras Cutâneas (mm)"
+          tl:textSize="20.0dp"
+          tl:textColor="#FFFFFF" />
+    </TableRow>
     <!--Tricipital-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Tricipital (mm):"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_Tricipital" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Tricipital (mm):"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Tricipital"
+          tl:text="4.0" />
+    </TableRow>
     <!--Subescapular-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Subescapular (mm):"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_Subescapular" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Subescapular (mm):"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Subescapular"
+          tl:text="11.0" />
+    </TableRow>
     <!--Suprailicia-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Suprailicia (mm):"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_Suprailicia" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Suprailicia (mm):"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Suprailicia"
+          tl:text="8.5" />
+    </TableRow>
     <!--Abdominal-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Abdominal (mm):"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_Abdominal" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Abdominal (mm):"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Abdominal"
+          tl:text="9.0" />
+    </TableRow>
     <!--Peitoral-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Peitoral (mm):"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_Peitoral" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Peitoral (mm):"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Peitoral"
+          tl:text="4.0" />
+    </TableRow>
     <!--AxilarMedia-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Peitoral (mm):"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_AxilarMedia" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Axilar Média (mm):"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_AxilarMedia"
+          tl:text="8.0" />
+    </TableRow>
     <!--CoxaMedial-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="CoxaMedial (mm):"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_CoxaMedial" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="CoxaMedial (mm):"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_CoxaMedial"
+          tl:text="13.0" />
+    </TableRow>
+    <!--#############################################################################-->
+    <!--Diâmetros Ósseos-->
+    <TableRow
+        tl:layout_marginTop="15dip">
+      <TextView
+          tl:layout_column="1"
+          tl:layout_span="2"
+          tl:layout_width="fill_parent"
+          tl:layout_height="wrap_content"
+          tl:gravity="center_horizontal"
+          tl:text="Diâmetros Ósseos"
+          tl:textSize="20.0dp"
+          tl:textColor="#FFFFFF" />
+    </TableRow>
     <!--RadioU-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="RadioU ():"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_RadioU" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="RadioU ():"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_RadioU"
+          tl:text="6" />
+    </TableRow>
     <!--Femural-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Femural ():"
-                tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="numberDecimal"
-                tl:id="@+id/EDT_Femural" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Femural ():"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_Femural"
+          tl:text="15" />
+    </TableRow>
+    <!--##############################################################################-->
+    <!--Exercícios - Repetições => Flex Geral, Flex Braços, Abdominais-->
+    <TableRow
+        tl:layout_marginTop="15dip">
+      <TextView
+          tl:layout_column="1"
+          tl:layout_span="2"
+          tl:layout_width="fill_parent"
+          tl:layout_height="wrap_content"
+          tl:gravity="center_horizontal"
+          tl:text="Exercícios"
+          tl:textSize="20.0dp"
+          tl:textColor="#FFFFFF" />
+    </TableRow>
+    <!--Flex. Geral-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Flexibilidade Geral:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_FlexGeral1"
+          tl:text="40" />
+      <EditText
+            tl:layout_column="3"
+            tl:gravity="right"
+            tl:padding="3dip"
+            tl:layout_height="wrap_content"
+            tl:layout_width="100dp"
+            tl:maxLines="1"
+            tl:inputType="numberDecimal"
+            tl:id="@+id/EDT_FlexGeral2"
+            tl:text="38" />
+      <EditText
+            tl:layout_column="4"
+            tl:gravity="right"
+            tl:padding="3dip"
+            tl:layout_height="wrap_content"
+            tl:layout_width="100dp"
+            tl:maxLines="1"
+            tl:inputType="numberDecimal"
+            tl:id="@+id/EDT_FlexGeral3"
+            tl:text="35" />
+    </TableRow>
+    <!--Flexoes Braco-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Flexibilidade Geral:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_FlexBraco"
+          tl:text="10" />
+    </TableRow>
+    <!--Abdominais.-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Abdominais:"
+          tl:padding="3dip" />
+      <EditText
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:maxLines="1"
+          tl:inputType="numberDecimal"
+          tl:id="@+id/EDT_AbdominaisRep"
+          tl:text="40" />
+    </TableRow>
+    <!--##############################################################################-->
+    <!--RESULTADOS: FRACIONAMENTO-->
+    <TableRow
+       tl:layout_marginTop="15dip">
+      <TextView
+          tl:layout_column="1"
+          tl:layout_span="2"
+          tl:layout_width="fill_parent"
+          tl:layout_height="wrap_content"
+          tl:gravity="center_horizontal"
+          tl:text="Fracionamento"
+          tl:textSize="20.0dp"
+          tl:textColor="#FFFFFF" />
+    </TableRow>
+    <!--Peso Muscular-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Peso Muscular (kg):"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_PesoMuscular" />
+    </TableRow>
     <!--Peso Gordo-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Peso Gordo (kg):"
-                tl:padding="3dip" />
-            <TextView
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:id="@+id/TV_PesoGordo" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Peso Gordo (kg):"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_PesoGordo" />
+    </TableRow>
     <!--Peso Magro-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Peso Magro (kg):"
-                tl:padding="3dip" />
-            <TextView
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:id="@+id/TV_PesoMagro" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Peso Magro (kg):"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_PesoMagro" />
+    </TableRow>
+    <!--% Peso Muscular-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Peso Muscular (%):"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_PorcPesoMuscular" />
+    </TableRow>
+    <!--% Gordura Atual-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Gordura Atual (%):"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_PorcGorduraAtual" />
+    </TableRow>
+    <!--% Peso Magro-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Peso Magro (%):"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_PorcPesoMagro" />
+    </TableRow>
     <!--Peso Ideal-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Peso Ideal (kg):"
-                tl:padding="3dip" />
-            <TextView
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:id="@+id/TV_PesoIdeal" />
-        </TableRow>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Peso Ideal (kg):"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_PesoIdeal" />
+    </TableRow>
     <!--Excesso-->
-        <TableRow>
-            <TextView
-                tl:layout_column="1"
-                tl:text="Excesso (kg):"
-                tl:padding="3dip" />
-            <TextView
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:id="@+id/EDT_Excesso" />
-        </TableRow>
-    </TableLayout>
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Excesso (kg):"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_Excesso" />
+    </TableRow>
+    <!--Peso Ósseo-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Peso Ósseo (kg):"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_PesoOsseo" />
+    </TableRow>
+    <!--Peso Residual-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Peso Residual (kg):"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_PesoResidual" />
+    </TableRow>
+    <!--#############################################################################-->
+    <!--Classificações-->
+    <TableRow
+        tl:layout_marginTop="15dip">
+      <TextView
+          tl:layout_column="1"
+          tl:layout_span="2"
+          tl:layout_width="fill_parent"
+          tl:layout_height="wrap_content"
+          tl:gravity="center_horizontal"
+          tl:text="Classificações - IMC, RCQ, IAC e PA"
+          tl:textSize="20.0dp"
+          tl:textColor="#FFFFFF" />
+    </TableRow>
+    <!--IMC-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="IMC:"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_IMC" />
+    </TableRow>
+    <!--RCQ-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="RCQ:"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_RCQ" />
+    </TableRow>
+    <!--IAC-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="IAC:"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_IAC" />
+    </TableRow>
+    <!--PA-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="PA:"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_PA" />
+    </TableRow>
+    <!--###################################################################################-->
+    <!--Classificação - Exercícios-->
+    <TableRow
+        tl:layout_marginTop="15dip">
+      <TextView
+          tl:layout_column="1"
+          tl:layout_span="2"
+          tl:layout_width="fill_parent"
+          tl:layout_height="wrap_content"
+          tl:gravity="center_horizontal"
+          tl:text="Classificações - Exercícios"
+          tl:textSize="20.0dp"
+          tl:textColor="#FFFFFF" />
+    </TableRow>
+    <!--Flexibilidade Geral-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Flexibilidade Geral:"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_FlexibilidadeGeral" />
+    </TableRow>
+    <!--Flexões de Braço-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Flexões de Braço:"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_FlexoesBraco" />
+    </TableRow>
+    <!--Abdominais-->
+    <TableRow>
+      <TextView
+          tl:layout_column="1"
+          tl:text="Abdominais:"
+          tl:padding="3dip" />
+      <TextView
+          tl:layout_column="2"
+          tl:gravity="right"
+          tl:padding="3dip"
+          tl:layout_height="wrap_content"
+          tl:layout_width="100dp"
+          tl:id="@+id/TV_Abdominais" />
+    </TableRow>
+    <!--###################################################################################-->
+    <!--Botões de Calcular e Cadastrar AvFisica-->
+    <TableRow>
+      <Button
+          tl:layout_span="2"
+          tl:layout_weight="1"
+          tl:text="Calcular Resultados"
+          tl:layout_width="fill_parent"
+          tl:layout_height="wrap_content"
+          tl:id="@+id/BTN_Calcular"
+          tl:layout_gravity="center_horizontal"
+          tl:background="@drawable/button_background"
+          style="@style/button_text" />
+    </TableRow>
+    <TableRow>
+      <Button
+          tl:layout_span="2"
+          tl:layout_weight="1"
+          tl:text="Cadastrar Avaliação"
+          tl:layout_width="fill_parent"
+          tl:layout_height="wrap_content"
+          tl:id="@+id/BTN_CadastrarAvFisica"
+          tl:layout_gravity="center_horizontal"
+          tl:background="@drawable/button_background"
+          style="@style/button_text" />
+    </TableRow>
+  </TableLayout>
 </ScrollView>
