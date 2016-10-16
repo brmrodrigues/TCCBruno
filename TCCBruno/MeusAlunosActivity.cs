@@ -23,6 +23,7 @@ namespace TCCBruno
         ListView _listViewAlunos;
         private int _instrutorId;
         private int _pessoaSelectedId = -1;
+        private int _alunoSelectedId = -1;
         private bool _alunoStatusSelected;
         private int _meusAlunos_SingleChoiceItemSelected = 0; //Primeira opção pré-selecionada
 
@@ -97,8 +98,9 @@ namespace TCCBruno
 
             _alunoStatusSelected = _meusAlunosListAdapter.GetAlunoStatus(e.Position);
             _pessoaSelectedId = _meusAlunosListAdapter.GetPessoaId(e.Position);
+            _alunoSelectedId = (int)_meusAlunosListAdapter.GetItemId(e.Position);
 
-            if (_pessoaSelectedId < 0)
+            if (_pessoaSelectedId < 0 || _alunoSelectedId < 0)
             {
                 Validation.DisplayAlertMessage("Falha ao selecionar Aluno. Tente novamente", this.Activity);
                 return;
@@ -129,12 +131,14 @@ namespace TCCBruno
                 default:
                     break;
 
-                case 0: //Ativar Aluno
+                case 0: //Ativar/Desativar Aluno
                     ActivateDeactivateSelectedAluno();
                     LoadAlunos();
                     break;
-
-                case 1: //Remover Aluno do Sistema
+                case 1: //Estatísticas de Falta
+                    Nav.NavigateTo(LoginActivity._estatisticasFaltaPageKey, _alunoSelectedId);
+                    break;
+                case 2: //Remover Aluno do Sistema
                     RemoveSelectedAluno();
                     LoadAlunos();
                     break;

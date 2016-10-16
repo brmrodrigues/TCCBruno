@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\EstatisticaFaltaListAdapter.cs" />
     <Compile Include="Adapters\LeftMenuListAdapter.cs" />
     <Compile Include="Adapters\TreinoTipoListAdapter.cs" />
     <Compile Include="Adapters\ProtocoloAvFisicaListAdapter.cs" />
@@ -122,12 +123,14 @@
     <Compile Include="DAO\Treino_TipoDAO.cs" />
     <Compile Include="DatePickerFragment.cs" />
     <Compile Include="Execucao_ExerciciosActivity.cs" />
+    <Compile Include="EstatisticasFaltaActivity.cs" />
     <Compile Include="IActionBarActivity.cs" />
     <Compile Include="Extension\Enumeration.cs" />
     <Compile Include="Extension\NumericExtensions.cs" />
     <Compile Include="Extension\JavaObjectConverter.cs" />
     <Compile Include="HomeActivity.cs" />
     <Compile Include="LogOutFragment.cs" />
+    <Compile Include="Model\ViewPresencaSubTreino.cs" />
     <Compile Include="Model\Instrutor.cs" />
     <Compile Include="MyActionBarDrawerToggle.cs" />
     <Compile Include="Model\CheckIn.cs" />
@@ -189,6 +192,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\LogOutPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\EstatisticasFaltaPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

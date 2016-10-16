@@ -33,6 +33,7 @@
   <!--Lista de escolhas para Long Click de MeusAlunos-->
   <string-array name="meusAlunosItemLongClickList">
     <item>Ativar/Desativar Aluno</item>
+    <item>Estatísticas de Falta</item>
     <item>Remover Aluno</item>
   </string-array>
 

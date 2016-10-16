@@ -1196,20 +1196,20 @@ namespace TCCBruno
 			// aapt resource value: 0x7f080062
 			public const int BTN_DataInicio = 2131230818;
 			
-			// aapt resource value: 0x7f08007c
-			public const int BTN_Entrar = 2131230844;
-			
 			// aapt resource value: 0x7f08007d
-			public const int BTN_LogOut = 2131230845;
+			public const int BTN_Entrar = 2131230845;
 			
-			// aapt resource value: 0x7f08007f
-			public const int BTN_NovoAluno = 2131230847;
+			// aapt resource value: 0x7f08007e
+			public const int BTN_LogOut = 2131230846;
 			
-			// aapt resource value: 0x7f080070
-			public const int BTN_NovoExercicio = 2131230832;
+			// aapt resource value: 0x7f080080
+			public const int BTN_NovoAluno = 2131230848;
 			
-			// aapt resource value: 0x7f080081
-			public const int BTN_NovoTreino = 2131230849;
+			// aapt resource value: 0x7f080071
+			public const int BTN_NovoExercicio = 2131230833;
+			
+			// aapt resource value: 0x7f080082
+			public const int BTN_NovoTreino = 2131230850;
 			
 			// aapt resource value: 0x7f080061
 			public const int BTN_SalvarExecucaoExercicio = 2131230817;
@@ -1289,14 +1289,17 @@ namespace TCCBruno
 			// aapt resource value: 0x7f08003f
 			public const int GRL_CadastroAluno = 2131230783;
 			
-			// aapt resource value: 0x7f080074
-			public const int Header_LV = 2131230836;
+			// aapt resource value: 0x7f080075
+			public const int Header_LV = 2131230837;
+			
+			// aapt resource value: 0x7f080070
+			public const int LV_ExerciciosExecucao = 2131230832;
+			
+			// aapt resource value: 0x7f08007f
+			public const int LV_MeusAlunos = 2131230847;
 			
 			// aapt resource value: 0x7f08006f
-			public const int LV_ExerciciosExecucao = 2131230831;
-			
-			// aapt resource value: 0x7f08007e
-			public const int LV_MeusAlunos = 2131230846;
+			public const int LV_NroPresencaPorSubTreino = 2131230831;
 			
 			// aapt resource value: 0x7f080068
 			public const int LV_Text = 2131230824;
@@ -1304,14 +1307,14 @@ namespace TCCBruno
 			// aapt resource value: 0x7f080069
 			public const int LV_Text1 = 2131230825;
 			
-			// aapt resource value: 0x7f080073
-			public const int LV_Text2 = 2131230835;
+			// aapt resource value: 0x7f080074
+			public const int LV_Text2 = 2131230836;
 			
-			// aapt resource value: 0x7f080071
-			public const int LV_TextChild = 2131230833;
+			// aapt resource value: 0x7f080072
+			public const int LV_TextChild = 2131230834;
 			
-			// aapt resource value: 0x7f080080
-			public const int LV_Treinos = 2131230848;
+			// aapt resource value: 0x7f080081
+			public const int LV_Treinos = 2131230849;
 			
 			// aapt resource value: 0x7f080057
 			public const int SPN_CategoriaExercicio = 2131230807;
@@ -1331,8 +1334,8 @@ namespace TCCBruno
 			// aapt resource value: 0x7f08006a
 			public const int SPN_TreinoTipo = 2131230826;
 			
-			// aapt resource value: 0x7f080072
-			public const int SW_ExecucaoExercicio = 2131230834;
+			// aapt resource value: 0x7f080073
+			public const int SW_ExecucaoExercicio = 2131230835;
 			
 			// aapt resource value: 0x7f080052
 			public const int TV_PesoGordo = 2131230802;
@@ -1409,17 +1412,17 @@ namespace TCCBruno
 			// aapt resource value: 0x7f08000c
 			public const int disableHome = 2131230732;
 			
-			// aapt resource value: 0x7f080076
-			public const int drawer_layout = 2131230838;
+			// aapt resource value: 0x7f080077
+			public const int drawer_layout = 2131230839;
 			
 			// aapt resource value: 0x7f08001c
 			public const int dropdown = 2131230748;
 			
-			// aapt resource value: 0x7f08007b
-			public const int ediText_Senha = 2131230843;
+			// aapt resource value: 0x7f08007c
+			public const int ediText_Senha = 2131230844;
 			
-			// aapt resource value: 0x7f08007a
-			public const int editText_Email = 2131230842;
+			// aapt resource value: 0x7f08007b
+			public const int editText_Email = 2131230843;
 			
 			// aapt resource value: 0x7f080033
 			public const int edit_query = 2131230771;
@@ -1433,8 +1436,8 @@ namespace TCCBruno
 			// aapt resource value: 0x7f080028
 			public const int expanded_menu = 2131230760;
 			
-			// aapt resource value: 0x7f080077
-			public const int fragmentContainer = 2131230839;
+			// aapt resource value: 0x7f080078
+			public const int fragmentContainer = 2131230840;
 			
 			// aapt resource value: 0x7f080004
 			public const int home = 2131230724;
@@ -1451,20 +1454,20 @@ namespace TCCBruno
 			// aapt resource value: 0x7f080023
 			public const int image = 2131230755;
 			
+			// aapt resource value: 0x7f080084
+			public const int imgDesc = 2131230852;
+			
 			// aapt resource value: 0x7f080083
-			public const int imgDesc = 2131230851;
+			public const int imgIcon = 2131230851;
 			
-			// aapt resource value: 0x7f080082
-			public const int imgIcon = 2131230850;
-			
-			// aapt resource value: 0x7f080078
-			public const int left_drawer = 2131230840;
+			// aapt resource value: 0x7f080079
+			public const int left_drawer = 2131230841;
 			
 			// aapt resource value: 0x7f080056
 			public const int linearLayout1 = 2131230806;
 			
-			// aapt resource value: 0x7f080079
-			public const int linearLayoutloginPage = 2131230841;
+			// aapt resource value: 0x7f08007a
+			public const int linearLayoutloginPage = 2131230842;
 			
 			// aapt resource value: 0x7f080009
 			public const int listMode = 2131230729;
@@ -1562,8 +1565,8 @@ namespace TCCBruno
 			// aapt resource value: 0x7f080027
 			public const int title = 2131230759;
 			
-			// aapt resource value: 0x7f080075
-			public const int toolbar = 2131230837;
+			// aapt resource value: 0x7f080076
+			public const int toolbar = 2131230838;
 			
 			// aapt resource value: 0x7f080008
 			public const int up = 2131230728;
@@ -1700,37 +1703,40 @@ namespace TCCBruno
 			public const int ContentExpandableLV = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int Execucao_ExerciciosPage = 2130903071;
+			public const int EstatisticasFaltaPage = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int ExecucaoExercicioCustomLV = 2130903072;
+			public const int Execucao_ExerciciosPage = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int HeaderExpandableLV = 2130903073;
+			public const int ExecucaoExercicioCustomLV = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int HomePage = 2130903074;
+			public const int HeaderExpandableLV = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int LoginPage = 2130903075;
+			public const int HomePage = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int LogOutPage = 2130903076;
+			public const int LoginPage = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int MeusAlunosCustomLV = 2130903077;
+			public const int LogOutPage = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int MeusAlunosPage = 2130903078;
+			public const int MeusAlunosCustomLV = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int support_simple_spinner_dropdown_item = 2130903079;
+			public const int MeusAlunosPage = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int TreinosPage = 2130903080;
+			public const int support_simple_spinner_dropdown_item = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int TreinoTipoDialog = 2130903081;
+			public const int TreinosPage = 2130903081;
+			
+			// aapt resource value: 0x7f03002a
+			public const int TreinoTipoDialog = 2130903082;
 			
 			static Layout()
 			{

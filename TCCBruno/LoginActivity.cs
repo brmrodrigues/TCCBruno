@@ -31,6 +31,7 @@ namespace TCCBruno
         public const string _checkInPageKey = "CheckInPage";
         public const string _homePageKey = "HomePage";
         public const string _loginPageKey = "LoginPage";
+        public const string _estatisticasFaltaPageKey = "EstatisticasFaltaPage";
 
         private static bool _initialized; //flag utilizada na inicialização do ServiceLocator
 
@@ -69,6 +70,8 @@ namespace TCCBruno
                 nav.Configure(_checkInPageKey, typeof(CheckInActivity));
                 nav.Configure(_homePageKey, typeof(HomeActivity));
                 nav.Configure(_loginPageKey, typeof(LoginActivity));
+                nav.Configure(_estatisticasFaltaPageKey, typeof(EstatisticasFaltaActivity));
+
 
                 SimpleIoc.Default.Register<INavigationService>(() => nav);
             }

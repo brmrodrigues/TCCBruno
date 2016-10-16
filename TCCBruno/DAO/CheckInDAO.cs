@@ -15,23 +15,9 @@ using TCCBruno.Model;
 
 namespace TCCBruno.DAO
 {
+
     public class CheckInDAO
     {
-
-        //public List<Treino> LoadTreinos(int alunoId)
-        //{
-        //    string queryString = "SELECT [treino_id], [data_inicio], [data_fim]" +
-        //                            " FROM Treino" +
-        //                            " WHERE [aluno_id] = @paluno_id";
-
-        //    List<SqlParameter> parametersList = new List<SqlParameter>()
-        //    {
-        //        new SqlParameter() {ParameterName="@paluno_id", SqlDbType = SqlDbType.Int, Value = alunoId }
-        //    };
-
-        //    return DBConnection.SelectQuery<Treino>(queryString, parametersList);
-        //}
-
         public bool InsertCheckIn(CheckIn checkin)
         {
 
@@ -46,5 +32,20 @@ namespace TCCBruno.DAO
 
             return DBConnection.ExecuteNonQuery(queryString, parametersList);
         }
+
+        public List<ViewPresencaSubTreino> LoadPresencaPorSubTreino(int alunoId)
+        {
+            string queryString = "SELECT PresencaCount, NomeSubTreino, Descricao" +
+                                    " FROM ViewPresencaSubTreino" +
+                                    " WHERE AlunoId = @paluno_id";
+
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName="@paluno_id", SqlDbType = SqlDbType.Int, Value = alunoId }
+            };
+
+            return DBConnection.SelectQuery<ViewPresencaSubTreino>(queryString, parametersList);
+        }
+
     }
 }
