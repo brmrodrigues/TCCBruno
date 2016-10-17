@@ -119,6 +119,7 @@
     <Compile Include="DAO\Execucao_ExercicioDAO.cs" />
     <Compile Include="DAO\ExercicioDAO.cs" />
     <Compile Include="DAO\CheckInDAO.cs" />
+    <Compile Include="DAO\Avaliacao_FisicaDAO.cs" />
     <Compile Include="DAO\TreinoDAO.cs" />
     <Compile Include="DAO\Treino_TipoDAO.cs" />
     <Compile Include="DatePickerFragment.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Extension\JavaObjectConverter.cs" />
     <Compile Include="HomeActivity.cs" />
     <Compile Include="LogOutFragment.cs" />
+    <Compile Include="Model\Avaliacao_Fisica.cs" />
     <Compile Include="Model\ViewPresencaSubTreino.cs" />
     <Compile Include="Model\Instrutor.cs" />
     <Compile Include="MyActionBarDrawerToggle.cs" />

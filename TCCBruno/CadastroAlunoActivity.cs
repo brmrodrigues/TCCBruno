@@ -49,6 +49,14 @@ namespace TCCBruno
             }
         }
 
+        public string DataNascimento
+        {
+            get
+            {
+                return FindViewById<EditText>(Resource.Id.EDT_DataNascimento).Text;
+            }
+        }
+
         public string Email
         {
             get
@@ -96,7 +104,7 @@ namespace TCCBruno
             };
 
             AlunoDAO alunoDAO = new AlunoDAO();
-            if (alunoDAO.InsertPessoa(_instrutorId, newPessoa))
+            if (alunoDAO.InsertPessoa(_instrutorId, newPessoa, DateTime.Parse(DataNascimento).ToShortDateString()))
             {
                 Validation.DisplayAlertMessage("Aluno cadastrado com sucesso!", this);
             }

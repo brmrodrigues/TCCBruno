@@ -16,6 +16,7 @@ using Microsoft.Practices.ServiceLocation;
 using TCCBruno.Adapters;
 using Android.Text;
 using TCCBruno.Extension;
+using TCCBruno.Model;
 
 namespace TCCBruno
 {
@@ -26,23 +27,12 @@ namespace TCCBruno
         private readonly int[,] mAbdominal = new int[6, 4] { { 33, 38, 42, 47 }, { 29, 32, 36, 42 }, { 22, 26, 30, 35 }, { 17, 21, 25, 30 }, { 13, 17, 21, 25 }, { 7, 11, 16, 22 } };
         private readonly int[,] mGeral = new int[6, 4] { { 24, 29, 34, 39 }, { 25, 30, 34, 40 }, { 23, 28, 33, 38 }, { 18, 24, 29, 35 }, { 16, 20, 25, 33 }, { 15, 20, 25, 33 } };
 
-        private int _instrutorId;
+        private Aluno _aluno;
+        private bool _calculosOk = false;
 
-        private Spinner _meusAlunosSpinner;
+        //private Spinner _meusAlunosSpinner;
         private Spinner _protocoloSpinner;
 
-        //Variáveis de Entrada
-        //private EditText _pesoEditText;
-        private EditText _tricipitalEditText;
-        private EditText _subescapularEditText;
-        private EditText _suprailiciaEditText;
-        private EditText _abdominalEditText;
-        private EditText _peitoralEditText;
-        private EditText _axilarMediaEditText;
-        private EditText _coxaMedialEditText;
-        private EditText _idadeEditText;
-        private EditText _radioUEditText;
-        private EditText _femuralEditText;
         private RadioButton _masculinoRadioButton;
         private RadioButton _femininoRadioButton;
 
@@ -80,11 +70,11 @@ namespace TCCBruno
         public double Femural { get { return FindViewById<EditText>(Resource.Id.EDT_Femural).ToDouble(); } }
 
         //Exercícios
-        public double FlexGeral1 { get { return FindViewById<EditText>(Resource.Id.EDT_FlexGeral1).ToDouble(); } }
-        public double FlexGeral2 { get { return FindViewById<EditText>(Resource.Id.EDT_FlexGeral2).ToDouble(); } }
-        public double FlexGeral3 { get { return FindViewById<EditText>(Resource.Id.EDT_FlexGeral3).ToDouble(); } }
-        public double FlexBraco { get { return FindViewById<EditText>(Resource.Id.EDT_FlexBraco).ToDouble(); } }
-        public double AbdominaisRep { get { return FindViewById<EditText>(Resource.Id.EDT_AbdominaisRep).ToDouble(); } }
+        public int FlexGeral1 { get { return FindViewById<EditText>(Resource.Id.EDT_FlexGeral1).Text.ToInt32(); } }
+        public int FlexGeral2 { get { return FindViewById<EditText>(Resource.Id.EDT_FlexGeral2).Text.ToInt32(); } }
+        public int FlexGeral3 { get { return FindViewById<EditText>(Resource.Id.EDT_FlexGeral3).Text.ToInt32(); } }
+        public int FlexBraco { get { return FindViewById<EditText>(Resource.Id.EDT_FlexBraco).Text.ToInt32(); } }
+        public int AbdominaisRep { get { return FindViewById<EditText>(Resource.Id.EDT_AbdominaisRep).Text.ToInt32(); } }
 
 
         //Variáveis de Saída
@@ -230,7 +220,7 @@ namespace TCCBruno
 
 
             //Get View Controls
-            _meusAlunosSpinner = FindViewById<Spinner>(Resource.Id.SPN_MeusAlunosAvFisica);
+            //_meusAlunosSpinner = FindViewById<Spinner>(Resource.Id.SPN_MeusAlunosAvFisica);
             _protocoloSpinner = FindViewById<Spinner>(Resource.Id.SPN_ProtocoloAvFis);
             _masculinoRadioButton = FindViewById<RadioButton>(Resource.Id.RB_Masculino);
             _femininoRadioButton = FindViewById<RadioButton>(Resource.Id.RB_Feminino);
@@ -268,8 +258,8 @@ namespace TCCBruno
 
             _protocoloSpinner.Adapter = new ProtocoloAvFisicaListAdapter(this);
 
-            _instrutorId = Nav.GetAndRemoveParameter<int>(Intent);
-            LoadAlunos();
+            _aluno = Nav.GetAndRemoveParameter<Aluno>(Intent);
+            //LoadAlunos();
         }
 
         private void BTN_Calcular_Click(object sender, EventArgs e)
@@ -277,15 +267,66 @@ namespace TCCBruno
             try
             {
                 Calculate();
+                _calculosOk = true;
             }
             catch
             {
-                Validation.DisplayAlertMessage("Preenche todos os campos corretamente antes de realizar o cálculo.", this);
+                Validation.DisplayAlertMessage("Preenche todos os campos corretamente antes de realizar os cálculos.", this);
+                _calculosOk = false;
             }
         }
 
         private void BTN_CadastrarAvFisica_Click(object sender, EventArgs e)
         {
+            if (!_calculosOk)
+            {
+                Validation.DisplayAlertMessage("Falha ao cadastrar Avaliação. Realize os cálculos novamente.", this);
+                return;
+            }
+
+            Avaliacao_FisicaDAO avFisicaDAO = new Avaliacao_FisicaDAO();
+            Avaliacao_Fisica newAvFisica = new Avaliacao_Fisica()
+            {
+                aluno_id = _aluno.aluno_id,
+                peso = Peso.ToDecimal(),
+                estatura = Estatura.ToDecimal(),
+                pressao_arterial = PressaoArterial.ToDecimal(),
+                torax = Torax.ToDecimal(),
+                cintura = Cintura.ToDecimal(),
+                abdome = Abdome.ToDecimal(),
+                braco_dir = BracoDir.ToDecimal(),
+                braco_esq = BracoEsq.ToDecimal(),
+                antebr_dir = AntebrDir.ToDecimal(),
+                antebr_esq = AntebrEsq.ToDecimal(),
+                quadril = Quadril.ToDecimal(),
+                coxa_dir = CoxaDir,
+                coxa_esq = CoxaEsq,
+                perna_dir = PernaDir.ToDecimal(),
+                perna_esq = PernaEsq.ToDecimal(),
+                ombro = Ombro.ToDecimal(),
+                tricipital = Tricipital.ToDecimal(),
+                subescapular = Subescapular.ToDecimal(),
+                suprailicia = Suprailicia.ToDecimal(),
+                abdominal = Abdominal.ToDecimal(),
+                peitoral = Peitoral.ToDecimal(),
+                axilar_media = AxilarMedia.ToDecimal(),
+                coxa_medial = CoxaMedial.ToDecimal(),
+                radio_u = RadioU.ToDecimal(),
+                femural = Femural.ToDecimal(),
+                flex_geral1 = FlexGeral1,
+                flex_geral2 = FlexGeral2,
+                flex_geral3 = FlexGeral3,
+                flex_braco = FlexBraco,
+                abdominais_rep = AbdominaisRep
+
+            };
+            if (!avFisicaDAO.InsertAvaliacao(newAvFisica))
+                Validation.DisplayAlertMessage("Não foi possível cadastrar a Avalicação Física. Tente novamente.", this);
+            else
+            {
+                Validation.DisplayAlertMessage("Avaliação Física cadastrada com sucesso!", this);
+            }
+
 
         }
 
@@ -427,19 +468,19 @@ namespace TCCBruno
             return result;
         }
 
-        private void LoadAlunos()
-        {
-            AlunoDAO alunoDAO = new AlunoDAO();
-            var pessoasList = alunoDAO.LoadAlunos(_instrutorId);
-            if (pessoasList == null)
-            {
-                Validation.DisplayAlertMessage("Falha ao carregar Alunos", this);
-                return;
-            }
-            //Preence ListView com os Alunos do Instrutor logado
-            var listAdapter = new MeusAlunosPageAdapter(this, pessoasList);
-            _meusAlunosSpinner.Adapter = listAdapter;
-        }
+        //private void LoadAlunos()
+        //{
+        //    AlunoDAO alunoDAO = new AlunoDAO();
+        //    var pessoasList = alunoDAO.LoadAlunos(_instrutorId);
+        //    if (pessoasList == null)
+        //    {
+        //        Validation.DisplayAlertMessage("Falha ao carregar Alunos", this);
+        //        return;
+        //    }
+        //    //Preence ListView com os Alunos do Instrutor logado
+        //    var listAdapter = new MeusAlunosPageAdapter(this, pessoasList);
+        //    _meusAlunosSpinner.Adapter = listAdapter;
+        //}
 
         private ResultadoClassExercicio ClassificacaoExercicio(TipoClassExercicio tipo, int valor, double idade)
         {

@@ -1,16 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace TCCBruno.Model
 {
@@ -19,8 +7,10 @@ namespace TCCBruno.Model
         public int aluno_id { get; set; }
         public int pessoa_id { get; set; }
         public int instrutor_id { get; set; }
+        public string data_nascimento { get; set; }
 
         public virtual Pessoa Pessoa { get; set; }
+        public virtual List<Avaliacao_Fisica> Avaliacao_Fisica { get; set; }
 
     }
 

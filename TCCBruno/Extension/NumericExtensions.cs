@@ -22,7 +22,7 @@ namespace TCCBruno.Extension
 
         public static int ToInt32(this string value)
         {
-            return Convert.ToInt32(value);
+            return value == string.Empty ? 0 : Convert.ToInt32(value);
         }
 
         public static decimal ToDecimal(this string value)

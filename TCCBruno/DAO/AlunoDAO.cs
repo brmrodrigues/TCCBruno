@@ -18,7 +18,7 @@ namespace TCCBruno.DAO
     public class AlunoDAO
     {
 
-        public bool InsertPessoa(int instrutorId, Pessoa newPessoa)
+        public bool InsertPessoa(int instrutorId, Pessoa newPessoa, string dataNascimento)
         {
             SqlConnection connection;
             using (connection = new SqlConnection(DBConnection.ConnectionString))
@@ -40,7 +40,8 @@ namespace TCCBruno.DAO
                     Aluno newAluno = new Aluno
                     {
                         pessoa_id = alunoId,
-                        instrutor_id = instrutorId
+                        instrutor_id = instrutorId,
+                        data_nascimento = dataNascimento
                     };
                     if (!InserAlunoFromPessoa(newAluno))
                     {
@@ -62,13 +63,14 @@ namespace TCCBruno.DAO
             //SqlConnection connection;
             //using (connection = new SqlConnection(DBConnection.ConnectionString))
             //{
-            string queryString = "INSERT INTO [dbo].[Aluno] ([pessoa_id], [instrutor_id])" +
-                                    " VALUES (@ppessoa_id, @pinstrutor_id)";
+            string queryString = "INSERT INTO [dbo].[Aluno] ([pessoa_id], [instrutor_id], [data_nascimento])" +
+                                    " VALUES (@ppessoa_id, @pinstrutor_id, @pdata_nascimento)";
 
             List<SqlParameter> parametersList = new List<SqlParameter>()
             {
                 new SqlParameter() {ParameterName="@ppessoa_id", SqlDbType = SqlDbType.Int, Value = newAluno.pessoa_id },
                 new SqlParameter() {ParameterName="@pinstrutor_id", SqlDbType = SqlDbType.Int, Value = newAluno.instrutor_id },
+                new SqlParameter() {ParameterName="@pdata_nascimento", SqlDbType = SqlDbType.DateTime, Value = newAluno.data_nascimento }
             };
 
             return DBConnection.ExecuteNonQuery(queryString, parametersList);
@@ -96,18 +98,25 @@ namespace TCCBruno.DAO
         public List<Aluno> LoadAlunos(int instrutorId)
         {
             SqlConnection connection;
+            SqlDataReader reader;
             using (connection = new SqlConnection(DBConnection.ConnectionString))
             {
-                string queryString = "SELECT A.[aluno_id], A.[instrutor_id], P.[pessoa_id], P.[nome_pessoa], P.[usuario], P.[status]" +
+                string queryString = "SELECT A.[aluno_id], A.[instrutor_id], A.[data_nascimento], P.[pessoa_id], P.[nome_pessoa], P.[usuario], P.[status]" +
                                         " FROM Aluno AS A" +
                                         " INNER JOIN Pessoa AS P ON (P.[pessoa_id] = A.[pessoa_id])" +
-                                        " WHERE A.[instrutor_id] = " + instrutorId.ToString();
-                SqlCommand sqlCommand = new SqlCommand(queryString, connection);
-                //sqlCommand.Parameters.AddWithValue("@parameter", paramValue);
+                                        " WHERE A.[instrutor_id] = @pinstrutor_id";
+                List<SqlParameter> parametersList = new List<SqlParameter>()
+                {
+                    new SqlParameter() {ParameterName="@pinstrutor_id", SqlDbType = SqlDbType.Int, Value = instrutorId }
+                };
+                //sqlCommand.Parameters.AddWithValue("@pinstrutor_id", instrutorId);
                 try
                 {
                     connection.Open();
-                    SqlDataReader reader = sqlCommand.ExecuteReader();
+                    SqlCommand sqlCommand = new SqlCommand(queryString, connection);
+                    sqlCommand.Parameters.AddRange(parametersList.ToArray());
+                    sqlCommand.CommandType = CommandType.Text;
+                    reader = sqlCommand.ExecuteReader();
                     List<Aluno> pessoasList = new List<Aluno>();
                     while (reader.Read())
                     {
@@ -115,6 +124,7 @@ namespace TCCBruno.DAO
                         {
                             aluno_id = (int)reader["aluno_id"],
                             instrutor_id = (int)reader["instrutor_id"],
+                            data_nascimento = reader["data_nascimento"].ToString(),
                             Pessoa = new Pessoa
                             {
                                 pessoa_id = (int)reader["pessoa_id"],

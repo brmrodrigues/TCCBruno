@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using GalaSoft.MvvmLight.Ioc;
 using System.Collections.Generic;
+using TCCBruno.Model;
 
 namespace TCCBruno
 {
@@ -146,7 +147,12 @@ namespace TCCBruno
             if (usuario.Equals("av"))
             {
                 var nav = ServiceLocator.Current.GetInstance<INavigationService>();
-                nav.NavigateTo(_cadastroAvFisicaPageKey, 2); //Para testes
+                Aluno aluno = new Aluno
+                {
+                    aluno_id = 6,
+                    data_nascimento = "12/03/1992"
+                };
+                nav.NavigateTo(_cadastroAvFisicaPageKey, aluno); //Para testes
             }
             else if (usuario.Equals("aluno"))
             {

@@ -1181,8 +1181,8 @@ namespace TCCBruno
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f080043
-			public const int BTN_CadastrarAluno = 2131230787;
+			// aapt resource value: 0x7f080044
+			public const int BTN_CadastrarAluno = 2131230788;
 			
 			// aapt resource value: 0x7f08007a
 			public const int BTN_CadastrarAvFisica = 2131230842;
@@ -1271,14 +1271,17 @@ namespace TCCBruno
 			// aapt resource value: 0x7f080060
 			public const int EDT_CoxaMedial = 2131230816;
 			
+			// aapt resource value: 0x7f080042
+			public const int EDT_DataNascimento = 2131230786;
+			
 			// aapt resource value: 0x7f080085
 			public const int EDT_Descanso = 2131230853;
 			
 			// aapt resource value: 0x7f08008b
 			public const int EDT_DescricaoTreinoTipo = 2131230859;
 			
-			// aapt resource value: 0x7f080042
-			public const int EDT_Email = 2131230786;
+			// aapt resource value: 0x7f080043
+			public const int EDT_Email = 2131230787;
 			
 			// aapt resource value: 0x7f08004b
 			public const int EDT_Estatura = 2131230795;
@@ -1395,10 +1398,7 @@ namespace TCCBruno
 			public const int SPN_Exercicios = 2131230845;
 			
 			// aapt resource value: 0x7f080046
-			public const int SPN_MeusAlunosAvFisica = 2131230790;
-			
-			// aapt resource value: 0x7f080045
-			public const int SPN_ProtocoloAvFis = 2131230789;
+			public const int SPN_ProtocoloAvFis = 2131230790;
 			
 			// aapt resource value: 0x7f08008f
 			public const int SPN_TreinoTipo = 2131230863;
@@ -1658,8 +1658,8 @@ namespace TCCBruno
 			// aapt resource value: 0x7f08000b
 			public const int tabMode = 2131230731;
 			
-			// aapt resource value: 0x7f080044
-			public const int tableLayout1 = 2131230788;
+			// aapt resource value: 0x7f080045
+			public const int tableLayout1 = 2131230789;
 			
 			// aapt resource value: 0x7f08007e
 			public const int tableRow1 = 2131230846;
