@@ -18,10 +18,10 @@ namespace TCCBruno.DAO
     public class Avaliacao_FisicaDAO
     {
 
-        public List<Avaliacao_Fisica> LoadAvaliacoes(int alunoId)
+        public List<Avaliacao_Fisica> LoadAvaliacoesResumo(int alunoId)
         {
-            string queryString = "SELECT [treino_id], [data_inicio], [data_fim]" +
-                                    " FROM Avalicao_Fisica" +
+            string queryString = "SELECT [avaliacao_fisica_id], [data_avaliacao]" +
+                                    " FROM Avaliacao_Fisica" +
                                     " WHERE [aluno_id] = @paluno_id";
 
             List<SqlParameter> parametersList = new List<SqlParameter>()
@@ -37,7 +37,7 @@ namespace TCCBruno.DAO
             #region InsertAvFisicaQuery
             string queryString = "INSERT INTO Avaliacao_Fisica" +
            " ([aluno_id]" +
-           ",[peso]" +
+           ",[data_avaliacao]" +
            ",[estatura]" +
            ",[pressao_arterial]" +
            ",[torax]" +
@@ -70,7 +70,7 @@ namespace TCCBruno.DAO
            " OUTPUT Inserted.avaliacao_fisica_id " +
            " VALUES " +
            "(@aluno_id " +
-           ",@peso" +
+           ",@data_avaliacao" +
             ",@estatura" +
             ",@pressao_arterial" +
             ",@torax" +
@@ -101,10 +101,11 @@ namespace TCCBruno.DAO
             //",@flex_braco" +
             //",@abdominais_rep)";
             #endregion
+            var data_avaliacao = DateTime.Parse(avaliacao.data_avaliacao);
             List<SqlParameter> parametersList = new List<SqlParameter>()
             {
                 new SqlParameter() {ParameterName="@aluno_id", SqlDbType = SqlDbType.Int, Value = avaliacao.aluno_id },
-                new SqlParameter() {ParameterName="@peso", SqlDbType = SqlDbType.Decimal, Value = avaliacao.peso },
+                new SqlParameter() {ParameterName="@data_avaliacao", SqlDbType = SqlDbType.DateTime, Value = avaliacao.data_avaliacao },
                 new SqlParameter() {ParameterName="@estatura", SqlDbType = SqlDbType.Decimal, Value = avaliacao.estatura, },
                 new SqlParameter() {ParameterName="@pressao_arterial", SqlDbType = SqlDbType.Decimal, Value = avaliacao.pressao_arterial, },
                 new SqlParameter() {ParameterName="@torax", SqlDbType = SqlDbType.Decimal, Value = avaliacao.torax, },
@@ -216,7 +217,8 @@ namespace TCCBruno.DAO
                                     " flex_geral2 = @flex_geral2," +
                                     " flex_geral3 = @flex_geral3," +
                                     " flex_braco = @flex_braco," +
-                                    " abdominais_rep = @abdominais_rep" +
+                                    " abdominais_rep = @abdominais_rep," +
+                                    " peso = @peso" +
                                     " WHERE avaliacao_fisica_id = @avaliacao_fisica_id";
             List<SqlParameter> parametersList = new List<SqlParameter>()
             {
@@ -227,7 +229,8 @@ namespace TCCBruno.DAO
                 new SqlParameter() {ParameterName="@flex_geral2", SqlDbType = SqlDbType.Int, Value = avaliacao.flex_geral2, },
                 new SqlParameter() {ParameterName="@flex_geral3", SqlDbType = SqlDbType.Int, Value = avaliacao.flex_geral3, },
                 new SqlParameter() {ParameterName="@flex_braco", SqlDbType = SqlDbType.Int, Value = avaliacao.flex_braco, },
-                new SqlParameter() {ParameterName="@abdominais_rep", SqlDbType = SqlDbType.Int, Value = avaliacao.abdominais_rep, }
+                new SqlParameter() {ParameterName="@abdominais_rep", SqlDbType = SqlDbType.Int, Value = avaliacao.abdominais_rep, },
+                new SqlParameter() {ParameterName="@peso", SqlDbType = SqlDbType.Int, Value = avaliacao.peso, }
             };
 
             if (!DBConnection.ExecuteNonQuery(queryString, parametersList))
@@ -312,6 +315,18 @@ namespace TCCBruno.DAO
             }
             return true;
             //return InsertAvaliacaoPage3(avaliacaoFisicaId, avaliacao);
+        }
+
+        public bool RemoveAvaliacaoFisica(int avFisicaId)
+        {
+            string queryString = "DELETE FROM Avaliacao_Fisica" +
+                                            " WHERE [avaliacao_fisica_id] = @avaliacao_fisica_id";
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName="@avaliacao_fisica_id", SqlDbType = SqlDbType.Int, Value = avFisicaId }
+            };
+
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
         }
     }
 }

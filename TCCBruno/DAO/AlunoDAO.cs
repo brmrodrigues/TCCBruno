@@ -170,6 +170,20 @@ namespace TCCBruno.DAO
             return aluno[0].nome_pessoa;
         }
 
+        public Aluno GetDataNascimentoAluno(int alunoId)
+        {
+            string queryString = "SELECT aluno_id, data_nascimento FROM Aluno WHERE aluno_id = @aluno_id";
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName="@aluno_id", SqlDbType = SqlDbType.Int, Value = alunoId }
+            };
+
+            var aluno = DBConnection.SelectQuery<Aluno>(queryString, parametersList);
+
+            //Return First Or Default
+            return aluno[0];
+        }
+
         public bool ActivateDeactivateAluno(int pessoaId, bool alunoStatus)
         {
             string queryString = "UPDATE Pessoa" +

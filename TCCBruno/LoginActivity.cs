@@ -33,6 +33,7 @@ namespace TCCBruno
         public const string _homePageKey = "HomePage";
         public const string _loginPageKey = "LoginPage";
         public const string _estatisticasFaltaPageKey = "EstatisticasFaltaPage";
+        public const string _avaliacaoFisicaPageKey = "AvaliacaoFisicaPage";
 
         private static bool _initialized; //flag utilizada na inicialização do ServiceLocator
 
@@ -72,6 +73,7 @@ namespace TCCBruno
                 nav.Configure(_homePageKey, typeof(HomeActivity));
                 nav.Configure(_loginPageKey, typeof(LoginActivity));
                 nav.Configure(_estatisticasFaltaPageKey, typeof(EstatisticasFaltaActivity));
+                nav.Configure(_avaliacaoFisicaPageKey, typeof(AvaliacaoFisicaActivity));
 
 
                 SimpleIoc.Default.Register<INavigationService>(() => nav);
@@ -87,7 +89,8 @@ namespace TCCBruno
         private void ButtonClick_Entrar(object sender, EventArgs e)
         {
 
-            ValidateFields();
+            //ValidateFields();
+            Validation.ValidatedFields(_linearLayoutLoginPage);
             var usuario = FindViewById<EditText>(Resource.Id.editText_Email).Text;
             var senha = FindViewById<EditText>(Resource.Id.ediText_Senha).Text;
             bool tipoPessoa = false;
@@ -200,21 +203,21 @@ namespace TCCBruno
         /// <summary>
         /// Vericia se os campos Login e Senha estão vazios
         /// </summary>
-        private void ValidateFields()
-        {
-            for (int i = 0; i < _linearLayoutLoginPage.ChildCount; i++)
-            {
-                if (_linearLayoutLoginPage.GetChildAt(i) is EditText)
-                {
-                    if (string.IsNullOrWhiteSpace(((EditText)_linearLayoutLoginPage.GetChildAt(i)).Text))
-                    {
-                        DisplayAlertMessage("Preencha os campos Login e Senha");
+        //private void ValidateFields()
+        //{
+        //    for (int i = 0; i < _linearLayoutLoginPage.ChildCount; i++)
+        //    {
+        //        if (_linearLayoutLoginPage.GetChildAt(i) is EditText)
+        //        {
+        //            if (string.IsNullOrWhiteSpace(((EditText)_linearLayoutLoginPage.GetChildAt(i)).Text))
+        //            {
+        //                DisplayAlertMessage("Preencha os campos Login e Senha");
 
-                        break;
-                    }
-                }
-            }
-        }
+        //                break;
+        //            }
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Pop up de um alerta ao usuário

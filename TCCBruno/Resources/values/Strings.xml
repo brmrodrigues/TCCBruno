@@ -30,9 +30,16 @@
     <item>Remover Exercício</item>
   </string-array>
 
+  <!--Lista de escolhas para Long Click de AvaliaçõesFísica-->
+  <string-array name="avaliacoesFisicaItemLongClickList">
+    <item>Exibir Detalhes</item>
+    <item>Remover Avaliação</item>
+  </string-array>
+
   <!--Lista de escolhas para Long Click de MeusAlunos-->
   <string-array name="meusAlunosItemLongClickList">
     <item>Ativar/Desativar Aluno</item>
+    <item>Avaliações Físicas</item>
     <item>Estatísticas de Falta</item>
     <item>Remover Aluno</item>
   </string-array>

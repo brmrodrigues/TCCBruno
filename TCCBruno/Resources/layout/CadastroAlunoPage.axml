@@ -4,56 +4,57 @@
     p1:layout_width="match_parent"
     p1:layout_height="match_parent"
     p1:background="@drawable/back_gradient_color">
-  <GridLayout
-      p1:minWidth="25px"
-      p1:minHeight="25px"
-      p1:layout_width="match_parent"
-      p1:id="@+id/GRL_CadastroAluno"
-      p1:orientation="horizontal"
-      p1:rowCount="3"
-      p1:columnCount="2"
-      p1:layout_height="wrap_content">
-    <TextView
-        p1:text="Nome:" />
-    <EditText
-        p1:gravity="right"
+    <GridLayout
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:id="@+id/GRL_CadastroAluno"
+        p1:orientation="horizontal"
+        p1:rowCount="3"
+        p1:columnCount="2"
+        p1:layout_height="wrap_content">
+        <TextView
+            p1:text="Nome:" />
+        <EditText
+            p1:gravity="right"
+            p1:layout_height="wrap_content"
+            p1:layout_width="220dp"
+            p1:id="@+id/EDT_FirstName"
+            p1:layout_marginRight="0.0dp" />
+        <TextView
+            p1:text="Sobrenome:" />
+        <EditText
+            p1:gravity="right"
+            p1:layout_height="wrap_content"
+            p1:layout_width="220dp"
+            p1:id="@+id/EDT_LastName" />
+        <TextView
+            p1:text="Data de Nascimento:" />
+        <EditText
+            p1:inputType="date"
+            p1:gravity="right"
+            p1:layout_height="wrap_content"
+            p1:layout_width="220dp"
+            p1:id="@+id/EDT_DataNascimento" />
+        <TextView
+            p1:text="E-mail:" />
+        <EditText
+            p1:inputType="textEmailAddress"
+            p1:gravity="right"
+            p1:layout_height="wrap_content"
+            p1:layout_width="220dp"
+            p1:id="@+id/EDT_Email" />
+    </GridLayout>
+    <Button
+        p1:text="Cadastrar"
+        p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:layout_width="250dp"
-        p1:id="@+id/EDT_FirstName" />
-    <TextView
-        p1:text="Sobrenome:" />
-    <EditText
-        p1:gravity="right"
-        p1:layout_height="wrap_content"
-        p1:layout_width="250dp"
-        p1:id="@+id/EDT_LastName" />
-    <TextView
-        p1:text="Data de Nascimento:" />
-    <EditText
-        p1:inputType="date"
-        p1:gravity="right"
-        p1:layout_height="wrap_content"
-        p1:layout_width="250dp"
-        p1:id="@+id/EDT_DataNascimento" />
-    <TextView
-          p1:text="E-mail:" />
-    <EditText
-        p1:inputType="textEmailAddress"
-        p1:gravity="right"
-        p1:layout_height="wrap_content"
-        p1:layout_width="250dp"
-        p1:id="@+id/EDT_Email" />
-  </GridLayout>
-  <Button
-      p1:text="Cadastrar"
-      p1:layout_width="wrap_content"
-      p1:layout_height="wrap_content"
-      p1:id="@+id/BTN_CadastrarAluno"
-      p1:layout_gravity="center"
-      p1:layout_marginTop="80.0dp"
-      p1:paddingRight="30.0dp"
-      p1:paddingLeft="30.0dp"
-      p1:onClick="BTN_CadastrarAluno_Click"
-      p1:background="@drawable/button_background"
-      style="@style/button_text" />
+        p1:id="@+id/BTN_CadastrarAluno"
+        p1:layout_gravity="center"
+        p1:layout_marginTop="80.0dp"
+        p1:paddingRight="30.0dp"
+        p1:paddingLeft="30.0dp"
+        p1:onClick="BTN_CadastrarAluno_Click"
+        p1:background="@drawable/button_background"
+        style="@style/button_text" />
 </LinearLayout>

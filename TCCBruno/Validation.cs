@@ -31,6 +31,40 @@ namespace TCCBruno
             return true;
         }
 
+        public static bool ValidatedFields(LinearLayout layout)
+        {
+            for (int i = 0; i < layout.ChildCount; i++)
+            {
+                if (layout.GetChildAt(i) is EditText)
+                {
+                    if (string.IsNullOrWhiteSpace(((EditText)layout.GetChildAt(i)).Text))
+                    {
+                        //DisplayAlertMessage("Preencha os campos Login e Senha");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public static void EraseEditTexts(TableLayout layout)
+        {
+            for (int i = 0; i < layout.ChildCount; i++)
+            {
+                if (layout.GetChildAt(i) is TableRow)
+                {
+                    var lay = (TableRow)layout.GetChildAt(i);
+                    for (int j = 0; j < lay.ChildCount; j++)
+                    {
+                        if (lay.GetChildAt(j) is EditText)
+                        {
+                            ((EditText)lay.GetChildAt(j)).Text = "";
+                        }
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Pop up de um alerta ao usuário
         /// </summary>

@@ -51,6 +51,7 @@ namespace TCCBruno
         {
             "Nome",
             "Treinos",
+            "Avaliações",
             "Check-in",
             "Sair"
         };
@@ -59,6 +60,7 @@ namespace TCCBruno
         {
             Resource.Drawable.ic_user,
             Resource.Drawable.ic_treinos,
+            Resource.Drawable.ic_avaliacoes,
             Resource.Drawable.ic_checkIn,
             Resource.Drawable.ic_logOut
         };
@@ -201,16 +203,19 @@ namespace TCCBruno
                 {
                     case 0:
                         break;
-                    case 1:
+                    case 1: // Treinos
                         mDrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
                         Nav.NavigateTo(LoginActivity._treinosPageKey, _instrutorAlunoDict);
                         break;
-                    case 2:
+                    case 2: // Avaliações Física
+                        Nav.NavigateTo(LoginActivity._avaliacaoFisicaPageKey, _instrutorAlunoDict);
+                        break;
+                    case 3: // CheckIn
                         ShowFragment(_checkInFragment);
                         mDrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
                         //Nav.NavigateTo(LoginActivity._checkInPageKey, _instrutorAlunoDict["aluno_id"]);
                         break;
-                    case 3:
+                    case 4: // Sair
                         ShowFragment(_logOutFragment);
                         mDrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
                         break;

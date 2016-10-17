@@ -36,6 +36,7 @@ namespace TCCBruno.Model
         public int? flex_geral3 { get; set; }
         public int? flex_braco { get; set; }
         public int? abdominais_rep { get; set; }
+        public string data_avaliacao { get; set; }
 
     }
 }

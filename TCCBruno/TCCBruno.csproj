@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\EstatisticaFaltaListAdapter.cs" />
+    <Compile Include="Adapters\AvaliacaoFisicaListAdapter.cs" />
     <Compile Include="Adapters\LeftMenuListAdapter.cs" />
     <Compile Include="Adapters\TreinoTipoListAdapter.cs" />
     <Compile Include="Adapters\ProtocoloAvFisicaListAdapter.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="DAO\TreinoDAO.cs" />
     <Compile Include="DAO\Treino_TipoDAO.cs" />
     <Compile Include="DatePickerFragment.cs" />
+    <Compile Include="AvaliacaoFisicaActivity.cs" />
     <Compile Include="Execucao_ExerciciosActivity.cs" />
     <Compile Include="EstatisticasFaltaActivity.cs" />
     <Compile Include="IActionBarActivity.cs" />
@@ -197,6 +199,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\EstatisticasFaltaPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\AvaliacaoFisicaPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -287,6 +292,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\ExecucaoExercicioCustomLV.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_avaliacoes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

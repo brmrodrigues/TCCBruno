@@ -13,6 +13,7 @@ using TCCBruno.Model;
 using TCCBruno.DAO;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
+using System.Globalization;
 
 namespace TCCBruno
 {
@@ -104,7 +105,7 @@ namespace TCCBruno
             };
 
             AlunoDAO alunoDAO = new AlunoDAO();
-            if (alunoDAO.InsertPessoa(_instrutorId, newPessoa, DateTime.Parse(DataNascimento).ToShortDateString()))
+            if (alunoDAO.InsertPessoa(_instrutorId, newPessoa, (DateTime.ParseExact(DataNascimento, "dd/MM/yyyy", CultureInfo.InvariantCulture)).ToShortDateString()))
             {
                 Validation.DisplayAlertMessage("Aluno cadastrado com sucesso!", this);
             }

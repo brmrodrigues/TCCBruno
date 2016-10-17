@@ -135,10 +135,16 @@ namespace TCCBruno
                     ActivateDeactivateSelectedAluno();
                     LoadAlunos();
                     break;
-                case 1: //Estatísticas de Falta
+                case 1: //Avaliações Física do Aluno
+                    var instrutorAlunoDict = new Dictionary<string, int>();
+                    instrutorAlunoDict.Add("instrutor_id", _instrutorId);
+                    instrutorAlunoDict.Add("aluno_id", _alunoSelectedId);
+                    Nav.NavigateTo(LoginActivity._avaliacaoFisicaPageKey, instrutorAlunoDict);
+                    break;
+                case 2: //Estatísticas de Falta
                     Nav.NavigateTo(LoginActivity._estatisticasFaltaPageKey, _alunoSelectedId);
                     break;
-                case 2: //Remover Aluno do Sistema
+                case 3: //Remover Aluno do Sistema
                     RemoveSelectedAluno();
                     LoadAlunos();
                     break;

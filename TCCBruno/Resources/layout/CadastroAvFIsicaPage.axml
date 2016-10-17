@@ -9,7 +9,7 @@
         tl:minHeight="25px"
         tl:layout_width="match_parent"
         tl:layout_height="match_parent"
-        tl:id="@+id/tableLayout1">
+        tl:id="@+id/TBL_CadastroAvFisica">
     <!--Protocolo-->
         <TableRow>
             <TextView
@@ -24,7 +24,7 @@
                 tl:id="@+id/SPN_ProtocoloAvFis" />
         </TableRow>
     <!--Aluno a ser avaliado-->
-        <!--<TableRow>
+    <!--<TableRow>
             <TextView
                 tl:layout_column="1"
                 tl:text="Aluno:"
@@ -52,7 +52,21 @@
                 tl:maxLines="1"
                 tl:inputType="numberDecimal"
                 tl:id="@+id/EDT_Idade"
-                tl:text="27.4" />
+                tl:text="" />
+        </TableRow>
+    <!--Data Avaliação-->
+        <TableRow>
+            <TextView
+                tl:layout_column="1"
+                tl:text="Data da Avaliação:"
+                tl:padding="3dip" />
+            <TextView
+                tl:layout_column="2"
+                tl:gravity="right"
+                tl:padding="3dip"
+                tl:layout_height="wrap_content"
+                tl:layout_width="100dp"
+                tl:id="@+id/TV_DataAvaliacao" />
         </TableRow>
     <!--Sexo-->
         <TableRow>

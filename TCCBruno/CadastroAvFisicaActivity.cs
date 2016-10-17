@@ -37,7 +37,9 @@ namespace TCCBruno
         private RadioButton _femininoRadioButton;
 
         //Variáveis de Entrada
-        public double Idade { get { return FindViewById<EditText>(Resource.Id.EDT_Idade).Text.ToDouble(); } }
+        public int Idade { get { return FindViewById<EditText>(Resource.Id.EDT_Idade).Text.ToInt32(); } }
+        //public string DataAvaliacao { get { return FindViewById<EditText>(Resource.Id.EDT_DataAvaliacao).Text; } }
+        //public double Idade { get; set; }
         public double Peso { get { return FindViewById<EditText>(Resource.Id.EDT_Peso).ToDouble(); } }
         public double Estatura { get { return FindViewById<EditText>(Resource.Id.EDT_Estatura).ToDouble(); } }
         public double PressaoArterial { get { return FindViewById<EditText>(Resource.Id.EDT_PressaoArterial).ToDouble(); } }
@@ -101,6 +103,7 @@ namespace TCCBruno
         TextView TV_FlexibilidadeGeral;
         TextView TV_FlexoesBraco;
         TextView TV_Abdominais;
+        TextView TV_DataAvaliacao;
 
 
 
@@ -229,16 +232,17 @@ namespace TCCBruno
             //Resultados (TextViews)
 
             //Fracionamento
-            TV_PesoMuscular = FindViewById<TextView>(Resource.Id.TV_PesoMuscular); ;
-            TV_PesoGordo = FindViewById<TextView>(Resource.Id.TV_PesoGordo); ;
-            TV_PesoMagro = FindViewById<TextView>(Resource.Id.TV_PesoMagro); ;
-            TV_PorcPesoMuscular = FindViewById<TextView>(Resource.Id.TV_PorcPesoMuscular); ;
-            TV_PorcGorduraAtual = FindViewById<TextView>(Resource.Id.TV_PorcGorduraAtual); ;
-            TV_PorcPesoMagro = FindViewById<TextView>(Resource.Id.TV_PorcPesoMagro); ;
-            TV_PesoIdeal = FindViewById<TextView>(Resource.Id.TV_PesoIdeal); ;
-            TV_Excesso = FindViewById<TextView>(Resource.Id.TV_Excesso); ;
-            TV_PesoOsseo = FindViewById<TextView>(Resource.Id.TV_PesoOsseo); ;
-            TV_PesoResidual = FindViewById<TextView>(Resource.Id.TV_PesoResidual); ;
+            TV_PesoMuscular = FindViewById<TextView>(Resource.Id.TV_PesoMuscular);
+            TV_PesoGordo = FindViewById<TextView>(Resource.Id.TV_PesoGordo);
+            TV_PesoMagro = FindViewById<TextView>(Resource.Id.TV_PesoMagro);
+            TV_PorcPesoMuscular = FindViewById<TextView>(Resource.Id.TV_PorcPesoMuscular);
+            TV_PorcGorduraAtual = FindViewById<TextView>(Resource.Id.TV_PorcGorduraAtual);
+            TV_PorcPesoMagro = FindViewById<TextView>(Resource.Id.TV_PorcPesoMagro);
+            TV_PesoIdeal = FindViewById<TextView>(Resource.Id.TV_PesoIdeal);
+            TV_Excesso = FindViewById<TextView>(Resource.Id.TV_Excesso);
+            TV_PesoOsseo = FindViewById<TextView>(Resource.Id.TV_PesoOsseo);
+            TV_PesoResidual = FindViewById<TextView>(Resource.Id.TV_PesoResidual);
+            TV_DataAvaliacao = FindViewById<TextView>(Resource.Id.TV_DataAvaliacao);
 
             //Classificações
             TV_IMC = FindViewById<TextView>(Resource.Id.TV_IMC);
@@ -259,6 +263,15 @@ namespace TCCBruno
             _protocoloSpinner.Adapter = new ProtocoloAvFisicaListAdapter(this);
 
             _aluno = Nav.GetAndRemoveParameter<Aluno>(Intent);
+
+            Validation.EraseEditTexts(FindViewById<TableLayout>(Resource.Id.TBL_CadastroAvFisica));
+
+            //int idade = DateTime.Today.Year - DateTime.Parse(_aluno.data_nascimento).Year;
+            //_dataAvaliacao = DateTime.Now.ToShortDateString();
+            if (_aluno.data_nascimento != null)
+                FindViewById<EditText>(Resource.Id.EDT_Idade).Text = (DateTime.Today.Year - DateTime.Parse(_aluno.data_nascimento).Year).ToString();
+            //FindViewById<EditText>(Resource.Id.EDT_DataAvaliacao).Text = DateTime.Parse(_dataAvaliacao).ToString("dd/MM/yyyy");
+            TV_DataAvaliacao.Text = DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy");
             //LoadAlunos();
         }
 
@@ -288,6 +301,7 @@ namespace TCCBruno
             Avaliacao_Fisica newAvFisica = new Avaliacao_Fisica()
             {
                 aluno_id = _aluno.aluno_id,
+                data_avaliacao = DateTime.Now.ToShortDateString(),
                 peso = Peso.ToDecimal(),
                 estatura = Estatura.ToDecimal(),
                 pressao_arterial = PressaoArterial.ToDecimal(),
@@ -482,7 +496,7 @@ namespace TCCBruno
         //    _meusAlunosSpinner.Adapter = listAdapter;
         //}
 
-        private ResultadoClassExercicio ClassificacaoExercicio(TipoClassExercicio tipo, int valor, double idade)
+        private ResultadoClassExercicio ClassificacaoExercicio(TipoClassExercicio tipo, int valor, int idade)
         {
             int[,] values = new int[6, 4];
             int faixaEtaria;
