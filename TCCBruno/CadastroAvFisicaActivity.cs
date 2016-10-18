@@ -446,31 +446,31 @@ namespace TCCBruno
             {
                 case 0: //GUEDES 3DC
                     var logInput = Tricipital + Suprailicia + CoxaMedial;
-                    var denGuedes = (1.1714 - 0.0671 * Math.Log(logInput <= 0 ? 1 : logInput));
+                    var logResult = Math.Log10(logInput);
+                    var denGuedes = (1.1714 - 0.0671 * Math.Log10(logInput <= 0 ? 1 : logInput));
                     if (denGuedes == 0.0)
                         errorCalculation = true;
                     else
                         result = (((4.95 / denGuedes) - 4.5) * 100.0);
                     break;
                 case 1: //JACKSON & POLLOCK 3DC
-                    var den3DC = (1.10938 - 0.0008267 * (Peitoral + Abdominal + CoxaMedial));
+                    var den3DC = (1.10938 - 0.0008267 * (Peitoral + Abdominal + CoxaMedial))
+                                + 0.0000016 * Math.Pow(((Peitoral + Abdominal + CoxaMedial)), 2.0) - 0.0002574 * Idade;
                     if (den3DC == 0.0)
                         errorCalculation = true;
                     else
-                        result = (((4.95 / den3DC) + 0.0000016
-                                    * Math.Pow(((Peitoral + Abdominal + CoxaMedial)), 2.0) - 0.0002574
-                                    * Idade) - 4.5) * 100.0;
+                        result = ((4.95 / den3DC) - 4.5) * 100.0;
                     break;
                 case 2: //JACKSON & POLLOCK 7DC
                     var auxTerms = (Peitoral + Abdominal + CoxaMedial + Suprailicia + AxilarMedia + Tricipital + Subescapular);
                     var aux2 = 1.112 - 0.00043499 * auxTerms;
                     var den7DC = (1.112 - 0.00043499 * auxTerms
-                        + 0.00000055 * (Math.Pow(auxTerms, 2.0)
-                        - 0.00028826 * Idade));
+                        + 0.00000055 * (Math.Pow(auxTerms, 2.0))
+                        - 0.00028826 * Idade);
                     if (den7DC == 0.0)
                         errorCalculation = true;
                     else
-                        result = ((4.95 / den7DC - 4.5) * 100.0);
+                        result = ((4.95 / den7DC) - 4.5) * 100.0;
                     break;
                 default:
                     return 0.0;

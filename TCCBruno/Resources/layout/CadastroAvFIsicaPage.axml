@@ -518,7 +518,7 @@
                 tl:layout_width="fill_parent"
                 tl:layout_height="wrap_content"
                 tl:gravity="center_horizontal"
-                tl:text="Diâmetros Ósseos"
+                tl:text="Diâmetros Ósseos (cm)"
                 tl:textSize="20.0dp"
                 tl:textColor="#FFFFFF" />
         </TableRow>
@@ -526,7 +526,7 @@
         <TableRow>
             <TextView
                 tl:layout_column="1"
-                tl:text="RadioU ():"
+                tl:text="Radio-ulnar:"
                 tl:padding="3dip" />
             <EditText
                 tl:layout_column="2"
@@ -543,7 +543,7 @@
         <TableRow>
             <TextView
                 tl:layout_column="1"
-                tl:text="Femural ():"
+                tl:text="Femural:"
                 tl:padding="3dip" />
             <EditText
                 tl:layout_column="2"
@@ -576,42 +576,48 @@
                 tl:layout_column="1"
                 tl:text="Flexibilidade Geral:"
                 tl:padding="3dip" />
-            <EditText
-                tl:layout_column="2"
-                tl:gravity="right"
-                tl:padding="3dip"
+            <LinearLayout
                 tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="number"
-                tl:id="@+id/EDT_FlexGeral1"
-                tl:text="40" />
-            <EditText
-                tl:layout_column="3"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="number"
-                tl:id="@+id/EDT_FlexGeral2"
-                tl:text="38" />
-            <EditText
-                tl:layout_column="4"
-                tl:gravity="right"
-                tl:padding="3dip"
-                tl:layout_height="wrap_content"
-                tl:layout_width="100dp"
-                tl:maxLines="1"
-                tl:inputType="number"
-                tl:id="@+id/EDT_FlexGeral3"
-                tl:text="35" />
+                tl:layout_width="match_parent">
+                <EditText
+                    tl:gravity="right"
+                    tl:padding="3dip"
+                    tl:layout_height="wrap_content"
+                    tl:layout_gravity="left"
+                    tl:layout_width="67.7dp"
+                    tl:maxLines="1"
+                    tl:inputType="number"
+                    tl:id="@+id/EDT_FlexGeral1"
+                    tl:text="" />
+                <EditText
+                    tl:gravity="right"
+                    tl:padding="3dip"
+                    tl:layout_height="wrap_content"
+                    tl:layout_gravity="center"
+                    tl:layout_width="70.0dp"
+                    tl:maxLines="1"
+                    tl:inputType="number"
+                    tl:id="@+id/EDT_FlexGeral2"
+                    tl:text=""
+                    tl:layout_marginLeft="0.0dp"
+                    tl:layout_marginRight="0.0dp" />
+                <EditText
+                    tl:gravity="right"
+                    tl:padding="3dip"
+                    tl:layout_height="wrap_content"
+                    tl:layout_gravity="right"
+                    tl:layout_width="67.7dp"
+                    tl:maxLines="1"
+                    tl:inputType="number"
+                    tl:id="@+id/EDT_FlexGeral3"
+                    tl:text="" />
+            </LinearLayout>
         </TableRow>
     <!--Flexoes Braco-->
         <TableRow>
             <TextView
                 tl:layout_column="1"
-                tl:text="Flexibilidade Geral:"
+                tl:text="Flexões de Braço:"
                 tl:padding="3dip" />
             <EditText
                 tl:layout_column="2"

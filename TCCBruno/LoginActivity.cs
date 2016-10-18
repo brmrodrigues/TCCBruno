@@ -107,7 +107,7 @@ namespace TCCBruno
                     DisplayAlertMessage("Senha incorreta");
                     break;
                 default:
-                    DisplayAlertMessage("Login efetuado com sucesso!");
+                    //DisplayAlertMessage("Login efetuado com sucesso!");
                     _usuarioId = resultLogin;
                     var nav = ServiceLocator.Current.GetInstance<INavigationService>();
                     //TODO: Fazer verificação se usuário logado é Aluno ou Instrutor: 
