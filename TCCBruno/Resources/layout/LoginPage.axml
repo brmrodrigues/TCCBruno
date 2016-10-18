@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:id="@+id/linearLayoutloginPage"
     android:background="@drawable/back_gradient_color">
-
 <!--<TextView
         android:text="Personal Academia"
         android:gravity="center"
@@ -26,7 +25,7 @@
         android:inputType="textEmailAddress"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="vander"
+        android:text=""
         android:id="@+id/editText_Email" />
     <TextView
         android:text="Senha"
@@ -36,19 +35,19 @@
         android:layout_height="wrap_content" />
     <EditText
         android:inputType="textPassword"
-        android:text="1234"
+        android:text=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ediText_Senha" />
-  <Button
-      android:text="Entrar"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/BTN_Entrar"
-      android:layout_gravity="center"
-      android:layout_marginTop="100.0dp"
-      android:paddingRight="30.0dp"
-      android:paddingLeft="30.0dp" 
-      android:background="@drawable/button_background"
-      style="@style/button_text"/>
+    <Button
+        android:text="Entrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BTN_Entrar"
+        android:layout_gravity="center"
+        android:layout_marginTop="100.0dp"
+        android:paddingRight="30.0dp"
+        android:paddingLeft="30.0dp"
+        android:background="@drawable/button_background"
+        style="@style/button_text" />
 </LinearLayout>

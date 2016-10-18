@@ -13,10 +13,11 @@ using Microsoft.Practices.ServiceLocation;
 using GalaSoft.MvvmLight.Ioc;
 using System.Collections.Generic;
 using TCCBruno.Model;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Personal Academia", MainLauncher = true, Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Personal Academia", MainLauncher = true, Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginActivity : ActivityBase
     {
         private int _usuarioId; //Id do usuário logado no sistema
@@ -97,13 +98,13 @@ namespace TCCBruno
             int resultLogin = LoginExecute(usuario, senha, ref tipoPessoa);
             switch (resultLogin)
             {
-                case 0:
-                    DisplayAlertMessage("O sistema está indisponível no momento");
+                case 0: //Falha na conexão
+                    DisplayAlertMessage("O sistema está indisponível no momento. Tente mais tarde.");
                     break;
-                case -1:
+                case -1: // Usuário não cadastrado
                     DisplayAlertMessage("Usuário não cadastrado no sistema");
                     break;
-                case -2:
+                case -2: // Senha Incorreta
                     DisplayAlertMessage("Senha incorreta");
                     break;
                 default:
@@ -189,7 +190,7 @@ namespace TCCBruno
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Validation.DisplayAlertMessage(ex.Message, this);
                     resultId = 0;
                 }
                 finally

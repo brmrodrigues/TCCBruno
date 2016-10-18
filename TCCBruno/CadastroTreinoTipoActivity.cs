@@ -14,10 +14,11 @@ using TCCBruno.Adapters;
 using Microsoft.Practices.ServiceLocation;
 using TCCBruno.Model;
 using TCCBruno.DAO;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Cadastro de SubTreino", Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Cadastro de SubTreino", Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class CadastroTreinoTipoActivity : ActivityBase
     {
         private Spinner _spnDuracaoTreinoTipo;

@@ -15,10 +15,11 @@ using TCCBruno.DAO;
 using TCCBruno.Adapters;
 using TCCBruno.Model;
 using TCCBruno.Extension;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Cadastro de Exercício", Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Cadastro de Exercício", Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class CadastroExecucao_ExercicioActivity : ActivityBase
     {
         private int _treinoTipoId;

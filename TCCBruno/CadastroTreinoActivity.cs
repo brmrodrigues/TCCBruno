@@ -13,10 +13,11 @@ using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using TCCBruno.DAO;
 using TCCBruno.Model;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Cadastro de Treino", Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Cadastro de Treino", Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class CadastroTreinoActivity : Activity
     {
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();

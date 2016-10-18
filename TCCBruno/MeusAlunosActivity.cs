@@ -13,10 +13,11 @@ using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using TCCBruno.Adapters;
 using TCCBruno.DAO;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Meus Alunos")]
+    [Activity(Label = "Meus Alunos", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MeusAlunosActivity : Android.Support.V4.App.Fragment
     {
         MeusAlunosPageAdapter _meusAlunosListAdapter;

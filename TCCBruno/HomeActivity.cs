@@ -15,10 +15,11 @@ using GalaSoft.MvvmLight.Views;
 using TCCBruno.Adapters;
 using Microsoft.Practices.ServiceLocation;
 using TCCBruno.DAO;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Personal Academia", MainLauncher = false, Icon = "@drawable/logoAcademia", Theme = "@style/MyTheme")]
+    [Activity(Label = "Personal Academia", MainLauncher = false, Icon = "@drawable/logoAcademia", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
     public class HomeActivity : ActionBarActivity
     {
         private SupportToolbar mToolbar;

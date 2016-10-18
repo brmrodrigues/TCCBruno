@@ -13,10 +13,11 @@ using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using TCCBruno.DAO;
 using TCCBruno.Adapters;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Exercícios", Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Exercícios", Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class Execucao_ExerciciosActivity : ActivityBase
     {
         //private GridLayout _gridLayout;

@@ -14,10 +14,11 @@ using Microsoft.Practices.ServiceLocation;
 using TCCBruno.DAO;
 using TCCBruno.Adapters;
 using TCCBruno.Model;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Avaliações Físicas", Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Avaliações Físicas", Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class AvaliacaoFisicaActivity : Activity
     {
         //private GridLayout _gridLayout;

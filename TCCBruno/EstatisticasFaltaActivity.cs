@@ -13,10 +13,11 @@ using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using TCCBruno.Adapters;
 using TCCBruno.DAO;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Estatísticas de Falta", Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Estatísticas de Falta", Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class EstatisticasFaltaActivity : Activity
     {
         private int _alunoId = -1;

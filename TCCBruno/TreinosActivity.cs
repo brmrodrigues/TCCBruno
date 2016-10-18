@@ -14,16 +14,17 @@ using TCCBruno.DAO;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using TCCBruno.Adapters;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Treinos", Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Treinos", Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class TreinosActivity : ActivityBase
     {
         private ExpandableListView _treinosListView;
         private Button _novoTreinoButton;
         Dictionary<string, int> _instrutorAlunoDict = new Dictionary<string, int>();
-        private int _alunoId = -1;
+        //private int _alunoId = -1;
         private const int DIALOG_TREINO = 0;
         private const int DIALOG_TREINO_TIPO = 1;
         private const int DIALOG_CADASTRO_TREINO_TIPO = 2;

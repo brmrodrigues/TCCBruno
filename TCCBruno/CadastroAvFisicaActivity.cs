@@ -17,10 +17,11 @@ using TCCBruno.Adapters;
 using Android.Text;
 using TCCBruno.Extension;
 using TCCBruno.Model;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Cadastro de Avaliação Física", Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Cadastro de Avaliação Física", Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class CadastroAvFisicaActivity : ActivityBase
     {
         private readonly int[,] mBraco = new int[6, 4] { { 18, 23, 29, 39 }, { 16, 22, 29, 36 }, { 11, 17, 22, 30 }, { 9, 13, 17, 22 }, { 6, 10, 13, 21 }, { 4, 8, 11, 18 } };

@@ -18,10 +18,11 @@ using TCCBruno.Extension;
 using TCCBruno.Adapters;
 using TCCBruno.DAO;
 using TCCBruno.Model;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Realizar Check-in", Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Realizar Check-in", Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class CheckInActivity : Android.Support.V4.App.Fragment, ILocationListener
     {
         private int _alunoId;
@@ -30,8 +31,10 @@ namespace TCCBruno
         private string _locationProvider;
         private Button _checkInButton;
         private Spinner _treinoTipoSpinner;
-        private const double ACADEMIA_LATITUDE = -21.99476054;
-        private const double ACADEMIA_LONGITUDE = -47.91893633;
+        //private const double ACADEMIA_LATITUDE = -21.99476054; // Coordenadas Teste
+        //private const double ACADEMIA_LONGITUDE = -47.91893633;
+        private const double ACADEMIA_LATITUDE = -5.814137;
+        private const double ACADEMIA_LONGITUDE = -35.217261;
         private const double ACADEMIA_RAIO_MAX = 0.3; //Kilometros
         //private const double _latitudeAcademia = -5.814137; //Coordenadas Reais da Personal Academia
         //private const double _longitudeAcademia = -35.217261;

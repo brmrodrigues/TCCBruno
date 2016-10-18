@@ -14,10 +14,11 @@ using TCCBruno.DAO;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using System.Globalization;
+using Android.Content.PM;
 
 namespace TCCBruno
 {
-    [Activity(Label = "Cadastro de Novo Aluno", Icon = "@drawable/logoAcademia")]
+    [Activity(Label = "Cadastro de Novo Aluno", Icon = "@drawable/logoAcademia", ScreenOrientation = ScreenOrientation.Portrait)]
     public class CadastroAlunoActivity : ActivityBase
     {
         private GridLayout _gridLayout;
