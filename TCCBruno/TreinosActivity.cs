@@ -34,6 +34,9 @@ namespace TCCBruno
         private int _subTreinosCount;
         TreinosExpandableListAdapter _treinosAdapter;
         private int _treinoTipoSelectedId = -1;
+        private int _treinoPos = 0; // Posição na LV do último Treino clicado
+        private readonly string[] _nomesTreinoTipo = { "A", "B", "C", "D", "E" };
+
 
         public NavigationService Nav
         {
@@ -96,19 +99,19 @@ namespace TCCBruno
             ExpandableListView listView = (ExpandableListView)e.Parent;
             long pos = listView.GetExpandableListPosition(e.Position);
             var itemType = ExpandableListView.GetPackedPositionType(pos);
-            var treinoPos = ExpandableListView.GetPackedPositionGroup(pos);
+            _treinoPos = ExpandableListView.GetPackedPositionGroup(pos);
             var treinoTipoPos = ExpandableListView.GetPackedPositionChild(pos);
 
             Dialog dialog = null;
             if (itemType == PackedPositionType.Child) //Long Click em SubTreino
             {
                 //Retirar o Id do SubTreino selecionado
-                _treinoTipoSelectedId = (int)_treinosAdapter.GetChildId(treinoPos, treinoTipoPos);
+                _treinoTipoSelectedId = (int)_treinosAdapter.GetChildId(_treinoPos, treinoTipoPos);
                 //Fragment: Exibir Exercicios, Alterar Subtreino, Remover Subtreino
                 if (_instrutorAlunoDict.ContainsKey("instrutor_id")) //Acesso para Instrutor
                 {
                     //Acesso restrito para Instrutor
-                    var treinoTipoNome = _treinosAdapter.GetNomeTreinoTipo(treinoPos, treinoTipoPos);
+                    var treinoTipoNome = _treinosAdapter.GetNomeTreinoTipo(_treinoPos, treinoTipoPos);
                     var args = new Bundle();
                     args.PutString("0", treinoTipoNome);
                     dialog = OnCreateDialog(DIALOG_TREINO_TIPO, args);
@@ -125,10 +128,10 @@ namespace TCCBruno
             else if (itemType == PackedPositionType.Group && _instrutorAlunoDict.ContainsKey("instrutor_id")) //Long Click em Treino. Acesso para Instrutor
             {
                 //Fragment: Add Subtreino, Alterar Treino, Remover Treino
-                _treinoSelectedId = (int)_treinosAdapter.GetGroupId(treinoPos); //armazena o id do treino selecionado
-                _subTreinosCount = (int)_treinosAdapter.GetChildrenCount(treinoPos);
+                _treinoSelectedId = (int)_treinosAdapter.GetGroupId(_treinoPos); //armazena o id do treino selecionado
+                _subTreinosCount = (int)_treinosAdapter.GetChildrenCount(_treinoPos);
                 var args = new Bundle();
-                args.PutString("0", (treinoPos + 1).ToString());
+                args.PutString("0", (_treinoPos + 1).ToString());
                 dialog = OnCreateDialog(DIALOG_TREINO, args);
                 dialog.Show();
             }
@@ -269,10 +272,23 @@ namespace TCCBruno
                 case 1:
                     RemoveSelectedSubTreino();
                     LoadTreinos();
+                    ReOrderSubTreinos();
+                    LoadTreinos();
                     break;
 
             }
             _treinoTipo_SingleChoiceItemSelected = 0; //Reinicia a pré-seleção do primeiro item
+        }
+
+        private void ReOrderSubTreinos()
+        {
+            Treino_TipoDAO treinoTipoDAO = new Treino_TipoDAO();
+            //Para cada SubTreino do último Treino selecionado
+            for (int i = 0; i < _treinosAdapter.GetChildrenCount(_treinoPos); i++)
+            {
+                int subTreinoId = (int)_treinosAdapter.GetChildId(_treinoPos, i);
+                treinoTipoDAO.UpdateNomeSubTreino(subTreinoId, _nomesTreinoTipo[i]);
+            }
         }
 
         //private void TreinoTipo_SingleChoiceItemClick(object sender, DialogClickEventArgs args)

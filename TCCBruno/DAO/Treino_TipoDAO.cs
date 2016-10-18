@@ -87,5 +87,22 @@ namespace TCCBruno.DAO
 
             return DBConnection.ExecuteNonQuery(queryString, parametersList);
         }
+
+        public bool UpdateNomeSubTreino(int subTreinoId, string newNomeSubTreino)
+        {
+            string queryString = "UPDATE Treino_Tipo" +
+                                    " SET treino_tipo_nome = @treino_tipo_nome" +
+                                    " WHERE treino_tipo_id = @treino_tipo_id";
+            List<SqlParameter> parametersList = new List<SqlParameter>()
+            {
+                new SqlParameter() {ParameterName="@treino_tipo_nome", SqlDbType = SqlDbType.VarChar, Value = newNomeSubTreino },
+                new SqlParameter() {ParameterName="@treino_tipo_id", SqlDbType = SqlDbType.Int, Value = subTreinoId }
+            };
+
+            return DBConnection.ExecuteNonQuery(queryString, parametersList);
+
+
+
+        }
     }
 }
