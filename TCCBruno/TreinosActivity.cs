@@ -66,9 +66,29 @@ namespace TCCBruno
             }
         }
 
+        /// <summary>
+        /// Acesso mais rápido para exibir rapidamente os Exercícios
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LV_Treinos_ChildClick(object sender, ExpandableListView.ChildClickEventArgs e)
         {
-            //Console.WriteLine();
+            _treinoTipoSelectedId = (int)_treinosAdapter.GetChildId(e.GroupPosition, e.ChildPosition);
+            Dictionary<string, int> treinoTipoDict = new Dictionary<string, int>();
+
+            if (_instrutorAlunoDict.ContainsKey("instrutor_id")) //Instrutor Logado
+            {
+                treinoTipoDict.Add("treinoTipo_id", _treinoTipoSelectedId);
+                Nav.NavigateTo(LoginActivity._execucaoExerciciosPageKey, treinoTipoDict);
+
+            }
+            else //Aluno Logado
+            {
+                treinoTipoDict.Add("aluno_id", _instrutorAlunoDict["aluno_id"]);
+                treinoTipoDict.Add("treinoTipo_id", _treinoTipoSelectedId);
+                Nav.NavigateTo(LoginActivity._execucaoExerciciosPageKey, treinoTipoDict);
+            }
+
         }
 
         private void LV_Treinos_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
@@ -94,13 +114,13 @@ namespace TCCBruno
                     dialog = OnCreateDialog(DIALOG_TREINO_TIPO, args);
                     dialog.Show();
                 }
-                else //Aluno logado, redirecioná-lo para os Exercícios do Subtreino escolhido
-                {
-                    Dictionary<string, int> alunoTreinoTipoDict = new Dictionary<string, int>();
-                    alunoTreinoTipoDict.Add("aluno_id", _instrutorAlunoDict["aluno_id"]);
-                    alunoTreinoTipoDict.Add("treinoTipo_id", _treinoTipoSelectedId);
-                    Nav.NavigateTo(LoginActivity._execucaoExerciciosPageKey, alunoTreinoTipoDict); //Aluno logado, logo Execucao_ExercicioActivity receberá treinoTipoId inválido
-                }
+                //else //Aluno logado, redirecioná-lo para os Exercícios do Subtreino escolhido
+                //{
+                //    Dictionary<string, int> alunoTreinoTipoDict = new Dictionary<string, int>();
+                //    alunoTreinoTipoDict.Add("aluno_id", _instrutorAlunoDict["aluno_id"]);
+                //    alunoTreinoTipoDict.Add("treinoTipo_id", _treinoTipoSelectedId);
+                //    Nav.NavigateTo(LoginActivity._execucaoExerciciosPageKey, alunoTreinoTipoDict); //Aluno logado, logo Execucao_ExercicioActivity receberá treinoTipoId inválido
+                //}
             }
             else if (itemType == PackedPositionType.Group && _instrutorAlunoDict.ContainsKey("instrutor_id")) //Long Click em Treino. Acesso para Instrutor
             {
@@ -238,15 +258,15 @@ namespace TCCBruno
             {
                 default:
                     break;
-                case 0: //Exibir Exercícios
-                    Dictionary<string, int> alunoTreinoTipoDict = new Dictionary<string, int>();
-                    alunoTreinoTipoDict.Add("treinoTipo_id", _treinoTipoSelectedId);
-                    Nav.NavigateTo(LoginActivity._execucaoExerciciosPageKey, alunoTreinoTipoDict);
+                    //case 0: //Exibir Exercícios
+                    //Dictionary<string, int> alunoTreinoTipoDict = new Dictionary<string, int>();
+                    //alunoTreinoTipoDict.Add("treinoTipo_id", _treinoTipoSelectedId);
+                    //Nav.NavigateTo(LoginActivity._execucaoExerciciosPageKey, alunoTreinoTipoDict);
                     break;
-                case 1: //Alterar o SubTreino
+                case 0: //Alterar o SubTreino
 
                     break; //Remover SubTreino
-                case 2:
+                case 1:
                     RemoveSelectedSubTreino();
                     LoadTreinos();
                     break;
